@@ -1,0 +1,48 @@
+<ion-content>
+  <div class="ion-card">
+    <ion-card-header>
+      <span class="circle-icon">
+        <ion-icon name="navigate-outline"></ion-icon>
+      </span>
+      <h1>{{ 'ELEPHANT_MANAGEMENT.ADD_ELEPHANT'| translate }}</h1>
+    </ion-card-header>
+    <form [formGroup]="addElephantForm" (ngSubmit)="onSubmit()">
+        
+
+<!--      <div class="form-group">-->
+<!--        <label for="track_date">{{ 'ADD_TRACK_PAGE.TRACK_DATE' | translate }}</label>-->
+<!--        <ion-datetime display-format="DD MMM YYYY" formControlName="track_date" class="form-control"></ion-datetime>-->
+<!--      </div>-->
+
+
+      
+      <div class="form-group">
+        <label for="name">{{ 'ELEPHANT_MANAGEMENT.NAME' | translate }}</label>
+        <ion-input type="text" id="name" formControlName="name" class="form-control"
+          fill="outline"></ion-input>
+      </div>
+      
+      <div class="form-group">
+        <label for="description">{{ 'ELEPHANT_MANAGEMENT.DESCRIPTION' | translate }}</label>
+        <ion-input type="text" id="description" formControlName="description" class="form-control" fill="outline"></ion-input>
+      </div>
+
+  
+      <div class="form-group" *ngIf="isMediaVisible()">
+        <label for="media">{{ 'ADD_TRACK_PAGE.MEDIA' | translate }}</label>
+        <ion-input type="file" id="media" (change)="onFileChange($event)" multiple class="form-control"
+          formControlName="file" fill="outline"> </ion-input>
+        <div *ngIf="previewImages.length > 0" class="preview-container">
+          <div *ngFor="let image of previewImages; let i = index" class="preview-item">
+            <img [src]="image.url" alt="Preview Image">
+            <button ion-button (click)="removeImage(i)" class="remove-button">X</button>
+          </div>
+        </div>
+      </div>
+
+
+      <ion-button expand="block" type="submit" [disabled]="addElephantForm.invalid">{{ 'ADD_TRACK_PAGE.SUBMIT' | translate }}
+      </ion-button>
+    </form>
+  </div>
+</ion-content>

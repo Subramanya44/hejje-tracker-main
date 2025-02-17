@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{'LOCATION_VIEW_ON_MAP' | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="outline" color="danger" (click)="cancel()">
+        <strong>close <ion-icon slot="end" name="close"></ion-icon> </strong>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<div class="map-container">
+  <div id="map"></div>
+  <leaflet-locate-control [map]="displayMap" [options]="locateOptions">
+  </leaflet-locate-control>
+</div>

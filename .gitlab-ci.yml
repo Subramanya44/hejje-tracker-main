@@ -1,0 +1,24 @@
+# The Docker image that will be used to build your app
+image: node:lts
+# Functions that should be executed before the build script is run
+before_script:
+  - npm install -g @ionic/cli
+pages:
+  script:
+    - npm install
+    - ionic build --prod --output-path=public
+    - cp public/index.html public/404.html
+  artifacts:
+    paths:
+      # The folder that contains the files to be exposed at the Page URL
+      - public
+  only:
+    - main
+    - tags
+
+  # script:
+  #   - echo "404.html" > public/404.html
+  # rules:
+  #   # This ensures that only pushes to the default branch will trigger
+  #   # a pages deploy
+  #   - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH

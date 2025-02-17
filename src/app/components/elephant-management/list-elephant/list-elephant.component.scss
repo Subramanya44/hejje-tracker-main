@@ -1,0 +1,169 @@
+.filter {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .filter > div:first-child {
+    display: flex;
+  }
+  
+  .form-group {
+    width: auto;
+    min-width: 17%;
+    border: 1px solid;
+    border-radius: 23px;
+    padding: 0 10px;
+  }
+  
+  ion-label {
+    display: flex;
+    gap: 9px;
+    width: 100%;
+    align-items: center;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: row;
+    /* align-items: flex-start; */
+    margin: 10px;
+  }
+  
+  .header {
+    padding: 10px;
+    background: grey;
+    color: black;
+  }
+  
+  .data {
+    padding: 10px;
+  }
+  .card {
+    display: none;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .pagination > * {
+    margin: 5px 5px;
+  }
+  
+  .top-bar-right > div:last-child {
+    display: flex;
+    text-align: end;
+    align-items: flex-end;
+    gap: 5px;
+    flex-direction: column;
+  }
+  
+  .bottom-bar > div:last-child > span {
+    cursor: pointer;
+    text-decoration: underline blue;
+    color: blue;
+  }
+  
+  ion-footer {
+    padding: 10px;
+    color: black;
+  }
+  
+  ion-footer ion-button ion-icon {
+    --color: white;
+  }
+  
+  /* mobile view  */
+  
+  @media only screen and (max-width: 600px) {
+    .filter {
+      flex-direction: column;
+      align-items: normal;
+    }
+  
+    .filter > div:first-child {
+      display: block;
+    }
+    .form-group {
+      width: 100%;
+      min-width: unset;
+    }
+  
+    .header {
+      display: none;
+    }
+  
+    .data {
+      display: none;
+    }
+  
+    .card {
+      display: block;
+      border: 1px solid;
+      border-radius: 15px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+  
+    .card > .top-bar {
+      display: flex;
+      gap: 10px;
+    }
+  
+    .card > .top-bar > ion-img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      aspect-ratio: 1 / 1;
+      border-radius: 10px;
+    }
+  
+    .card > .bottom-bar {
+      display: flex;
+      gap: 10px;
+      justify-content: space-evenly;
+    }
+  
+    .card > .bottom-bar > ion-button {
+      width: 100%;
+    }
+  
+    .bottom-bar > div {
+      text-align: center;
+      width: 100%;
+    }
+  
+    .top-bar-right {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      width: 100%;
+    }
+  
+    .top-bar-right > div:first-child {
+      width: 100%;
+    }
+  
+    ion-card {
+      margin: 10px;
+    }
+  }
+  .col-location {
+    cursor: pointer;
+  }
+  .col-id,
+  .col-name,
+  .col-description,
+  .col-timestamp,
+  .col-media,
+  .col-edit,
+  .col-action {
+    width: calc(100% / 12); /* Divide the total width evenly among the columns */
+  }
+  

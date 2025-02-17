@@ -1,0 +1,129 @@
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <h1>{{ 'USER_MANAGEMENT.USER_MANAGEMENT' | translate  }}</h1>
+
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-card>
+        <ion-row class="header">
+          <ion-col><strong>{{ 'USER_MANAGEMENT.ID' | translate  }}</strong></ion-col>
+          <ion-col><strong>{{ 'USER_MANAGEMENT.EMAIL' | translate  }}</strong></ion-col>
+          <ion-col><strong>{{ 'USER_MANAGEMENT.FULL_NAME' | translate  }}</strong></ion-col>
+          <ion-col><strong>{{ 'USER_MANAGEMENT.ROLE' | translate  }}</strong></ion-col>
+          <ion-col><strong>{{ 'USER_MANAGEMENT.MOBILE' | translate  }}</strong></ion-col>
+          <ion-col><strong>{{ 'USER_MANAGEMENT.POINTS' | translate  }}</strong></ion-col>
+        </ion-row>
+        <ion-row class="data" *ngFor="let user of users">
+          <ion-col>{{ user.id }}</ion-col>
+
+          <ion-col>{{ user.email }}</ion-col>
+          <ion-col>{{ user.full_name }}</ion-col>
+          <ion-col>{{ user.role }}</ion-col>
+          <ion-col>{{ user.mobile }}</ion-col>
+          <ion-col>{{ user.points }}</ion-col>
+        </ion-row>
+
+       <div class="card" *ngFor="let user of visibleUsers">
+         <div class="top-bar">
+           <div class="top-bar-right">
+             <div>
+               <div>{{ user.full_name }}</div>
+               <div>{{ user.role }}</div>
+               <div>{{ user.mobile }}</div>
+             </div>
+             <div >
+               <div>{{ user.created_at | date: "YYY-MM-dd HH:mm:ss" }}</div>
+             </div>
+           </div>
+         </div>
+         <hr>
+         <div class="bottom-bar">
+           <!-- <div>POINTS :{{ user.points }}</div> -->
+           <div>{{ user.email }}</div>
+         </div>
+       </div>
+        <ion-footer>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button (click)="prevPage()" [disabled]="currentPage === 1" title="Previous">
+                <ion-icon name="chevron-back"></ion-icon></ion-button>
+            </ion-buttons>
+            <div class="pagination">
+              <p>
+                Page {{ currentPage }} of {{ totalPages }} :
+              </p>
+              <span>
+                <ion-select value="10" (ionChange)="onPageSizeChange($event)">
+                  <ion-select-option value="5">5</ion-select-option>
+                  <ion-select-option value="10">10</ion-select-option>
+                  <ion-select-option value="20">25</ion-select-option>
+                  <ion-select-option value="50">50</ion-select-option>
+                </ion-select>
+
+              </span>
+            </div>
+
+            <ion-buttons slot="end">
+              <ion-button (click)="nextPage()" [disabled]="currentPage === totalPages" title="Next">
+                <ion-icon name="chevron-forward"></ion-icon></ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-footer>
+
+      </ion-card>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-fab title="Create New User" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button id="open-custom-dialog" color="primary" >
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-modal id="example-modal" #modal trigger="open-custom-dialog">
+    <ng-template>
+      <div class="wrapper">
+        <div class="modal-header">
+          <h1>{{ 'USER_MANAGEMENT.INVITE_USER' | translate }}</h1>
+
+          <ion-button color="primary" (click)="modal.dismiss()">
+            <ion-icon name="close"></ion-icon>
+          </ion-button>
+
+        </div>
+
+        <!-- email and a submit button  -->
+        <form [formGroup]="inviteForm" (ngSubmit)="invite()">
+          <ion-item>
+            <ion-input label="{{'USER_MANAGEMENT.EMAIL' | translate}}" label-placement="floating" type="email" formControlName="email"></ion-input>
+          </ion-item>
+           <ion-item>
+            <ion-input label="{{'USER_MANAGEMENT.PASSWORD' | translate}}" label-placement="floating" type="password" formControlName="password"></ion-input>
+          </ion-item>
+           <ion-item>
+            <ion-input label="{{'USER_MANAGEMENT.FULL_NAME' | translate}}" label-placement="floating" type="text" formControlName="full_name"></ion-input>
+          </ion-item>
+           <ion-item>
+            <ion-input label="{{'USER_MANAGEMENT.MOBILE' | translate}}" label-placement="floating" type="number" formControlName="mobile"></ion-input>
+          </ion-item>
+          <!-- dropdown if roles  -->
+          <ion-item>
+            <ion-select formControlName="role" label="{{'USER_MANAGEMENT.ROLE' | translate}}" label-placement="floating">
+              <ion-select-option *ngFor="let role of userRoleList" [value]="role">{{ getUserRoleLabel(role) | translate }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <div>
+            <ion-button expand="block" type="submit" [disabled]="inviteForm.invalid">Send Invite <ion-icon
+                name="arrow-forward-outline"></ion-icon></ion-button>
+          </div>
+
+        </form>
+      </div>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>

@@ -1,0 +1,139 @@
+<!-- Assuming this is part of one of your tab pages -->
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <h1>{{ 'MY_TRACKS_PAGE.TRACK_MANAGEMENT' | translate }}</h1>
+      <p> total items: {{ tracks.length }}</p>
+    </ion-card-header>
+
+    <ion-card-content>
+
+
+      <!-- Date Range Filter -->
+      <div class="filter">
+        <div>
+          <div class="form-group">
+
+            <ion-input id="startDate" label="{{ 'MY_TRACKS_PAGE.START_DATE' | translate
+          }}" [(ngModel)]="startDate" type="date" class="ion-text-end"></ion-input>
+          </div>
+          <div class="form-group">
+
+            <ion-input id="endDate" label="{{ 'MY_TRACKS_PAGE.END_DATE' | translate
+          }}" [(ngModel)]="endDate" type="date" class="ion-text-end"></ion-input>
+          </div>
+        </div>
+        <ion-button expand="block" (click)="filterTracksByDate()">{{'SEARCH' | translate}}</ion-button>
+      </div>
+
+
+      <!-- Data Display in Table-like Format -->
+      <ion-card>
+
+        <ion-row class="header">
+          <ion-col class="col-id"><strong>{{ 'MY_TRACKS_PAGE.SL_NO' | translate }}</strong></ion-col>
+          <ion-col class="col-id"><strong>{{ 'MY_TRACKS_PAGE.MOVING' | translate }}</strong></ion-col>
+          <ion-col class="col-timestamp"><strong>{{ 'MY_TRACKS_PAGE.TIMESTAMP' | translate }}</strong></ion-col>
+           <ion-col class="col-timestamp"><strong>{{ 'MY_TRACKS_PAGE.SIGHTING_TIME' | translate }}</strong></ion-col>
+          <ion-col class="col-herd-size"><strong>{{ 'MY_TRACKS_PAGE.HERD_SIZE' | translate }}</strong></ion-col>
+          <ion-col class="col-male"><strong>{{ 'MY_TRACKS_PAGE.MALE' | translate }}</strong></ion-col>
+          <ion-col class="col-female"><strong>{{ 'MY_TRACKS_PAGE.FEMALE' | translate }}</strong></ion-col>
+          <ion-col class="col-calf"><strong>{{ 'MY_TRACKS_PAGE.CALF' | translate }}</strong></ion-col>
+          <ion-col class="col-location"><strong>{{ 'MY_TRACKS_PAGE.LOCATION' | translate }}</strong></ion-col>
+          <ion-col class="col-user"><strong>{{ 'MY_TRACKS_PAGE.USER' | translate }}</strong></ion-col>
+          <ion-col class="col-status"><strong>{{ 'MY_TRACKS_PAGE.STATUS' | translate }}</strong></ion-col>
+          <ion-col class="col-action"><strong>{{ 'MY_TRACKS_PAGE.ACTION' | translate }}</strong></ion-col>
+        </ion-row>
+
+        <ion-row class="data" *ngFor="let track of visibleTracks">
+          <ion-col class="col-id">{{ track.id }}</ion-col>
+          <ion-col class="col-id">{{ track.stationary ? ('YES' | translate) : ('NO' | translate) }}</ion-col>
+          <ion-col class="col-timestamp">{{ track.created_at | date: "YYY-MM-dd HH:mm:ss" }}</ion-col>
+          <ion-col class="col-timestamp">{{ track.sighting_time | date: "YYY-MM-dd HH:mm:ss" }}</ion-col>
+          <ion-col class="col-herd-size">{{ track.herd_size }}</ion-col>
+          <ion-col class="col-male">{{ track.male_count ?? 0 }}</ion-col>
+          <ion-col class="col-female">{{ track.female_count ?? 0 }}</ion-col>
+          <ion-col class="col-calf">{{ track.calf_count ?? 0 }}</ion-col>
+          <ion-col class="col-location" (click)="openMap(track.latitude, track.longitude)">{{track.location}}<br> <a>{{
+              track.latitude }} {{
+              track.longitude }}</a></ion-col>
+          <ion-col class="col-user">{{ track.user_id }}</ion-col>
+          <ion-col class="col-status">{{ track.status | translate }}</ion-col>
+          <ion-col class="col-action">
+            <ion-button *ngIf="isMediaVisible(track.media ?? [])" expand="block" (click)="openModal(track)">
+              <ion-icon name="eye"></ion-icon>
+            </ion-button>
+            <p *ngIf="!isMediaVisible(track.media ?? [])" expand="block">
+              <strong>{{ 'MY_TRACKS_PAGE.NO_MEDIA_FOUND' | translate }}</strong>
+            </p>
+          </ion-col>
+        </ion-row>
+
+
+        <div class="card" *ngFor="let track of visibleTracks">
+          <div class="top-bar">
+            <!-- if media is present show the 1st image and on click open model else show the default image -->
+            <ion-img *ngIf="isMediaVisible(track.media ?? []) && track.media.length > 0" src="{{ track.media[0] }}"
+              (click)="openModal(track)" onerror="this.onerror=null;this.src='https://via.placeholder.com/300';"
+              alt=""></ion-img>
+            <ion-img *ngIf="!isMediaVisible(track.media ?? [])" src="https://via.placeholder.com/300" alt=""></ion-img>
+            <div class="top-bar-right">
+              <div>
+                <div>{{ track.male_count ?? 0 }} {{ 'MY_TRACKS_PAGE.MALE' | translate }}</div>
+                <div>{{ track.female_count ?? 0 }} {{ 'MY_TRACKS_PAGE.FEMALE' | translate }}</div>
+                <div>{{ track.calf_count ?? 0 }} {{ 'MY_TRACKS_PAGE.CALF' | translate }}</div>
+              </div>
+              <div>
+                <div>{{ track.created_at | date: "YYY-MM-dd HH:mm:ss" }}</div>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="bottom-bar">
+            <div>{{ track.status | translate }}</div>
+            <div (click)="openMap(track.latitude, track.longitude)">{{ track.location }}<br> <span> {{ track.latitude }}
+                {{
+                track.longitude
+                }}</span>
+            </div>
+          </div>
+        </div>
+        <ion-footer>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button aria-label="Previous" (click)="prevPage()" [disabled]="currentPage === 1" title="Previous">
+                <ion-icon name="chevron-back"></ion-icon></ion-button>
+            </ion-buttons>
+            <div class="pagination">
+              <p>
+                Page {{ currentPage }} of {{ totalPages }} :
+              </p>
+              <span>
+                <ion-select value="10" (ionChange)="onPageSizeChange($event)">
+                  <ion-select-option value="5">5</ion-select-option>
+                  <ion-select-option value="10">10</ion-select-option>
+                  <ion-select-option value="20">25</ion-select-option>
+                  <ion-select-option value="50">50</ion-select-option>
+                </ion-select>
+
+              </span>
+            </div>
+
+            <ion-buttons slot="end">
+              <ion-button aria-label="Next" (click)="nextPage()" [disabled]="currentPage === totalPages" title="Next">
+                <ion-icon name="chevron-forward"></ion-icon></ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-footer>
+
+      </ion-card>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-fab title="Create New Track" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" routerLink="/track/track-data/new">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

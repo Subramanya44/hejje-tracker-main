@@ -1,0 +1,29 @@
+
+
+<ion-content class="ion-padding">
+  <div class="login-container">
+    <div class="logo-container">
+      <img [src]="logoPath" alt="Logo">
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <ion-list lines="full">
+        <ion-item>
+          <ion-input label="{{'LOGIN_PAGE.EMAIL' | translate}}" label-placement="floating" formControlName="email" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input label="{{'LOGIN_PAGE.PASSWORD'| translate}}" label-placement="floating" formControlName="password"  type="{{ hidePassword ? 'password' : 'text' }}"></ion-input>
+          <ion-icon name="{{ hidePassword ? 'eye' : 'eye-off' }}" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
+        </ion-item>
+       </ion-list>
+
+      <div>
+        <ion-button expand="block" type="submit" [disabled]="loginForm.invalid">{{ 'LOGIN_PAGE.LOGIN' | translate }} <ion-icon
+            name="arrow-forward-outline"></ion-icon></ion-button>
+      </div>
+    </form>
+     <!-- Added Forgot Password and Sign Up links -->
+     <div class="additional-links">
+      <ion-button size="small" color="medium" fill="clear"  routerLink="/auth/forgot" >{{ 'LOGIN_PAGE.FORGOT_PASSWORD' | translate  }}</ion-button>
+    </div>
+  </div>
+</ion-content>

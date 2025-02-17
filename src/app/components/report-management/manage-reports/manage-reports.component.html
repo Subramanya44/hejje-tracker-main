@@ -1,0 +1,51 @@
+<ion-content>
+  <div class="ion-card">
+    <ion-card-header>
+      <span class="circle-icon">
+        <ion-icon name="navigate-outline"></ion-icon>
+      </span>
+      <h1>{{ 'REPORTS_MANAGEMENT.REPORTS_MANAGEMENT' | translate }}</h1>
+    </ion-card-header>
+  </div>
+
+  <div class="filter">
+    <div>
+      <div class="form-group">
+        <ion-input
+          id="startDate"
+          label="{{ 'MY_TRACKS_PAGE.START_DATE' | translate }}"
+          [(ngModel)]="startDate"
+          type="date"
+          class="ion-text-end"
+          (ionChange)="updateStartDate($event)"
+        ></ion-input>
+      </div>
+      <div class="form-group">
+        <ion-input
+          id="endDate"
+          label="{{ 'MY_TRACKS_PAGE.END_DATE' | translate }}"
+          [(ngModel)]="endDate"
+          type="date"
+          class="ion-text-end"
+          (ionChange)="updateEndDate($event)"
+        ></ion-input>
+      </div>
+      <div class="form-group">
+        <ion-select 
+        label="{{ 'SELECT_ELEPHANT' | translate }}" 
+        id="elephant" 
+        class="ion-text-end"  
+        multiple="true">
+          <ion-select-option *ngFor="let item of suggestedElephants" [value]="item.id">{{item.name}}</ion-select-option>
+        </ion-select>
+    </div>
+    </div>
+   
+    <ion-button (click)="exportAsExcel()">{{ 'EXPORT' | translate }}</ion-button>
+    <ion-button expand="block" (click)="filterTracksByDate()">{{ 'SEARCH' | translate }}</ion-button>
+  </div>
+  <div class="map-container">
+    <div id="map2"></div>
+    <leaflet-locate-control [map]="displayMap" [options]="locateOptions"></leaflet-locate-control>
+  </div>
+</ion-content>

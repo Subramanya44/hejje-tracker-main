@@ -1,0 +1,104 @@
+<!-- Assuming this is part of one of your tab pages -->
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <h1>{{ 'KML_MANAGEMENT.KML_MANAGEMENT' | translate }}</h1>
+      <p> total items: {{ kmls.length }}</p>
+    </ion-card-header>
+
+    <ion-card-content>
+
+
+      <!-- Date Range Filter -->
+      <div class="filter">
+        <!-- <div>
+          <div class="form-group">
+
+            <ion-input id="startDate" label="{{ 'MY_TRACKS_PAGE.START_DATE' | translate
+          }}" [(ngModel)]="startDate" type="date" class="ion-text-end"></ion-input>
+          </div>
+          <div class="form-group">
+
+            <ion-input id="endDate" label="{{ 'MY_TRACKS_PAGE.END_DATE' | translate
+          }}" [(ngModel)]="endDate" type="date" class="ion-text-end"></ion-input>
+          </div>
+        </div>
+        <ion-button expand="block" (click)="filterTracksByDate()">{{'SEARCH' | translate}}</ion-button> -->
+      </div>
+
+
+      <!-- Data Display in Table-like Format -->
+      <ion-card>
+
+        <ion-row class="header">
+          <ion-col class="col-id"><strong>{{ 'KML_MANAGEMENT.ID' | translate }}</strong></ion-col>
+          <ion-col class="col-name"><strong>{{ 'KML_MANAGEMENT.NAME' | translate }}</strong></ion-col>
+          <ion-col class="col-description"><strong>{{ 'KML_MANAGEMENT.DESCRIPTION' | translate }}</strong></ion-col>
+          <ion-col class="col-timestamp"><strong>{{ 'KML_MANAGEMENT.TIMESTAMP' | translate }}</strong></ion-col>
+          <ion-col class="col-media"><strong>{{ 'KML_MANAGEMENT.KML_FILE' | translate }} </strong></ion-col>
+          <ion-col class="col-action"><strong>{{ 'KML_MANAGEMENT.ACTION' | translate }}</strong></ion-col>
+          <!-- <ion-col class="col-edit"><strong> {{ 'ELEPHANT_MANAGEMENT.EDIT' | translate }} </strong></ion-col> -->
+        </ion-row>
+
+        <ion-row class="data" *ngFor="let kml of kmls">
+          <ion-col class="col-id">{{ kml.id }}</ion-col>
+          <ion-col class="col-name">{{ kml.name }}</ion-col>
+          <ion-col class="col-description">{{ kml.description }}</ion-col>
+          <ion-col class="col-timestamp">{{ kml.created_at | date: "YYY-MM-dd HH:mm:ss" }}</ion-col>
+          <ion-col class="col-media">      
+            <p expand="block">
+              <!-- {{kml.}} -->
+             
+            </p>
+            
+          </ion-col>
+          
+          <ion-col class="col-action" >
+             <ion-button size="small" color="danger"
+              (click)="deleteKML(kml.id)">{{ 'DELETE' | translate }}
+            </ion-button>
+           
+          </ion-col>
+        </ion-row>
+
+
+        
+        <ion-footer>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button aria-label="Previous" (click)="prevPage()" [disabled]="currentPage === 1" title="Previous">
+                <ion-icon name="chevron-back"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+            <div class="pagination">
+              <p>
+                Page {{ currentPage }} of {{ totalPages }} : </p>
+              <span>
+                <ion-select value="10" (ionChange)="onPageSizeChange($event)">
+                  <ion-select-option value="5">5</ion-select-option>
+                  <ion-select-option value="10">10</ion-select-option>
+                  <ion-select-option value="20">25</ion-select-option>
+                  <ion-select-option value="50">50</ion-select-option>
+                </ion-select>
+
+              </span>
+            </div>
+
+            <ion-buttons slot="end">
+              <ion-button aria-label="Next" (click)="nextPage()" [disabled]="currentPage === totalPages" title="Next">
+                <ion-icon name="chevron-forward"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-footer>
+
+      </ion-card>
+    </ion-card-content>
+  </ion-card>
+  <ion-fab title="Create New KML" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" routerLink="/kml-management/add" title="Add new KML">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

@@ -1,0 +1,45 @@
+<ion-content>
+    <div class="ion-card">
+      <ion-card-header>
+        <span class="circle-icon">
+          <ion-icon name="navigate-outline"></ion-icon>
+        </span>
+        <h1>{{ 'KML_MANAGEMENT.KML_MANAGEMENT' | translate }}</h1>
+      </ion-card-header>
+      <form [formGroup]="addKmlForm" (ngSubmit)="onSubmit()">
+        
+  
+        
+        <div class="form-group">
+          <label for="name">{{ 'KML_MANAGEMENT.NAME' | translate }}</label>
+          <ion-input type="text" id="name" formControlName="name" class="form-control"
+            fill="outline"></ion-input>
+        </div>
+        
+        <div class="form-group">
+          <label for="description">{{ 'KML_MANAGEMENT.DESCRIPTION' | translate }}</label>
+          <ion-input type="text" id="description" formControlName="description" class="form-control" fill="outline"></ion-input>
+        </div>
+
+        <!-- STATUS SWITCH bUTTON WITH TEXT ACTIVE AND INACTIVE-->
+        <div class="form-group">
+            <label for="status">{{ 'KML_MANAGEMENT.STATUS' | translate }}</label>
+            <ion-toggle formControlName="status" id="status" class="form-control" fill="outline"></ion-toggle>
+        </div>
+  
+        
+  
+  
+        <div class="form-group">
+          <label for="media">{{ 'KML_MANAGEMENT.KML_FILE' | translate }}</label>
+          <ion-input type="file" id="media" class="form-control" (change)="onFileChange($event)"
+            formControlName="kmlfile" fill="outline"> </ion-input>
+        
+        </div>
+  
+        <ion-button expand="block" type="submit" [disabled]="addKmlForm.invalid">{{ 'KML_MANAGEMENT.SUBMIT' | translate }}
+        </ion-button>
+      </form>
+    </div>
+  </ion-content>
+  

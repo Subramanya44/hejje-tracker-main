@@ -1,0 +1,166 @@
+.filter {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+}
+
+.form-group {
+  width: auto;
+  min-width: 17%;
+  border: 1px solid;
+  border-radius: 23px;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+
+ion-label {
+  display: flex;
+  gap: 9px;
+  width: 100%;
+  align-items: center;
+}
+
+.header {
+  padding: 10px;
+  background: grey;
+  color: black;
+}
+
+.data {
+  padding: 10px;
+}
+
+.card {
+  display: none;
+  border: 1px solid;
+  border-radius: 15px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.card > .top-bar,
+.card > .bottom-bar {
+  display: flex;
+  gap: 10px;
+}
+
+.card > .top-bar > img {
+  width: 80px;
+  border-radius: 10px;
+}
+
+.bottom-bar > div {
+  text-align: start;
+  width: 100%;
+}
+
+.top-bar-right {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+}
+
+.top-bar-right > div:first-child {
+  width: 100%;
+}
+
+.top-bar-right > div:last-child {
+  display: flex;
+  text-align: end;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+}
+
+.pagination > * {
+  margin: 5px 5px;
+}
+
+ion-footer {
+  padding: 10px;
+  color: black;
+}
+
+.desktop-only {
+  display: inline;
+}
+
+ion-footer ion-button ion-icon {
+  --color: white;
+}
+
+ion-card {
+  margin: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .filter {
+    flex-direction: column;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  .form-group {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .header,
+  .data {
+    display: none;
+  }
+
+  .card {
+    display: block;
+  }
+}
+
+ion-modal#example-modal {
+  --width: fit-content;
+  --height: fit-content;
+  --max-width: 85%;
+  --max-height: 85%;
+  --min-height: 50%;
+  --min-width: 50%;
+  --min-width: 250px;
+  --border-radius: 6px;
+  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.wrapper {
+  padding: 20px;
+}
+
+.modal-header h1 {
+  margin: 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+ion-item {
+  margin-bottom: 15px;
+}
+
+ion-button {
+  margin-top: 10px;
+}

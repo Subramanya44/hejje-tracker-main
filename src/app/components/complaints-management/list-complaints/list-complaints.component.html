@@ -1,0 +1,140 @@
+<!-- Assuming this is part of one of your tab pages -->
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <h1>{{ 'COMPLAINTS_MANAGEMENT.LIST_OF_COMPLAINTS' | translate }}</h1>
+      <p> total items: {{ complaints.length }}</p>
+    </ion-card-header>
+
+    <ion-card-content>
+
+
+      <!-- Date Range Filter -->
+      <div class="filter">
+        <div>
+          <div class="form-group">
+
+            <ion-input id="startDate" label="{{ 'COMPLAINTS_MANAGEMENT.START_DATE' | translate
+          }}" [(ngModel)]="startDate" type="date" class="ion-text-end"></ion-input>
+          </div>
+          <div class="form-group">
+
+            <ion-input id="endDate" label="{{ 'COMPLAINTS_MANAGEMENT.END_DATE' | translate
+          }}" [(ngModel)]="endDate" type="date" class="ion-text-end"></ion-input>
+          </div>
+        </div>
+        <ion-button (click)="exportAsExcel()">{{'EXPORT' | translate}}</ion-button>
+        <ion-button expand="block" (click)="filterComplaintsByDate()">{{'SEARCH' | translate}}</ion-button>
+        
+      </div>
+
+
+      <!-- Data Display in Table-like Format -->
+      <ion-card>
+
+        <ion-row class="header">
+          <ion-col class="col-id"><strong>{{ 'COMPLAINTS_MANAGEMENT.ID' | translate }}</strong></ion-col>
+          
+          <ion-col class="col-timestamp"><strong>{{ 'COMPLAINTS_MANAGEMENT.TIMESTAMP' | translate }}</strong></ion-col>
+          <ion-col class="col-location"><strong>{{ 'COMPLAINTS_MANAGEMENT.COMPLAINT_TYPE' | translate }}</strong></ion-col>
+          
+          <ion-col class="col-location"><strong>{{ 'COMPLAINTS_MANAGEMENT.NAME' | translate }}</strong></ion-col>
+          <ion-col class="col-location"><strong>{{ 'COMPLAINTS_MANAGEMENT.DESCRIPTION' | translate }}</strong></ion-col>
+          <ion-col class="col-location"><strong>{{ 'COMPLAINTS_MANAGEMENT.MOBILE_NUMBER' | translate }}</strong></ion-col>
+
+          <ion-col class="col-location"><strong>{{ 'COMPLAINTS_MANAGEMENT.LOCATION' | translate }}</strong></ion-col>
+        
+          <ion-col class="col-action"><strong>{{ 'COMPLAINTS_MANAGEMENT.DISTRICT' | translate }}</strong></ion-col>
+          <ion-col class="col-action"><strong>{{ 'COMPLAINTS_MANAGEMENT.TALUK' | translate }}</strong></ion-col>
+          <ion-col class="col-action"><strong>{{ 'COMPLAINTS_MANAGEMENT.VILLAGE' | translate }}</strong></ion-col>
+          <ion-col class="col-status">{{ 'COMPLAINTS_MANAGEMENT.STATUS' | translate }}</ion-col>
+          <ion-col class="col-action"><strong>{{ 'COMPLAINTS_MANAGEMENT.ACTION' | translate }}</strong></ion-col>
+          <ion-col class="col-action"><strong>
+              {{ 'COMPLAINTS_MANAGEMENT.EDIT' | translate }}
+            </strong></ion-col>
+
+        </ion-row>
+
+        <ion-row class="data" *ngFor="let complaint of complaints">
+          <ion-col class="col-id">{{ complaint.id }}</ion-col>
+          <ion-col class="col-timestamp">{{ complaint.created_at | date: "YYY-MM-dd HH:mm:ss" }}</ion-col>
+          <ion-col class="col-location">{{ complaint.complaint_type }}</ion-col>
+          <ion-col class="col-location">{{ complaint.name }}</ion-col>
+          <ion-col class="col-location">{{ complaint.description }}</ion-col>
+          <ion-col class="col-location">{{ complaint.contact_number }}</ion-col>
+         
+          
+          <ion-col class="col-location" (click)="openMap(complaint.latitude, complaint.longitude)">{{
+            complaint.location }}<br><a>{{
+              complaint.latitude
+              }} {{ complaint.longitude }}</a></ion-col>
+          <ion-col class="col-action">{{complaint.district}}</ion-col>
+          <ion-col class="col-action">{{complaint.taluk}}</ion-col>
+          <ion-col class="col-action">{{complaint.village}}</ion-col>
+          <ion-col class="col-status">{{ complaint.status | translate }}</ion-col>
+        
+          <ion-col class="col-action">
+            <ion-button *ngIf="isMediaVisible(complaint.media ?? [])" expand="block" (click)="openModal(complaint)">
+              <ion-icon name="eye"></ion-icon>
+            </ion-button>
+            <p *ngIf="!isMediaVisible(complaint.media ?? [])" expand="block">
+              <strong>{{ 'COMPLAINTS_MANAGEMENT.NO_MEDIA_FOUND' | translate }}</strong>
+            </p>
+            <ion-button size="small" color="primary" *ngIf="complaint.status === 'PENDING'"
+              (click)="updateCompaint(complaint.id, 'APPROVED')">{{ 'APPROVE' | translate }}
+            </ion-button>
+            <ion-button size="small" color="danger" *ngIf="complaint.status === 'PENDING'"
+              (click)="updateCompaint(complaint.id, 'REJECTED')">{{ 'REJECT' | translate }}
+            </ion-button>
+            <p size="small" color="warning" *ngIf="complaint.status === 'APPROVED' || complaint.status === 'REJECTED'"> {{
+              'COMPLAINTS_MANAGEMENT.DECISION_TAKEN' | translate }}
+            </p>
+
+          </ion-col>
+          <ion-col>
+             <ion-button size="small" color="danger"
+              (click)="deleteComplaint(complaint.id)">{{ 'DELETE' | translate }}
+            </ion-button>
+            <ion-button expand="block" routerLink="/track/track-data/{{ complaint.id }}">
+              <ion-icon name="create-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+
+        
+        <ion-footer>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button aria-label="Previous" (click)="prevPage()" [disabled]="currentPage === 1" title="Previous">
+                <ion-icon name="chevron-back"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+            <div class="pagination">
+              <p>
+                Page {{ currentPage }} of {{ totalPages }} : </p>
+              <span>
+                <ion-select value="10" (ionChange)="onPageSizeChange($event)">
+                  <ion-select-option value="5">5</ion-select-option>
+                  <ion-select-option value="10">10</ion-select-option>
+                  <ion-select-option value="20">25</ion-select-option>
+                  <ion-select-option value="50">50</ion-select-option>
+                </ion-select>
+
+              </span>
+            </div>
+
+            <ion-buttons slot="end">
+              <ion-button aria-label="Next" (click)="nextPage()" [disabled]="currentPage === totalPages" title="Next">
+                <ion-icon name="chevron-forward"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-footer>
+
+      </ion-card>
+    </ion-card-content>
+  </ion-card>
+  
+
+</ion-content>

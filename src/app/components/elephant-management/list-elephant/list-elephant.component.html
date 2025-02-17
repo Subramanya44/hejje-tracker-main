@@ -1,0 +1,143 @@
+<!-- Assuming this is part of one of your tab pages -->
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <h1>{{ 'ELEPHANT_MANAGEMENT.ELEPHANT_MANAGEMENT' | translate }}</h1>
+      <p> total items: {{ elephants.length }}</p>
+    </ion-card-header>
+
+    <ion-card-content>
+
+
+      <!-- Date Range Filter -->
+      <div class="filter">
+        <!-- <div>
+          <div class="form-group">
+
+            <ion-input id="startDate" label="{{ 'MY_TRACKS_PAGE.START_DATE' | translate
+          }}" [(ngModel)]="startDate" type="date" class="ion-text-end"></ion-input>
+          </div>
+          <div class="form-group">
+
+            <ion-input id="endDate" label="{{ 'MY_TRACKS_PAGE.END_DATE' | translate
+          }}" [(ngModel)]="endDate" type="date" class="ion-text-end"></ion-input>
+          </div>
+        </div>
+        <ion-button expand="block" (click)="filterTracksByDate()">{{'SEARCH' | translate}}</ion-button> -->
+      </div>
+
+
+      <!-- Data Display in Table-like Format -->
+      <ion-card>
+
+        <ion-row class="header">
+          <ion-col class="col-id"><strong>{{ 'ELEPHANT_MANAGEMENT.ID' | translate }}</strong></ion-col>
+          <ion-col class="col-name"><strong>{{ 'ELEPHANT_MANAGEMENT.NAME' | translate }}</strong></ion-col>
+          <ion-col class="col-description"><strong>{{ 'ELEPHANT_MANAGEMENT.DESCRIPTION' | translate }}</strong></ion-col>
+          <ion-col class="col-timestamp"><strong>{{ 'ELEPHANT_MANAGEMENT.TIMESTAMP' | translate }}</strong></ion-col>
+          <ion-col class="col-media"><strong>{{ 'ELEPHANT_MANAGEMENT.MEDIA' | translate }} </strong></ion-col>
+          <ion-col class="col-action"><strong>{{ 'ELEPHANT_MANAGEMENT.ACTION' | translate }}</strong></ion-col>
+          <!-- <ion-col class="col-edit"><strong> {{ 'ELEPHANT_MANAGEMENT.EDIT' | translate }} </strong></ion-col> -->
+        </ion-row>
+
+        <ion-row class="data" *ngFor="let elephant of elephants">
+          <ion-col class="col-id">{{ elephant.id }}</ion-col>
+          <ion-col class="col-name">{{ elephant.name }}</ion-col>
+          <ion-col class="col-description">{{ elephant.description }}</ion-col>
+          <ion-col class="col-timestamp">{{ elephant.created_at | date: "YYY-MM-dd HH:mm:ss" }}</ion-col>
+          <ion-col class="col-media">      
+            <p *ngIf="!isMediaVisible(elephant.media_attachments ?? [])" expand="block">
+              {{elephant.media_attachments}}
+              <strong>{{ 'NO_MEDIA_FOUND' | translate }}</strong>
+            </p>
+            <ion-button *ngIf="isMediaVisible(elephant.media_attachments ?? [])" expand="block" (click)="openModal(elephant)">
+              <ion-icon name="eye"></ion-icon>
+            </ion-button>
+          </ion-col>
+          
+          <ion-col class="col-action" >
+             <ion-button size="small" color="danger"
+              (click)="deleteElephant(elephant.id)">{{ 'DELETE' | translate }}
+            </ion-button>
+            <ion-button expand="block" routerLink="/elephant-management/edit/{{ elephant.id }}">
+              <ion-icon name="create-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+
+        <div class="card" *ngFor="let elephant of elephants">
+          <div class="top-bar">
+            <!-- if media is present show the 1st image and on click open model else show the default image -->
+            <ion-img *ngIf="isMediaVisible(elephant.media_attachments ?? []) && elephant.media_attachments.length > 0" src="{{ elephant.media_attachments[0] }}"
+              (click)="openModal(elephant)" onerror="this.onerror=null;this.src='https://via.placeholder.com/300';"
+              alt=""></ion-img>
+            <ion-img *ngIf="!isMediaVisible(elephant.media_attachments ?? [])" src="https://via.placeholder.com/300" alt=""></ion-img>
+            <!-- <img src="https://via.placeholder.com/300" alt=""> -->
+            <div class="top-bar-right">
+              <div>
+                <!-- <div>{{ track.male_count ?? 0 }} {{ 'MY_TRACKS_PAGE.MALE' | translate }}</div>
+                <div>{{ track.female_count ?? 0 }} {{ 'MY_TRACKS_PAGE.FEMALE' | translate }}</div>
+                <div>{{ track.calf_count ?? 0 }} {{ 'MY_TRACKS_PAGE.CALF' | translate }}</div> -->
+              </div>
+              <div>
+                <!-- edit button  -->
+                <ion-icon name="create-outline" routerLink="/track/track-data/{{ elephant.id }}"></ion-icon>
+                <div>{{ elephant.created_at | date: "YYY-MM-dd HH:mm:ss" }}</div>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="bottom-bar">
+            <!-- <div>{{ track.status | translate }}</div> -->
+            <!-- show as hyperlink  -->
+          
+
+          </div>
+          <div class="bottom-bar">
+
+
+            <ion-button size="small" color="danger"
+              (click)="deleteElephant(elephant.id)">{{ 'DELETE' | translate }}
+            </ion-button>
+          </div>
+        </div>
+        <ion-footer>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button aria-label="Previous" (click)="prevPage()" [disabled]="currentPage === 1" title="Previous">
+                <ion-icon name="chevron-back"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+            <div class="pagination">
+              <p>
+                Page {{ currentPage }} of {{ totalPages }} : </p>
+              <span>
+                <ion-select value="10" (ionChange)="onPageSizeChange($event)">
+                  <ion-select-option value="5">5</ion-select-option>
+                  <ion-select-option value="10">10</ion-select-option>
+                  <ion-select-option value="20">25</ion-select-option>
+                  <ion-select-option value="50">50</ion-select-option>
+                </ion-select>
+
+              </span>
+            </div>
+
+            <ion-buttons slot="end">
+              <ion-button aria-label="Next" (click)="nextPage()" [disabled]="currentPage === totalPages" title="Next">
+                <ion-icon name="chevron-forward"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-footer>
+
+      </ion-card>
+    </ion-card-content>
+  </ion-card>
+  <ion-fab title="Create New Elephant" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" routerLink="/elephant-management/add" title="Add new Elephant">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

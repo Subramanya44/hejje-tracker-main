@@ -1,0 +1,39 @@
+ion-header {
+  z-index: 9999999;
+
+  ion-button > strong {
+     display: flex;
+     align-items: center;
+  }
+
+  // Set color for the "x" button
+  ion-button.cancel-button {
+      color: #000; // Set the desired color here
+      background-color: red;
+  }
+}
+
+.map-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 20px;
+}
+
+.map-frame {
+  border: 2px solid black;
+  height: 100%;
+}
+
+#map {
+  height: 100%;
+}
+
+// phone view margin 0 
+@media only screen and (max-width: 600px) {
+  .map-container {
+      margin: 0;
+  }
+}

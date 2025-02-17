@@ -1,0 +1,30 @@
+
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ 'GALLERY' | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="outline" color="danger" (click)="cancel()">
+        <strong>close <ion-icon slot="end" name="close"></ion-icon> </strong>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div *ngIf="images.length > 0" class="image-container">
+    <img *ngFor="let image of images" [src]="image.src" (click)="openModal(image)">
+  </div>
+
+  <div *ngIf="images.length == 0" class="image-container">
+    <p>No images available</p>
+  </div>
+
+  <div class="modal" [class.show-modal]="showModal">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <img class="modal-content" [src]="selectedImage.src">
+    <div class="caption">{{selectedImage.alt}}</div>
+  </div>
+
+</ion-content>

@@ -1,0 +1,80 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+@import "leaflet.locatecontrol/dist/L.Control.Locate.css";
+
+
+.icon-image {
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="48" height="48"><circle cx="256" cy="256" r="160" fill="none" stroke="black" stroke-width="32"/><path fill="black" d="M256 176a80 80 0 1 0 80 80 79.9 79.9 0 0 0-80-80zm0 112a32 32 0 1 1 32-32 32 32 0 0 1-32 32z"/><line x1="256" y1="48" x2="256" y2="112" stroke="black" stroke-width="16"/><line x1="464" y1="256" x2="400" y2="256" stroke="black" stroke-width="16"/><line x1="256" y1="464" x2="256" y2="400" stroke="black" stroke-width="16"/><line x1="48" y1="256" x2="112" y2="256" stroke="black" stroke-width="16"/></svg>');
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin: 7px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  ion-alert.custom-alert {
+    --backdrop-opacity: 0.7;
+  }
+
+  .custom-alert .alert-button-group {
+    padding: 8px;
+  }
+
+  button.alert-button.alert-button-confirm {
+    color: var(--ion-color-success);
+  }
+  button.alert-button.alert-button-cancel {
+    color: var(--ion-color-danger);
+  }
+
+  .md button.alert-button.alert-button-confirm {
+    border-radius: 4px;
+  }
+
+  .ios .custom-alert button.alert-button {
+    border: 0.55px solid rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.2);
+  }
+
+  .ios button.alert-button.alert-button-cancel {
+    border-right: 0;
+    border-bottom-left-radius: 13px;
+    border-top-left-radius: 13px;
+  }
+
+  .ios button.alert-button.alert-button-confirm {
+    border-bottom-right-radius: 13px;
+    border-top-right-radius: 13px;
+  }
+
+
+  .custom-toast {
+    --min-width: unset;
+    --width: auto;
+    --max-width: 90%;
+    white-space: pre-wrap;  // Ensure text wraps properly
+  }

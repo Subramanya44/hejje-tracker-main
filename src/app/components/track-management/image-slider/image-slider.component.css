@@ -1,0 +1,60 @@
+.image-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+ion-button > strong {
+  display: flex;
+  align-items: center;
+}
+
+.image-container img {
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 700px;
+}
+
+.caption {
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+}
+
+.close {
+  position: fixed;
+  top: 60px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.show-modal {
+  display: block;
+}
+
+.cancel-button {
+  color: #000; 
+  background-color: red;
+}

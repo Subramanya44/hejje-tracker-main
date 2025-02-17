@@ -1,0 +1,58 @@
+<ion-app>
+  <ion-split-pane contentId="main-content" when="false">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-content>
+        <ion-list id="inbox-list">
+          <ion-list-header>{{ 'SIDE_MENU.WELCOME'| translate }}</ion-list-header>
+          <ion-note>{{ user.email }}</ion-note>
+
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of showPages">
+            <!-- Parent Menu Item -->
+            <ion-item
+              routerDirection="root"
+              [routerLink]="[p.url]"
+              lines="none"
+              detail="false"
+              routerLinkActive="selected">
+              <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+              <ion-label>{{ p.title | translate }}</ion-label>
+            </ion-item>
+          
+            <!-- Child Menu Items -->
+            <ng-container *ngIf="p.children && p.children.length">
+              <ion-menu-toggle auto-hide="false" *ngFor="let child of p.children">
+                <ion-item
+                  class="child-item"
+                  routerDirection="root"
+                  [routerLink]="[child.url]"
+                  lines="none"
+                  detail="false"
+                  routerLinkActive="selected">
+                  <ion-icon aria-hidden="true" slot="start" [ios]="child.icon + '-outline'" [md]="child.icon + '-sharp'"></ion-icon>
+                  <ion-label>{{ child.title | translate }}</ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            </ng-container>
+          </ion-menu-toggle>
+
+        </ion-list>
+
+        <ion-list id="login-logout">
+          <ion-buttons>
+            <div *ngIf="user">
+              <ion-button expand="block" (click)="logout()">{{ 'SIDE_MENU.LOGOUT' | translate }}</ion-button>
+            </div>
+            <div *ngIf="!user || null">
+              <ion-button expand="block" (click)="login()">{{ 'SIDE_MENU.LOGIN' | translate }}</ion-button>
+            </div>
+          </ion-buttons>
+        </ion-list>
+
+
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>
+
+<!-- <ion-router-outlet id="main-content"></ion-router-outlet> -->

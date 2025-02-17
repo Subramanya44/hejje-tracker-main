@@ -1,0 +1,159 @@
+<ion-content>
+  <div class="ion-card">
+    <ion-card-header>
+      <span class="circle-icon">
+        <ion-icon name="navigate-outline"></ion-icon>
+      </span>
+      <h1>{{ 'ADD_TRACK_PAGE.ADD_TRACK'| translate }}</h1>
+    </ion-card-header>
+    <form [formGroup]="trackForm" (ngSubmit)="onSubmit()">
+      <div class="form-group-count-data">
+        <div class="form-group">
+          <div class="form-group-radio">
+            <input type="radio" id="elephant" name="animal_type" formControlName="animal_type" value="ELEPHANT"
+              [checked]="true" />
+            <label for="elephant">{{ 'ADD_TRACK_PAGE.ELEPHANT'| translate }}</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <ion-toggle title="On if the herd is stationary.
+Off if the herd is moving" formControlName="stationary">{{ 'ADD_TRACK_PAGE.IS_THE_HERD_MOVING' | translate }}
+          </ion-toggle>
+          <br /><br />
+        </div>
+      </div>
+
+     <div class="form-group">
+          <div class="form-group-radio">
+            <ion-input id="startDate" label="{{ 'ADD_TRACK_PAGE.DATE_TIME' | translate
+          }}"  formControlName="sighting_time" type="datetime-local" class="form-control"  fill="outline"></ion-input>
+
+          </div>
+        </div>
+
+<!--      <div class="form-group">-->
+<!--        <label for="track_date">{{ 'ADD_TRACK_PAGE.TRACK_DATE' | translate }}</label>-->
+<!--        <ion-datetime display-format="DD MMM YYYY" formControlName="track_date" class="form-control"></ion-datetime>-->
+<!--      </div>-->
+
+
+      <div class="form-group-count-data">
+        <div class="form-group">
+          <label>{{ 'ADD_TRACK_PAGE.MALE_COUNT' | translate }}</label>
+          <div class="form-group-count">
+            <ion-button (click)="incrementDecrementCount('male_count', false)">-</ion-button>
+            <ion-input type="number" id="male_count" formControlName="male_count" class="form-control"></ion-input>
+            <ion-button (click)="incrementDecrementCount('male_count', true)">+</ion-button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>{{ 'ADD_TRACK_PAGE.FEMALE_COUNT' | translate }}</label>
+          <div class="form-group-count">
+            <ion-button (click)="incrementDecrementCount('female_count', false)">-</ion-button>
+            <ion-input type="number" id="female_count" formControlName="female_count" class="form-control"></ion-input>
+            <ion-button (click)="incrementDecrementCount('female_count', true)">+</ion-button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>{{ 'ADD_TRACK_PAGE.CALF_COUNT' | translate }}</label>
+          <div class="form-group-count">
+            <ion-button (click)="incrementDecrementCount('calf_count', false)">-</ion-button>
+            <ion-input type="number" id="calf_count" formControlName="calf_count" class="form-control"></ion-input>
+            <ion-button (click)="incrementDecrementCount('calf_count', true)">+</ion-button>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="herd_size">{{ 'ADD_TRACK_PAGE.HERD_SIZE' | translate }}</label>
+        <ion-input type="number" id="herd_size" formControlName="herd_size" class="form-control"
+          fill="outline"></ion-input>
+      </div>
+      <div (click)="getCurrentLocation()" class="location-button">
+        <ion-icon name="location"></ion-icon>
+        <p>{{ 'ADD_TRACK_PAGE.GET_CURRENT_LOCATION' | translate }}</p>
+      </div>
+      <div class="form-group">
+        <label for="location">{{ 'ADD_TRACK_PAGE.LOCATION' | translate }}</label>
+        <!-- <ion-input type="text" id="location" formControlName="location" class="form-control" fill="outline"></ion-input> -->
+        <ion-input 
+        fill="outline"
+        class="form-control"
+        id="location"
+        formControlName="location" 
+        (blur)="onInputBlur()"
+        (focus)="onInputFocus()"
+        (ionInput)="onInputChange($event)">
+        </ion-input>
+      
+        <ion-list *ngIf="showSuggestions">
+          <ion-item 
+            *ngFor="let suggestion of filteredSuggestions" 
+            (click)="selectSuggestion(suggestion)">
+            {{ suggestion }}
+          </ion-item>
+        </ion-list>
+      </div>
+
+      <div class="form-group-count">
+        <div class="form-group w-full">
+          <label for="latitude">{{ 'ADD_TRACK_PAGE.LATITUDE' | translate }}</label>
+          <ion-input type="number" id="latitude" formControlName="latitude" class="form-control"
+            fill="outline"></ion-input>
+        </div>
+        <div class="form-group w-full">
+          <label for="longitude">{{ 'ADD_TRACK_PAGE.LONGITUDE' | translate }}</label>
+          <ion-input type="number" id="longitude" formControlName="longitude" class="form-control"
+            fill="outline"></ion-input>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-group w-full">
+          <label for="latitude">{{ 'VILLAGE' | translate }}</label>
+          <ion-input type="text" id="village" formControlName="village" class="form-control"
+            fill="outline"></ion-input>
+        </div>
+        <div class="form-group w-full">
+          <label for="longitude">{{ 'TALUK' | translate }}</label>
+          <ion-input type="text" id="taluk" formControlName="taluk" class="form-control"
+            fill="outline"></ion-input>
+        </div>
+        <div class="form-group w-full">
+          <label for="longitude">{{ 'DISTRICT' | translate }}</label>
+          <ion-input type="text" id="district" formControlName="district" class="form-control"
+            fill="outline"></ion-input>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="form-group w-full">
+          <label for="latitude">{{ 'ELEPHANT' | translate }}</label>
+          <!-- <ion-input type="text" id="village" formControlName="village" class="form-control"
+            fill="outline"></ion-input> -->
+            <ion-select placeholder="{{ 'SELECT_ELEPHANT' | translate }}" id="elephant" fill="outline" class="form-control" formControlName="elephants" multiple="true">
+              <ion-select-option *ngFor="let item of suggestedElephants" [value]="item.id">{{item.name}}</ion-select-option>
+            </ion-select>
+        </div>
+        
+      </div>
+
+
+
+      <div class="form-group" *ngIf="isMediaVisible()">
+        <label for="media">{{ 'ADD_TRACK_PAGE.MEDIA' | translate }}</label>
+        <ion-input type="file" id="media" (change)="onFileChange($event)" multiple class="form-control"
+          formControlName="file" fill="outline"> </ion-input>
+        <div *ngIf="previewImages.length > 0" class="preview-container">
+          <div *ngFor="let image of previewImages; let i = index" class="preview-item">
+            <img [src]="image.url" alt="Preview Image">
+            <button ion-button (click)="removeImage(i)" class="remove-button">X</button>
+          </div>
+        </div>
+      </div>
+
+      <ion-button expand="block" type="submit" [disabled]="trackForm.invalid">{{ 'ADD_TRACK_PAGE.SUBMIT' | translate }}
+      </ion-button>
+    </form>
+  </div>
+</ion-content>
