@@ -214,5 +214,40 @@ export const pagesData: MenuItem[] = [
     icon: 'people',
     roles: [UserRole.SUPER_ADMIN, UserRole.DEPARTMENT_ADMIN],
     children: []
+  },
+  {
+    title: 'SIDE_MENU.ADD_CIRCLE',
+    url: '/role-management/list-circle',
+    icon: 'list',
+    roles: [UserRole.DEPARTMENT_ADMIN, UserRole.SUPER_ADMIN],
+    children: []
+  },
+  {
+    title: 'SIDE_MENU.ADD_DIVISION',
+    url: '/role-management/list-division',
+    icon: 'list',
+    roles: [UserRole.DEPARTMENT_ADMIN, UserRole.SUPER_ADMIN],
+    children: []
+  },
+  {
+    title: 'SIDE_MENU.ADD_RANGE',
+    url: '/role-management/list-range',
+    icon: 'list',
+    roles: [UserRole.DEPARTMENT_ADMIN, UserRole.SUPER_ADMIN],
+    children: []
+  },
+  {
+    title: 'SIDE_MENU.ADD_SECTION',
+    url: '/role-management/list-section',
+    icon: 'list',
+    roles: [UserRole.DEPARTMENT_ADMIN, UserRole.SUPER_ADMIN],
+    children: []
+  },
+  {
+    title: 'SIDE_MENU.ADD_VILLAGE',
+    url: '/role-management/list-village',
+    icon: 'list',
+    roles: [UserRole.DEPARTMENT_ADMIN, UserRole.SUPER_ADMIN],
+    children: []
   }
 ];

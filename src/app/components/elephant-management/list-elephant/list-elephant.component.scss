@@ -167,3 +167,20 @@
     width: calc(100% / 12); /* Divide the total width evenly among the columns */
   }
   
+.displaybutton {
+  display: inline-flex;
+}
+
+.col-action {
+  display: inline-flex;
+}
+
+.header {
+  padding: 10px;
+  background: grey;
+  color: black;
+}
+
+.eye_disply{
+  width: 50%;
+}

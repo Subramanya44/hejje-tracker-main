@@ -50,7 +50,7 @@
               {{elephant.media_attachments}}
               <strong>{{ 'NO_MEDIA_FOUND' | translate }}</strong>
             </p>
-            <ion-button *ngIf="isMediaVisible(elephant.media_attachments ?? [])" expand="block" (click)="openModal(elephant)">
+            <ion-button class="eye_disply" *ngIf="isMediaVisible(elephant.media_attachments ?? [])" expand="block" (click)="openModal(elephant)">
               <ion-icon name="eye"></ion-icon>
             </ion-button>
           </ion-col>

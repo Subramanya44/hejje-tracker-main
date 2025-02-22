@@ -24,7 +24,12 @@
     "RADIO_COLLAR_MANAGEMENT": "Radio Collar Management",
     "LANDMARK_MANAGEMENT": "Landmark Management",
     "REPORTS_MANAGEMENT": "Reports Management",
-    "COMPLAINTS_MANAGEMENT": "Complaints Management"
+    "COMPLAINTS_MANAGEMENT": "Complaints Management",
+    "ADD_CIRCLE": "Add Circle",
+    "ADD_DIVISION": "Add Division",
+    "ADD_RANGE": "Add Range",
+    "ADD_SECTION": "Add Section",
+    "ADD_VILLAGE": "Add Village"
   },
   "ADD_TRACK_PAGE": {
     "ADD_TRACK": "Add Track",
@@ -168,6 +173,62 @@
     "ATTACK_ON_ELEPHANTS": "Attack on Elephants",
     "COMPLAINT_ADDED_SUCCESSFULLY": "Complaint added successfully",
     "NO_MEDIA_FOUND": "No Media Found"
+  },
+  "Add_CIRCLE":{
+    "ADD_CIRCLE": "Add Circle",
+    "ID": "Sl No.",
+    "CIRCLE_NAME": "Circle Name",
+    "ORGANIZATION": "Organization",
+    "ACTION": "Action",
+    "EDIT": "Edit",
+    "ADD_LANDMARK": "Add Landmark",
+    "CIRCLE_ADD": "Add"
+  },
+  "Add_DIVISION":{
+    "Add_DIVISION": "Add Division",
+    "ID": "Sl No.",
+    "DIVISION_NAME": "Division Name",
+    "CIRCLE_NAME": "Circle Name",
+    "ORGANIZATION": "Organization",
+    "ACTION": "Action",
+    "EDIT": "Edit",
+    "DIVISION_ADD": "Add"
+  },
+  "Add_RANGE":{
+    "Add_RANGE": "Add Range",
+    "ID": "Sl No.",
+    "RANGE_NAME": "Range Name",
+    "DIVISION_NAME": "Division Name",
+    "CIRCLE_NAME": "Circle Name",
+    "ORGANIZATION": "Organization",
+    "ACTION": "Action",
+    "EDIT": "Edit",
+    "RANGE_ADD": "Add"
+  },
+  "Add_SECTION":{
+    "Add_SECTION": "Add Section",
+    "ID": "Sl No.",
+    "SECTION_NAME":"Section Name",
+    "RANGE_NAME": "Range Name",
+    "DIVISION_NAME": "Division Name",
+    "CIRCLE_NAME": "Circle Name",
+    "ORGANIZATION": "Organization",
+    "ACTION": "Action",
+    "EDIT": "Edit",
+    "SECTION_ADD": "Add"
+  },
+  "Add_VILLAGE":{
+    "Add_VILLAGE": "Add Village",
+    "ID": "Sl No.",
+    "VILLAGE_NAME":"Village Name",
+    "SECTION_NAME":"Section Name",
+    "RANGE_NAME": "Range Name",
+    "DIVISION_NAME": "Division Name",
+    "CIRCLE_NAME": "Circle Name",
+    "ORGANIZATION": "Organization",
+    "ACTION": "Action",
+    "EDIT": "Edit",
+    "VILLAGE_ADD": "Add"
   },
   "SUCCESS": "Success",
   "GET_CURRENT_LOCATION": "Get Current Location",

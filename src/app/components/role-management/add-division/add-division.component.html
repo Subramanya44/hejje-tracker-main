@@ -1,0 +1,50 @@
+<ion-content>
+  <div class="ion-card">
+    <ion-card-header>
+      <span class="circle-icon">
+        <ion-icon name="navigate-outline"></ion-icon>
+      </span>
+      <h1>{{ pageTitle }}</h1>
+    </ion-card-header>
+    <form [formGroup]="addDivisionForm" (ngSubmit)="onSubmit()">
+        
+
+<!--      <div class="form-group">-->
+<!--        <label for="track_date">{{ 'ADD_TRACK_PAGE.TRACK_DATE' | translate }}</label>-->
+<!--        <ion-datetime display-format="DD MMM YYYY" formControlName="track_date" class="form-control"></ion-datetime>-->
+<!--      </div>-->
+
+
+      
+      <div class="form-group">
+        <label for="division_name">{{ 'Add_DIVISION.DIVISION_NAME' | translate }}</label>
+        <ion-input type="text" id="division_name" formControlName="division_name" class="form-control"
+          fill="outline"></ion-input>
+      </div>
+      
+      <div class="form-group">
+        <label for="circle_name">{{ 'Add_DIVISION.CIRCLE_NAME' | translate }}</label>
+        <ion-select id="circle_name" formControlName="circle_name" class="form-control" fill="outline">
+          <ion-select-option *ngFor="let name of names" [value]="name.value">
+            {{ name.label }}
+          </ion-select-option>
+        </ion-select>
+      </div>
+      <div class="form-group">
+        <label for="organization">{{ 'Add_CIRCLE.ORGANIZATION' | translate }}</label>
+        <ion-select id="organization" formControlName="organization" class="form-control" fill="outline">
+          <ion-select-option *ngFor="let org of organizations" [value]="org.value">
+            {{ org.label }}
+          </ion-select-option>
+        </ion-select>
+      </div>
+      <div class="displaybutton">
+        <ion-button fill="outline" color="danger" (click)="cancel()">
+          <strong>Cancel<ion-icon slot="end" name="close"></ion-icon> </strong>
+        </ion-button>
+        <ion-button expand="block" type="submit" [disabled]="addDivisionForm.invalid">{{ 'Add_DIVISION.DIVISION_ADD' | translate }}
+        </ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

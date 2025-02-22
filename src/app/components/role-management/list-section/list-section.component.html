@@ -1,0 +1,101 @@
+<!-- Assuming this is part of one of your tab pages -->
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <h1>{{ 'Add_SECTION.Add_SECTION' | translate }}</h1>
+      <p> Total Items: {{ sections.length }}</p>
+    </ion-card-header>
+
+    <ion-card-content>
+
+
+      <!-- Date Range Filter -->
+      <div class="filter">
+        <!-- <div>
+          <div class="form-group">
+
+            <ion-input id="startDate" label="{{ 'MY_TRACKS_PAGE.START_DATE' | translate
+          }}" [(ngModel)]="startDate" type="date" class="ion-text-end"></ion-input>
+          </div>
+          <div class="form-group">
+
+            <ion-input id="endDate" label="{{ 'MY_TRACKS_PAGE.END_DATE' | translate
+          }}" [(ngModel)]="endDate" type="date" class="ion-text-end"></ion-input>
+          </div>
+        </div> -->
+        <ion-button  (click)="fetchSections()">{{'REFRESH' | translate}}</ion-button>
+      </div>
+
+
+      <!-- Data Display in Table-like Format -->
+      <ion-card>
+
+        <ion-row class="header">
+          <ion-col class="col-id"><strong>{{ 'Add_SECTION.ID' | translate }}</strong></ion-col>
+          <ion-col class="col-section_name"><strong>{{ 'Add_SECTION.SECTION_NAME' | translate }}</strong></ion-col>
+          <ion-col class="col-range_name"><strong>{{ 'Add_SECTION.RANGE_NAME' | translate }}</strong></ion-col>
+          <ion-col class="col-division_name"><strong>{{ 'Add_SECTION.DIVISION_NAME' | translate }}</strong></ion-col>
+          <ion-col class="col-circle_name"><strong>{{ 'Add_SECTION.CIRCLE_NAME' | translate }}</strong></ion-col>
+          <ion-col class="col-organization"><strong>{{ 'Add_SECTION.ORGANIZATION' | translate }}</strong></ion-col>
+          <ion-col class="col-action"><strong>{{ 'Add_SECTION.ACTION' | translate }}</strong></ion-col>
+        </ion-row>
+
+        <ion-row class="data" *ngFor="let section of sections">
+          <ion-col class="col-id">{{ section.id }}</ion-col>
+          <ion-col class="col-section_name">{{ section.section_name }}</ion-col>
+          <ion-col class="col-range_name">{{ section.range_name }}</ion-col>
+          <ion-col class="col-division_name">{{ section.division_name }}</ion-col>
+          <ion-col class="col-circle_name">{{ section.circle_name }}</ion-col>
+          <ion-col class="col-organization">{{ section.organization }}</ion-col>
+          
+          <ion-col class="col-action" >
+             <ion-button size="small" color="danger"
+              (click)="deleteSection(section.id)">{{ 'DELETE' | translate }}
+            </ion-button>
+            <ion-button expand="block" routerLink="/role-management/list-section/edit/{{ section.id }}">
+              <ion-icon name="create-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+
+        
+        <ion-footer>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button aria-label="Previous" (click)="prevPage()" [disabled]="currentPage === 1" title="Previous">
+                <ion-icon name="chevron-back"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+            <div class="pagination">
+              <p>
+                Page {{ currentPage }} of {{ totalPages }} : </p>
+              <span>
+                <ion-select value="10" (ionChange)="onPageSizeChange($event)">
+                  <ion-select-option value="5">5</ion-select-option>
+                  <ion-select-option value="10">10</ion-select-option>
+                  <ion-select-option value="20">25</ion-select-option>
+                  <ion-select-option value="50">50</ion-select-option>
+                </ion-select>
+
+              </span>
+            </div>
+
+            <ion-buttons slot="end">
+              <ion-button aria-label="Next" (click)="nextPage()" [disabled]="currentPage === totalPages" title="Next">
+                <ion-icon name="chevron-forward"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-footer>
+
+      </ion-card>
+    </ion-card-content>
+  </ion-card>
+  <ion-fab title="Create New Section" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" routerLink="/role-management/list-section/add" title="Add new Section">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
