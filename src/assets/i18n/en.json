@@ -29,7 +29,8 @@
     "ADD_DIVISION": "Add Division",
     "ADD_RANGE": "Add Range",
     "ADD_SECTION": "Add Section",
-    "ADD_VILLAGE": "Add Village"
+    "ADD_VILLAGE": "Add Village",
+    "ADD_ANNOUNCEMENT": "Add Announcement"
   },
   "ADD_TRACK_PAGE": {
     "ADD_TRACK": "Add Track",
@@ -229,6 +230,21 @@
     "ACTION": "Action",
     "EDIT": "Edit",
     "VILLAGE_ADD": "Add"
+  },
+  "Add_ANNOUNCEMENT":{
+    "Add_ANNOUNCEMENT": "Add Announcement",
+    "ID": "Sl No.",
+    "VILLAGE_NAME":"Village Name",
+    "SECTION_NAME":"Section Name",
+    "RANGE_NAME": "Range Name",
+    "ANNOUNCEMENT_DATE": "DATE",
+    "TIME_AM": "Morning",
+    "TIME_PM": "Evening",
+    "ACTION": "Action",
+    "EDIT": "Edit",
+    "ANNOUNCEMENT_ADD": "Add",
+    "DATE_TIME": "Date & Time",
+    "TIME": "Announcement Time"
   },
   "SUCCESS": "Success",
   "GET_CURRENT_LOCATION": "Get Current Location",

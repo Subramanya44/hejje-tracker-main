@@ -53,10 +53,10 @@ export class AddDivisionComponent  implements OnInit {
         const id = params.get('id');
         if (id) {
           this.id = +id; 
-          this.pageTitle = 'Edit Circle';
+          this.pageTitle = 'Edit Division';
           this.loadDivisionData(this.id);
         } else {
-          this.pageTitle = 'Add Circle';
+          this.pageTitle = 'Add Division';
           this.addDivisionForm.reset();
         }
       });

@@ -65,6 +65,11 @@ const routes: Routes = [
     path: 'role-management',
     loadChildren: () => import('./components/role-management/role-management.module').then( m => m.RoleManagementModule),
     canActivate: [authGuard]
+  },
+  {
+    path: 'announcement-management',
+    loadChildren: () => import('./components/announcement-management/announcement-management.module').then( m => m.AnnouncementManagementModule),
+    canActivate: [authGuard]
   }
 ];
 

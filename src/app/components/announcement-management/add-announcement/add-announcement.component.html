@@ -1,0 +1,76 @@
+<ion-content>
+  <div class="ion-card">
+    <ion-card-header>
+      <span class="circle-icon">
+        <ion-icon name="navigate-outline"></ion-icon>
+      </span>
+      <h1>{{ pageTitle }}</h1>
+    </ion-card-header>
+
+    <form [formGroup]="addAnnouncementForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <div class="form-group-radio form-group-inline">
+          <ion-input id="announcement_date" 
+            label="{{ 'Add_ANNOUNCEMENT.DATE_TIME' | translate }}" 
+            formControlName="announcement_date" 
+            type="date" 
+            class="form-control" 
+            fill="outline">
+          </ion-input>
+          
+          <ion-button fill="clear" color="primary" (click)="addTimeField()"
+            [disabled]="timeFieldsArray.length >= 2">
+            <ion-icon name="add-circle-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+      
+      <!-- Dynamic Time Fields -->
+      <div class="form-group" formArrayName="timeFieldsArray">
+        <div *ngFor="let control of timeFieldsArray.controls; let i = index" class="time-picker-container">
+          <label>{{ 'Add_ANNOUNCEMENT.TIME' | translate }} {{ i + 1 }}</label>
+          <ion-input type="time" [formControlName]="i" class="form-control"></ion-input>
+          <ion-button fill="clear" color="danger" (click)="removeTimeField(i)">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="range_name">{{ 'Add_ANNOUNCEMENT.RANGE_NAME' | translate }}</label>
+        <ion-select id="range_name" formControlName="range_name" class="form-control" fill="outline">
+          <ion-select-option *ngFor="let name of range_name" [value]="name.value">
+            {{ name.label }}
+          </ion-select-option>
+        </ion-select>
+      </div>
+      
+      <div class="form-group">
+        <label for="section_name">{{ 'Add_ANNOUNCEMENT.SECTION_NAME' | translate }}</label>
+        <ion-select id="section_name" formControlName="section_name" class="form-control" fill="outline">
+          <ion-select-option *ngFor="let name of section_name" [value]="name.value">
+            {{ name.label }}
+          </ion-select-option>
+        </ion-select>
+      </div>
+      <div class="form-group">
+        <label for="village_name">{{ 'Add_ANNOUNCEMENT.VILLAGE_NAME' | translate }}</label>
+        <ion-select id="village_name" formControlName="village_name" class="form-control" fill="outline">
+          <ion-select-option *ngFor="let name of village_name" [value]="name.value">
+            {{ name.label }}
+          </ion-select-option>
+        </ion-select>
+      </div>
+
+      <div class="displaybutton">
+        <ion-button fill="outline" color="danger" (click)="cancel()">
+          <strong>Cancel <ion-icon slot="end" name="close"></ion-icon> </strong>
+        </ion-button>
+        <ion-button expand="block" type="submit" [disabled]="addAnnouncementForm.invalid">
+          {{ 'Add_ANNOUNCEMENT.ANNOUNCEMENT_ADD' | translate }}
+        </ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

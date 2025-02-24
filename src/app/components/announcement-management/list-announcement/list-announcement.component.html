@@ -2,8 +2,8 @@
 <ion-content>
   <ion-card>
     <ion-card-header>
-      <h1>{{ 'Add_VILLAGE.Add_VILLAGE' | translate }}</h1>
-      <p> Total Items: {{ villages.length }}</p>
+      <h1>{{ 'Add_ANNOUNCEMENT.Add_ANNOUNCEMENT' | translate }}</h1>
+      <p> Total Items: {{ announcements.length }}</p>
     </ion-card-header>
 
     <ion-card-content>
@@ -23,40 +23,42 @@
           }}" [(ngModel)]="endDate" type="date" class="ion-text-end"></ion-input>
           </div>
         </div> -->
-        <ion-button  (click)="fetchVillages()">{{'REFRESH' | translate}}</ion-button>
+        <ion-button  (click)="fetchAnnouncements()">{{'REFRESH' | translate}}</ion-button>
+        <ion-button (click)="downloadPDF()">{{ 'DOWNLOAD PDF' | translate }}</ion-button>
       </div>
+      
 
 
       <!-- Data Display in Table-like Format -->
       <ion-card>
 
         <ion-row class="header">
-          <ion-col class="col-id"><strong>{{ 'Add_VILLAGE.ID' | translate }}</strong></ion-col>
-          <ion-col class="col-Village_name"><strong>{{ 'Add_VILLAGE.VILLAGE_NAME' | translate }}</strong></ion-col>
-          <ion-col class="col-section_name"><strong>{{ 'Add_VILLAGE.SECTION_NAME' | translate }}</strong></ion-col>
-          <ion-col class="col-range_name"><strong>{{ 'Add_VILLAGE.RANGE_NAME' | translate }}</strong></ion-col>
-          <ion-col class="col-division_name"><strong>{{ 'Add_VILLAGE.DIVISION_NAME' | translate }}</strong></ion-col>
-          <ion-col class="col-circle_name"><strong>{{ 'Add_VILLAGE.CIRCLE_NAME' | translate }}</strong></ion-col>
-          <!-- <ion-col class="col-organization"><strong>{{ 'Add_VILLAGE.ORGANIZATION' | translate }}</strong></ion-col> -->
-          <ion-col class="col-action"><strong>{{ 'Add_VILLAGE.ACTION' | translate }}</strong></ion-col>
+          <ion-col class="col-id"><strong>{{ 'Add_ANNOUNCEMENT.ID' | translate }}</strong></ion-col>
+          <ion-col class="col-announcement_date"><strong>{{ 'Add_ANNOUNCEMENT.ANNOUNCEMENT_DATE' | translate }}</strong></ion-col>
+          <ion-col class="col-range_name"><strong>{{ 'Add_ANNOUNCEMENT.RANGE_NAME' | translate }}</strong></ion-col>
+          <ion-col class="col-section_name"><strong>{{ 'Add_ANNOUNCEMENT.SECTION_NAME' | translate }}</strong></ion-col>
+          <ion-col class="col-village_name"><strong>{{ 'Add_ANNOUNCEMENT.VILLAGE_NAME' | translate }}</strong></ion-col>
+          <ion-col class="col-announcement_time_am"><strong>{{ 'Add_ANNOUNCEMENT.TIME_AM' | translate }}</strong></ion-col>
+          <ion-col class="col-announcement_time_pm"><strong>{{ 'Add_ANNOUNCEMENT.TIME_PM' | translate }}</strong></ion-col>        
+          <ion-col class="col-action"><strong>{{ 'Add_ANNOUNCEMENT.ACTION' | translate }}</strong></ion-col>
         </ion-row>
 
-        <ion-row class="data" *ngFor="let village of villages">
-          <ion-col class="col-id">{{ village.id }}</ion-col>
-          <ion-col class="col-section_name">{{ village.village_name }}</ion-col>
-          <ion-col class="col-section_name">{{ village.section_name }}</ion-col>
-          <ion-col class="col-range_name">{{ village.range_name }}</ion-col>
-          <ion-col class="col-division_name">{{ village.division_name }}</ion-col>
-          <ion-col class="col-circle_name">{{ village.circle_name }}</ion-col>
-          <!-- <ion-col class="col-organization">{{ village.organization }}</ion-col> -->
+        <ion-row class="data" *ngFor="let announcement of announcements">
+          <ion-col class="col-id">{{ announcement.id }}</ion-col>
+          <ion-col class="col-announcement_date">{{ announcement.announcement_date }}</ion-col>
+          <ion-col class="col-range_name">{{ announcement.range_name }}</ion-col>
+          <ion-col class="col-section_name">{{ announcement.section_name }}</ion-col>
+          <ion-col class="col-village_name">{{ announcement.village_name }}</ion-col>
+          <ion-col class="col-announcement_time_am">{{ announcement.timeFieldsArray[0] }}</ion-col>
+          <ion-col class="col-announcement_time_pm">{{ announcement.timeFieldsArray[1] }}</ion-col>
           
           <ion-col class="col-action" >
              <ion-button size="small" color="danger"
-              (click)="deleteVillage(village.id)">{{ 'DELETE' | translate }}
+              (click)="deleteAnnouncement(announcement.id)">{{ 'DELETE' | translate }}
             </ion-button>
-            <ion-button expand="block" routerLink="/role-management/list-village/edit/{{ village.id }}">
+            <ion-button expand="block" [routerLink]="['/announcement-management/list-announcement/edit', announcement.id]">
               <ion-icon name="create-outline"></ion-icon>
-            </ion-button>
+            </ion-button>            
           </ion-col>
         </ion-row>
 
@@ -94,8 +96,8 @@
       </ion-card>
     </ion-card-content>
   </ion-card>
-  <ion-fab title="Create New Village" vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="primary" routerLink="/role-management/list-village/add" title="Add new Village">
+  <ion-fab title="Create New Announcement" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" routerLink="/announcement-management/list-announcement/add" title="Add new Announcement">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
