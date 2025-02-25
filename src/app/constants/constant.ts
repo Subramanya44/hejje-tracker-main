@@ -253,7 +253,7 @@ export const pagesData: MenuItem[] = [
   {
     title: 'SIDE_MENU.ADD_ANNOUNCEMENT',
     url: '/announcement-management/list-announcement',
-    icon: 'list',
+    icon: 'people',
     roles: [UserRole.DEPARTMENT_ADMIN, UserRole.SUPER_ADMIN],
     children: []
   }

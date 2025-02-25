@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AnnouncementService } from 'src/app/services/announcement.service';
 
@@ -15,18 +15,24 @@ export class AddAnnouncementComponent implements OnInit {
   id: number = 0;
 
   range_name = [
-    { value: 'keyfalcon4', label: 'keyfalcon4' },
-    { value: 'keyfalcon1', label: 'keyfalcon1' }
+    { value: 'BELURU', label: 'BELURU' },
+    { value: 'YESLURU', label: 'YESLURU' },
+    { value: 'ALURU', label: 'ALURU' },
+    { value: 'SAKALESHAPURA', label: 'SAKALESHAPURA' }
   ];
 
   section_name = [
-    { value: 'keyfalcon4', label: 'keyfalcon4' },
-    { value: 'keyfalcon1', label: 'keyfalcon1' }
+    { value: 'BIKKODU', label: 'BIKKODU' },
+    { value: 'HETHURU', label: 'HETHURU' },
+    { value: 'K. HOSAKOTE', label: 'K. HOSAKOTE' },
+    { value: 'BELAGODU', label: 'BELAGODU' }
   ];
 
   village_name = [
-    { value: 'keyfalcon5', label: 'keyfalcon5' },
-    { value: 'keyfalcon2', label: 'keyfalcon2' }
+    { value: 'KANGUPPE', label: 'KANGUPPE' },
+    { value: 'HOSALLI', label: 'HOSALLI' },
+    { value: 'NAVINAHALLI', label: 'NAVINAHALLI' },
+    { value: 'HOSKIREHALLIALLI', label: 'KIREHALLI' }
   ];
 
   constructor(
@@ -49,6 +55,11 @@ export class AddAnnouncementComponent implements OnInit {
       section_name: ['', Validators.required],
       village_name: ['', Validators.required]
     });
+  }
+
+
+  createTimeField(): FormControl {
+    return this.formBuilder.control('', Validators.required); // Default empty time field
   }
 
   // Getter for time fields array

@@ -16,8 +16,10 @@ export interface Announcement {
 
 export class AnnouncementService {
   private announcements: Announcement[] = [
-    { id: 1,announcement_date:"2025-02-19", range_name:"keyfalcon4",section_name:'keyfalcon4',village_name: 'keyfalcon5', timeFieldsArray: ["18:20", "21:25"]},
-    { id: 2,announcement_date:"2025-02-19", range_name:"keyfalcon1",section_name:'keyfalcon1',village_name: 'keyfalcon2', timeFieldsArray: ["18:20", "21:25"]}
+    { id: 1,announcement_date:"2025-02-19", range_name:"BELURU",section_name:'BIKKODU',village_name: 'KANGUPPE', timeFieldsArray: ["18:20", "21:25"]},
+    { id: 2,announcement_date:"2025-02-19", range_name:"YESLURU",section_name:'HETHURU',village_name: 'HOSALLI', timeFieldsArray: ["18:20", "21:25"]},
+    { id: 1,announcement_date:"2025-02-19", range_name:"ALURU",section_name:'K. HOSAKOTE',village_name: 'NAVINAHALLI', timeFieldsArray: ["18:20", "21:25"]},
+    { id: 2,announcement_date:"2025-02-19", range_name:"SAKALESHAPURA",section_name:'BELAGODU',village_name: 'KIREHALLI', timeFieldsArray: ["18:20", "21:25"]}
   ]; 
 
   private announcementSubject = new BehaviorSubject<Announcement[]>(this.announcements);
