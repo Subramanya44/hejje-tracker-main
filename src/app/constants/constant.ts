@@ -1,5 +1,6 @@
 import { MenuItem } from "../models/menu-item";
 import { UserRole } from "../models/profile";
+import { IonIcon } from '@ionic/angular';
 
 export const PATH = {
     logo: 'assets/svg/elephant-logo-white.svg'
@@ -125,7 +126,7 @@ export const pagesData: MenuItem[] = [
   {
     title: 'SIDE_MENU.MY_TRACKS',
     url: '/track/my-tracks',
-    icon: 'list',
+    icon: 'footsteps',
     roles: [
       UserRole.DEPARTMENT_ADMIN,
       UserRole.SUPER_ADMIN,
@@ -160,7 +161,7 @@ export const pagesData: MenuItem[] = [
   {
     title: 'SIDE_MENU.ELEPHANT_MANAGEMENT',
     url: 'elephant-management',
-    icon: 'list',
+    icon: 'paw',
     roles: [
       UserRole.DEPARTMENT_ADMIN,
       UserRole.SUPER_ADMIN
@@ -218,35 +219,35 @@ export const pagesData: MenuItem[] = [
   {
     title: 'SIDE_MENU.ADD_CIRCLE',
     url: '/role-management/list-circle',
-    icon: 'list',
+    icon: 'ellipse',
     roles: [UserRole.DEPARTMENT_ADMIN, UserRole.SUPER_ADMIN],
     children: []
   },
   {
     title: 'SIDE_MENU.ADD_DIVISION',
     url: '/role-management/list-division',
-    icon: 'list',
+    icon: 'ellipse',
     roles: [UserRole.DEPARTMENT_ADMIN, UserRole.SUPER_ADMIN],
     children: []
   },
   {
     title: 'SIDE_MENU.ADD_RANGE',
     url: '/role-management/list-range',
-    icon: 'list',
+    icon: 'ellipse',
     roles: [UserRole.DEPARTMENT_ADMIN, UserRole.SUPER_ADMIN],
     children: []
   },
   {
     title: 'SIDE_MENU.ADD_SECTION',
     url: '/role-management/list-section',
-    icon: 'list',
+    icon: 'ellipse',
     roles: [UserRole.DEPARTMENT_ADMIN, UserRole.SUPER_ADMIN],
     children: []
   },
   {
     title: 'SIDE_MENU.ADD_VILLAGE',
     url: '/role-management/list-village',
-    icon: 'list',
+    icon: 'ellipse',
     roles: [UserRole.DEPARTMENT_ADMIN, UserRole.SUPER_ADMIN],
     children: []
   },

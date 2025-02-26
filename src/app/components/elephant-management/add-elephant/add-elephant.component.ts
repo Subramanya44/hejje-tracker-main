@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { UserRole } from 'src/app/models/profile';
 import { ElephantService } from 'src/app/services/elephant.service';
@@ -15,12 +15,22 @@ export class AddElephantComponent  implements OnInit {
   previewImages: { url: string, file?: File }[] = [];
   id?: number = 0;
   uploadedImageUrls: string[] = [];
+  division_name = [
+    { value: 'division name 1', label: 'division name 1' },
+    { value: 'division name 2', label: 'division name 2' }
+  ];
+
+  circle_name = [
+    { value: 'circle name 1', label: 'circle name 1' },
+    { value: 'circle name 2', label: 'circle name 2' }
+  ];
 
   constructor(
     private alertController: AlertController,
     private formBuilder: FormBuilder,
     private elephantService: ElephantService,
     private route: ActivatedRoute,
+    private router:Router
   ) { }
 
   ngOnInit() {
@@ -57,6 +67,8 @@ export class AddElephantComponent  implements OnInit {
       description: [''],
       file: [['']],
       media_attachments: [[]],
+      circle_name: [''],
+      division_name: ['']
     });
   }
 
@@ -198,5 +210,8 @@ export class AddElephantComponent  implements OnInit {
 
   }
 
+  cancel() {
+    this.router.navigate(['/elephant-management']);
+  }
 
 }

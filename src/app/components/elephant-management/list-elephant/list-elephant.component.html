@@ -36,6 +36,8 @@
           <ion-col class="col-description"><strong>{{ 'ELEPHANT_MANAGEMENT.DESCRIPTION' | translate }}</strong></ion-col>
           <ion-col class="col-timestamp"><strong>{{ 'ELEPHANT_MANAGEMENT.TIMESTAMP' | translate }}</strong></ion-col>
           <ion-col class="col-media"><strong>{{ 'ELEPHANT_MANAGEMENT.MEDIA' | translate }} </strong></ion-col>
+          <!-- <ion-col class="col-circle_name"><strong>{{ 'Add_RANGE.CIRCLE_NAME' | translate }}</strong></ion-col>
+          <ion-col class="col-division_name"><strong>{{ 'Add_RANGE.DIVISION_NAME' | translate }}</strong></ion-col> -->
           <ion-col class="col-action"><strong>{{ 'ELEPHANT_MANAGEMENT.ACTION' | translate }}</strong></ion-col>
           <!-- <ion-col class="col-edit"><strong> {{ 'ELEPHANT_MANAGEMENT.EDIT' | translate }} </strong></ion-col> -->
         </ion-row>
@@ -54,7 +56,8 @@
               <ion-icon name="eye"></ion-icon>
             </ion-button>
           </ion-col>
-          
+          <!-- <ion-col class="col-circle_name">circle_name</ion-col>
+          <ion-col class="col-division_name">division_name</ion-col>         -->
           <ion-col class="col-action" >
              <ion-button size="small" color="danger"
               (click)="deleteElephant(elephant.id)">{{ 'DELETE' | translate }}

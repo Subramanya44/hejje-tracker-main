@@ -95,7 +95,9 @@
     "TIMESTAMP": "Timestamp",
     "ACTION": "Action",
     "EDIT": "Edit",
-    "ADD_ELEPHANT": "Add Elephant"
+    "ADD_ELEPHANT": "Add Elephant",
+    "DIVISION_NAME": "Division Name",
+    "CIRCLE_NAME": "Circle Name"
   },
   "KML_MANAGEMENT":{
     "KML_MANAGEMENT": "KML Management",

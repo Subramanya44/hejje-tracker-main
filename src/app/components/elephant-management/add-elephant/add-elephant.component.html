@@ -40,9 +40,31 @@
         </div>
       </div>
 
+       <div class="form-group">
+        <label for="circle_name">{{ 'ELEPHANT_MANAGEMENT.CIRCLE_NAME' | translate }}</label>
+        <ion-select id="circle_name" formControlName="circle_name" class="form-control" fill="outline">
+          <ion-select-option *ngFor="let name of circle_name" [value]="name.value">
+            {{ name.label }}
+          </ion-select-option>
+        </ion-select>
+      </div>
+      
+      <div class="form-group">
+        <label for="division_name">{{ 'ELEPHANT_MANAGEMENT.DIVISION_NAME' | translate }}</label>
+        <ion-select id="division_name" formControlName="division_name" class="form-control" fill="outline">
+          <ion-select-option *ngFor="let name of division_name" [value]="name.value">
+            {{ name.label }}
+          </ion-select-option>
+        </ion-select>
+      </div>
 
-      <ion-button expand="block" type="submit" [disabled]="addElephantForm.invalid">{{ 'ADD_TRACK_PAGE.SUBMIT' | translate }}
-      </ion-button>
+      <div class="displaybutton">
+        <ion-button fill="outline" color="danger" (click)="cancel()">
+          <strong>Cancel<ion-icon slot="end" name="close"></ion-icon> </strong>
+        </ion-button>
+        <ion-button expand="block" type="submit" [disabled]="addElephantForm.invalid">{{ 'ADD_TRACK_PAGE.SUBMIT' | translate }}
+        </ion-button>
+      </div>
     </form>
   </div>
 </ion-content>
