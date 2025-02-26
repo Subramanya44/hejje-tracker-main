@@ -1,16 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import { SectionService } from 'src/app/services/section.service';
+import { Section, SectionService } from 'src/app/services/section.service';
 import { ToastService } from 'src/app/services/shared/toast.service';
 
-interface Section {
-  id: number;
-  section_name: string;
-  range_name: string;
-  division_name: string;
-  circle_name: string;
-  organization: string;
-}
 @Component({
   selector: 'app-list-section',
   templateUrl: './list-section.component.html',
@@ -53,7 +45,7 @@ export class ListSectionComponent  implements OnInit {
        deleteSection(sectionId: number) {
      
          this.alertController.create({
-           header: 'Delete Landmark',
+           header: 'Delete Section',
            message: 'Are you sure you want to delete this section?',
            buttons: [
              {

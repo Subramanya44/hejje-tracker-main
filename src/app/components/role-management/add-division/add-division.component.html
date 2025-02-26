@@ -25,7 +25,7 @@
       <div class="form-group">
         <label for="circle_name">{{ 'Add_DIVISION.CIRCLE_NAME' | translate }}</label>
         <ion-select id="circle_name" formControlName="circle_name" class="form-control" fill="outline">
-          <ion-select-option *ngFor="let name of names" [value]="name.value">
+          <ion-select-option *ngFor="let name of circle_name" [value]="name.value">
             {{ name.label }}
           </ion-select-option>
         </ion-select>

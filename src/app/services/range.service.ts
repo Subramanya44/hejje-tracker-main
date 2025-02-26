@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-interface Range {
+export interface Range {
   id: number;
   range_name: string;  
   division_name: string;
@@ -15,8 +15,8 @@ interface Range {
 export class RangeService {
  
   private ranges: Range[] = [
-    { id: 1, range_name:"keyfalcon",division_name:'keyfalcon4',circle_name: 'keyfalcon5', organization: 'keyfalcon6' },
-    { id: 2, range_name:"keyfalcon",division_name:'keyfalcon1',circle_name: 'keyfalcon2', organization: 'keyfalcon3' }
+    { id: 1, range_name:"BELURU",division_name:'keyfalcon4',circle_name: 'keyfalcon5', organization: 'keyfalcon6' },
+    { id: 2, range_name:"YESLURU",division_name:'keyfalcon1',circle_name: 'keyfalcon2', organization: 'keyfalcon3' }
   ];
 
   private rangesSubject = new BehaviorSubject<Range[]>(this.ranges);

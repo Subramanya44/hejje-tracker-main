@@ -33,10 +33,10 @@
         <ion-row class="header">
           <ion-col class="col-id"><strong>{{ 'Add_VILLAGE.ID' | translate }}</strong></ion-col>
           <ion-col class="col-Village_name"><strong>{{ 'Add_VILLAGE.VILLAGE_NAME' | translate }}</strong></ion-col>
-          <ion-col class="col-section_name"><strong>{{ 'Add_VILLAGE.SECTION_NAME' | translate }}</strong></ion-col>
-          <ion-col class="col-range_name"><strong>{{ 'Add_VILLAGE.RANGE_NAME' | translate }}</strong></ion-col>
-          <ion-col class="col-division_name"><strong>{{ 'Add_VILLAGE.DIVISION_NAME' | translate }}</strong></ion-col>
           <ion-col class="col-circle_name"><strong>{{ 'Add_VILLAGE.CIRCLE_NAME' | translate }}</strong></ion-col>
+          <ion-col class="col-division_name"><strong>{{ 'Add_VILLAGE.DIVISION_NAME' | translate }}</strong></ion-col>
+          <ion-col class="col-range_name"><strong>{{ 'Add_VILLAGE.RANGE_NAME' | translate }}</strong></ion-col>
+          <ion-col class="col-section_name"><strong>{{ 'Add_VILLAGE.SECTION_NAME' | translate }}</strong></ion-col>
           <!-- <ion-col class="col-organization"><strong>{{ 'Add_VILLAGE.ORGANIZATION' | translate }}</strong></ion-col> -->
           <ion-col class="col-action"><strong>{{ 'Add_VILLAGE.ACTION' | translate }}</strong></ion-col>
         </ion-row>
@@ -44,10 +44,10 @@
         <ion-row class="data" *ngFor="let village of villages">
           <ion-col class="col-id">{{ village.id }}</ion-col>
           <ion-col class="col-section_name">{{ village.village_name }}</ion-col>
-          <ion-col class="col-section_name">{{ village.section_name }}</ion-col>
-          <ion-col class="col-range_name">{{ village.range_name }}</ion-col>
-          <ion-col class="col-division_name">{{ village.division_name }}</ion-col>
           <ion-col class="col-circle_name">{{ village.circle_name }}</ion-col>
+          <ion-col class="col-division_name">{{ village.division_name }}</ion-col>
+          <ion-col class="col-range_name">{{ village.range_name }}</ion-col>
+          <ion-col class="col-section_name">{{ village.section_name }}</ion-col>
           <!-- <ion-col class="col-organization">{{ village.organization }}</ion-col> -->
           
           <ion-col class="col-action" >

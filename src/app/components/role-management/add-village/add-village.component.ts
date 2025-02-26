@@ -14,15 +14,19 @@ export class AddVillageComponent  implements OnInit {
      addVillageForm: FormGroup = new FormGroup({});
      id: number = 0;
  
-     section_name = [
-      { value: 'keyfalcon', label: 'keyfalcon' },
-      { value: 'keyfalcon', label: 'keyfalcon' }
-    ];
-
      range_name = [
-       { value: 'keyfalcon', label: 'keyfalcon' },
-       { value: 'keyfalcon', label: 'keyfalcon' }
-     ];
+        { value: 'BELURU', label: 'BELURU' },
+        { value: 'YESLURU', label: 'YESLURU' },
+        { value: 'ALURU', label: 'ALURU' },
+        { value: 'SAKALESHAPURA', label: 'SAKALESHAPURA' }
+      ];
+    
+      section_name = [
+        { value: 'BIKKODU', label: 'BIKKODU' },
+        { value: 'HETHURU', label: 'HETHURU' },
+        { value: 'K. HOSAKOTE', label: 'K. HOSAKOTE' },
+        { value: 'BELAGODU', label: 'BELAGODU' }
+      ];
  
      division_name = [
        { value: 'keyfalcon4', label: 'keyfalcon4' },

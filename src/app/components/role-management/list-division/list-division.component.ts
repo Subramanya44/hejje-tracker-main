@@ -1,14 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import { DivisionService } from 'src/app/services/division.service';
+import { Division, DivisionService } from 'src/app/services/division.service';
 import { ToastService } from 'src/app/services/shared/toast.service';
-
-interface Division {
-  id: number;
-  division_name: string;
-  circle_name: string;
-  organization: string;
-}
 
 @Component({
   selector: 'app-list-division',
@@ -52,7 +45,7 @@ export class ListDivisionComponent  implements OnInit {
     deleteDivision(divisionId: number) {
   
       this.alertController.create({
-        header: 'Delete Landmark',
+        header: 'Delete Division',
         message: 'Are you sure you want to delete this division?',
         buttons: [
           {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-interface Division {
+export interface Division {
   id: number;
   division_name: string;
   circle_name: string;

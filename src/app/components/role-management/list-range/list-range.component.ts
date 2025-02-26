@@ -1,15 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import { RangeService } from 'src/app/services/range.service';
+import { Range, RangeService } from 'src/app/services/range.service';
 import { ToastService } from 'src/app/services/shared/toast.service';
-
-interface Range {
-  id: number;
-  range_name: string;
-  division_name: string;
-  circle_name: string;
-  organization: string;
-}
 
 @Component({
   selector: 'app-list-range',
@@ -53,7 +45,7 @@ export class ListRangeComponent  implements OnInit {
       deleteRange(rangeId: number) {
     
         this.alertController.create({
-          header: 'Delete Landmark',
+          header: 'Delete Range',
           message: 'Are you sure you want to delete this range?',
           buttons: [
             {

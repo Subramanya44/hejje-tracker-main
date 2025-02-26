@@ -15,8 +15,10 @@ export class AddSectionComponent  implements OnInit {
     id: number = 0;
 
     range_name = [
-      { value: 'keyfalcon4', label: 'keyfalcon4' },
-      { value: 'keyfalcon1', label: 'keyfalcon1' }
+      { value: 'BELURU', label: 'BELURU' },
+      { value: 'YESLURU', label: 'YESLURU' },
+      { value: 'ALURU', label: 'ALURU' },
+      { value: 'SAKALESHAPURA', label: 'SAKALESHAPURA' }
     ];
 
     division_name = [

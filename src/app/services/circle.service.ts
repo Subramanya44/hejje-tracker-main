@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-interface Circle {
+export interface Circle {
   id: number;
   circle_name: string;
   organization: string;

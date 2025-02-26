@@ -1,17 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import { VillageService } from 'src/app/services/village.service';
+import { Village, VillageService } from 'src/app/services/village.service';
 import { ToastService } from 'src/app/services/shared/toast.service';
-
-interface Village {
-  id: number;
-  village_name: string;
-  section_name: string;
-  range_name: string;
-  division_name: string;
-  circle_name: string;
-  organization: string;
-}
 
 @Component({
   selector: 'app-list-village',

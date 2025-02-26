@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-interface Section {
+export interface Section {
   id: number;
   section_name: string;
   range_name: string;  
@@ -16,8 +16,10 @@ interface Section {
 export class SectionService {
  
   private sections: Section[] = [
-    { id: 1,section_name:"keyfalcon", range_name:"keyfalcon4",division_name:'keyfalcon4',circle_name: 'keyfalcon5', organization: 'keyfalcon6' },
-    { id: 2,section_name:"keyfalcon", range_name:"keyfalcon1",division_name:'keyfalcon1',circle_name: 'keyfalcon2', organization: 'keyfalcon3' }
+    { id: 1,section_name:"keyfalcon", range_name:"BELURU",division_name:'keyfalcon4',circle_name: 'keyfalcon5', organization: 'keyfalcon6' },
+    { id: 2,section_name:"keyfalcon", range_name:"YESLURU",division_name:'keyfalcon1',circle_name: 'keyfalcon2', organization: 'keyfalcon3' },
+    { id: 2,section_name:"keyfalcon", range_name:"ALURU",division_name:'keyfalcon1',circle_name: 'keyfalcon2', organization: 'keyfalcon3' },
+    { id: 2,section_name:"keyfalcon", range_name:"SAKALESHAPURA",division_name:'keyfalcon1',circle_name: 'keyfalcon2', organization: 'keyfalcon3' }
   ];
 
   private sectionsSubject = new BehaviorSubject<Section[]>(this.sections);

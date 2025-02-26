@@ -12,7 +12,7 @@ export class AddDivisionComponent  implements OnInit {
   pageTitle: string = 'Division'; 
   addDivisionForm: FormGroup = new FormGroup({});
     id: number = 0;
-    names = [
+    circle_name = [
       { value: 'keyfalcon5', label: 'keyfalcon5' },
       { value: 'keyfalcon2', label: 'keyfalcon2' }
     ];

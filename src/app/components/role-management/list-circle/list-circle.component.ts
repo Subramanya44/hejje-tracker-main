@@ -2,13 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Landmark } from 'src/app/models/landmark.model';
 import { ToastService } from 'src/app/services/shared/toast.service';
-import { CirclesService } from 'src/app/services/circle.service';
-
-interface Circle {
-  id: number;
-  circle_name: string;
-  organization: string;
-}
+import { Circle, CirclesService } from 'src/app/services/circle.service';
 
 @Component({
   selector: 'app-list-circle',
