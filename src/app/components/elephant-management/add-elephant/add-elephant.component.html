@@ -47,12 +47,14 @@
           <label for="frontView">{{ 'ELEPHANT_MANAGEMENT.FRONT_VIEW' | translate }}</label>
           <ion-input #frontViewInput type="file" id="frontView" (change)="onFileChangeProfile($event, 'frontView')" multiple class="form-control" fill="outline"></ion-input>
           <div *ngIf="previewImagesProfile['frontView'].length > 0" class="preview-container">
-            <div *ngFor="let image of previewImagesProfile['frontView']; let i = index" class="preview-item" (click)="openImageSlider('frontView', i)">
+            <div *ngFor="let image of previewImagesProfile['frontView'].slice(0, 3); let i = index" class="preview-item" (click)="openImageSlider('frontView', i)">
               <img [src]="image.url" alt="Front View Image">
               <button ion-button (click)="removeImageProfile('frontView', i, frontViewInput.getInputElement())" class="remove-button">X</button>
             </div>
-            <div *ngIf="previewImagesProfile['frontView'].length > 3" class="additional-images">
-              +{{ previewImagesProfile['frontView'].length - 3 }}
+            <div *ngIf="previewImagesProfile['frontView'].length > 3" 
+              class="additional-images"
+              (click)="openImageSlider('frontView', 3)">
+            +{{ previewImagesProfile['frontView'].length - 3 }}
             </div>
           </div>
         </div>
@@ -67,13 +69,16 @@
           <label for="rearView">{{ 'ELEPHANT_MANAGEMENT.REAR_VIEW' | translate }}</label>
           <ion-input #rearViewInput type="file" id="rearView" (change)="onFileChangeProfile($event, 'rearView')" multiple class="form-control" fill="outline"></ion-input>
           <div *ngIf="previewImagesProfile['rearView'].length > 0" class="preview-container">
-            <div *ngFor="let image of previewImagesProfile['rearView']; let i = index" class="preview-item" (click)="openImageSlider('rearView', i)">
+            <div *ngFor="let image of previewImagesProfile['rearView'].slice(0, 3); let i = index" class="preview-item" (click)="openImageSlider('rearView', i)">
               <img [src]="image.url" alt="Rear View Image">
               <button ion-button (click)="removeImageProfile('rearView', i, rearViewInput.getInputElement())" class="remove-button">X</button>
             </div>
-            <div *ngIf="previewImagesProfile['rearView'].length > 3" class="additional-images">
-              +{{ previewImagesProfile['rearView'].length - 3 }}
+            <div *ngIf="previewImagesProfile['rearView'].length > 3" 
+              class="additional-images"
+              (click)="openImageSlider('rearView', 3)">
+            +{{ previewImagesProfile['rearView'].length - 3 }}
             </div>
+         
           </div>
         </div>
         <div class="form-group">
@@ -86,12 +91,14 @@
           <label for="rightView">{{ 'ELEPHANT_MANAGEMENT.RIGHT_VIEW' | translate }}</label>
           <ion-input #rightViewInput type="file" id="rightView" (change)="onFileChangeProfile($event, 'rightView')" multiple class="form-control" fill="outline"></ion-input>
           <div *ngIf="previewImagesProfile['rightView'].length > 0" class="preview-container">
-            <div *ngFor="let image of previewImagesProfile['rightView']; let i = index" class="preview-item" (click)="openImageSlider('rightView', i)">
+            <div *ngFor="let image of previewImagesProfile['rightView'].slice(0, 3); let i = index" class="preview-item" (click)="openImageSlider('rightView', i)">
               <img [src]="image.url" alt="Right View Image">
               <button ion-button (click)="removeImageProfile('rightView', i, rightViewInput.getInputElement())" class="remove-button">X</button>
             </div>
-            <div *ngIf="previewImagesProfile['rightView'].length > 3" class="additional-images">
-              +{{ previewImagesProfile['rightView'].length - 3 }}
+            <div *ngIf="previewImagesProfile['rightView'].length > 3" 
+              class="additional-images"
+              (click)="openImageSlider('rightView', 3)">
+            +{{ previewImagesProfile['rightView'].length - 3 }}
             </div>
           </div>
         </div>
@@ -102,15 +109,17 @@
 
         <!-- Left View -->
         <div class="profile-section form-group">
-          <label for="leftView">{{ 'ELEPHANT_MANAGEMENT.LEFT_VIEW' | translate }}w</label>
+          <label for="leftView">{{ 'ELEPHANT_MANAGEMENT.LEFT_VIEW' | translate }}</label>
           <ion-input #leftViewInput type="file" id="leftView" (change)="onFileChangeProfile($event, 'leftView')" multiple class="form-control" fill="outline"></ion-input>
           <div *ngIf="previewImagesProfile['leftView'].length > 0" class="preview-container">
-            <div *ngFor="let image of previewImagesProfile['leftView']; let i = index" class="preview-item" (click)="openImageSlider('leftView', i)">
+            <div *ngFor="let image of previewImagesProfile['leftView'].slice(0, 3); let i = index" class="preview-item" (click)="openImageSlider('leftView', i)">
               <img [src]="image.url" alt="Left View Image">
               <button ion-button (click)="removeImageProfile('leftView', i, leftViewInput.getInputElement())" class="remove-button">X</button>
             </div>
-            <div *ngIf="previewImagesProfile['leftView'].length > 3" class="additional-images">
-              +{{ previewImagesProfile['leftView'].length - 3 }}
+            <div *ngIf="previewImagesProfile['leftView'].length > 3" 
+              class="additional-images"
+              (click)="openImageSlider('leftView', 3)">
+            +{{ previewImagesProfile['leftView'].length - 3 }}
             </div>
           </div>
         </div>
