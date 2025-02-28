@@ -97,7 +97,15 @@
     "EDIT": "Edit",
     "ADD_ELEPHANT": "Add Elephant",
     "DIVISION_NAME": "Division Name",
-    "CIRCLE_NAME": "Circle Name"
+    "CIRCLE_NAME": "Circle Name",
+    "FRONT_VIEW": "Fornt View",
+    "REAR_VIEW": "Rear View",
+    "RIGHT_VIEW": "Right View",
+    "LEFT_VIEW": "Left View",
+    "FRONT_VIEW_COMMENT": "Fornt View Comment",
+    "REAR_VIEW_COMMENT": "Rear View Comment",
+    "RIGHT_VIEW_COMMENT": "Right View Comment",
+    "LEFT_VIEW_COMMENT": "Left View Comment"
   },
   "KML_MANAGEMENT":{
     "KML_MANAGEMENT": "KML Management",

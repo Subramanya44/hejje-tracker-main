@@ -14,8 +14,10 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClientModule, HttpClient} from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { ImageSliderComponent } from './components/image-slider/image-slider.component';
+
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,ImageSliderComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
