@@ -19,10 +19,18 @@ export class AddElephantComponent  implements OnInit {
     frontView: [],
     rearView: [],
     rightView: [],
-    leftView: []
+    leftView: [],
+    otherView: []
   };
   id?: number = 0;
   uploadedImageUrls: string[] = [];
+  range_name = [
+    { value: 'BELURU', label: 'BELURU' },
+    { value: 'YESLURU', label: 'YESLURU' },
+    { value: 'ALURU', label: 'ALURU' },
+    { value: 'SAKALESHAPURA', label: 'SAKALESHAPURA' }
+  ];
+
   division_name = [
     { value: 'division name 1', label: 'division name 1' },
     { value: 'division name 2', label: 'division name 2' }
@@ -47,6 +55,13 @@ export class AddElephantComponent  implements OnInit {
     this.initForm();
   }
 
+  triggerFileInput(view: string) {
+    const fileInput = document.getElementById(view) as HTMLInputElement;
+    if (fileInput) {
+      fileInput.click();
+    }
+  }
+
   async removeImageMedia(index: number, fileInputPromise: Promise<HTMLInputElement>) {
     // Get the native <input> element
     const nativeInput = await fileInputPromise;
@@ -66,22 +81,19 @@ export class AddElephantComponent  implements OnInit {
     }
   }
 
-  async removeImageProfile(view: string, index: number, fileInputPromise: Promise<HTMLInputElement>) {
-    // Get the native <input> element
-    const nativeInput = await fileInputPromise;
-  
+  async removeImageProfile(view: string, index: number, fileInput: HTMLInputElement) {
     // Remove the image from the previewImagesProfile array
     this.previewImagesProfile[view].splice(index, 1);
   
     // Update the file input field's value
-    if (nativeInput && nativeInput.files) {
-      const files = Array.from(nativeInput.files); // Convert FileList to an array
+    if (fileInput && fileInput.files) {
+      const files = Array.from(fileInput.files); // Convert FileList to an array
       files.splice(index, 1); // Remove the file at the specified index
   
       // Create a new FileList and assign it to the file input
       const dataTransfer = new DataTransfer();
       files.forEach(file => dataTransfer.items.add(file));
-      nativeInput.files = dataTransfer.files;
+      fileInput.files = dataTransfer.files;
     }
   }
  
@@ -121,7 +133,8 @@ export class AddElephantComponent  implements OnInit {
       frontView: [],
       rearView: [],
       rightView: [],
-      leftView: []
+      leftView: [],
+      otherView:[]
     };
     this.addElephantForm = this.formBuilder.group({
       // created_at: [new Date().toISOString()],
@@ -131,10 +144,12 @@ export class AddElephantComponent  implements OnInit {
       media_attachments: [[]],
       circle_name: [''],
       division_name: [''],
+      range_name: [''],
       frontViewComment: [''],
       rearViewComment: [''],
       rightViewComment: [''],
-      leftViewComment: ['']
+      leftViewComment: [''],
+      OtherViewComment: ['']
     });
   }
 
@@ -264,7 +279,8 @@ export class AddElephantComponent  implements OnInit {
         frontView: [],
         rearView: [],
         rightView: [],
-        leftView: []
+        leftView: [],
+        otherView: [],
       };
   
       // Update elephant media in the database
@@ -283,7 +299,8 @@ export class AddElephantComponent  implements OnInit {
       frontView: [],
       rearView: [],
       rightView: [],
-      leftView: []
+      leftView: [],
+      otherView: []
     };
     this.uploadedImageUrls = [];
   }

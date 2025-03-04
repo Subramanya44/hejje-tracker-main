@@ -214,7 +214,20 @@ export const pagesData: MenuItem[] = [
     url: '/complaints-management',
     icon: 'people',
     roles: [UserRole.SUPER_ADMIN, UserRole.DEPARTMENT_ADMIN],
-    children: []
+    children: [
+      {
+        title: 'SIDE_MENU.ADD_COMPLAINTS',
+        url: '/complaints-management/add-complaints',
+        icon: 'list',
+        roles: [
+          UserRole.DEPARTMENT_ADMIN,
+          UserRole.SUPER_ADMIN,
+          UserRole.PUBLIC_USER,
+          UserRole.DEPARTMENT_USER,
+        ],
+        children: []
+      }
+    ]
   },
   {
     title: 'SIDE_MENU.ADD_CIRCLE',

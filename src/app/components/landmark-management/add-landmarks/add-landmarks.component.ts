@@ -9,6 +9,22 @@ import { LandmarksService } from 'src/app/services/landmarks.service';
   styleUrls: ['./add-landmarks.component.scss'],
 })
 export class AddLandmarksComponent  implements OnInit {
+   range_name = [
+    { value: 'BELURU', label: 'BELURU' },
+    { value: 'YESLURU', label: 'YESLURU' },
+    { value: 'ALURU', label: 'ALURU' },
+    { value: 'SAKALESHAPURA', label: 'SAKALESHAPURA' }
+  ];
+
+  division_name = [
+    { value: 'division name 1', label: 'division name 1' },
+    { value: 'division name 2', label: 'division name 2' }
+  ];
+
+  circle_name = [
+    { value: 'circle name 1', label: 'circle name 1' },
+    { value: 'circle name 2', label: 'circle name 2' }
+  ];
 
   addLandmarksForm: FormGroup = new FormGroup({});
   id: number = 0;
@@ -27,6 +43,9 @@ export class AddLandmarksComponent  implements OnInit {
       description: [''],
       latitude: [['']],
       longitude: [['']],
+      circle_name:[],
+      division_name:[],
+      range_name:[],
       status: [],
     });
   }

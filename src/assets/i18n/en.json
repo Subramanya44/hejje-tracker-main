@@ -30,7 +30,8 @@
     "ADD_RANGE": "Add Range",
     "ADD_SECTION": "Add Section",
     "ADD_VILLAGE": "Add Village",
-    "ADD_ANNOUNCEMENT": "Add Announcement"
+    "ADD_ANNOUNCEMENT": "Add Announcement",
+    "ADD_COMPLAINTS": "Add Complaint"
   },
   "ADD_TRACK_PAGE": {
     "ADD_TRACK": "Add Track",
@@ -102,10 +103,13 @@
     "REAR_VIEW": "Rear View",
     "RIGHT_VIEW": "Right View",
     "LEFT_VIEW": "Left View",
-    "FRONT_VIEW_COMMENT": "Front View Comment",
-    "REAR_VIEW_COMMENT": "Rear View Comment",
-    "RIGHT_VIEW_COMMENT": "Right View Comment",
-    "LEFT_VIEW_COMMENT": "Left View Comment"
+    "OTHER_VIEW": "Others",
+    "FRONT_VIEW_COMMENT": "Comment",
+    "REAR_VIEW_COMMENT": "Comment",
+    "RIGHT_VIEW_COMMENT": "Comment",
+    "LEFT_VIEW_COMMENT": "Comment",
+    "OTHER_VIEW_COMMENT": "Comment",
+    "RANGE_NAME": "Range Name"
   },
   "KML_MANAGEMENT":{
     "KML_MANAGEMENT": "KML Management",
@@ -144,7 +148,10 @@
     "ACTION": "Action",
     "EDIT": "Edit",
     "STATUS": "Status",
-    "ADD_LANDMARK": "Add Landmark"
+    "ADD_LANDMARK": "Add Landmark",
+    "RANGE_NAME": "Range Name",
+    "DIVISION_NAME": "Division Name",
+    "CIRCLE_NAME": "Circle Name"
   },
   "REPORTS_MANAGEMENT":{
     "REPORTS_MANAGEMENT": "Reports Management",
@@ -183,7 +190,10 @@
     "INDIRECT_SIGHTING": "Indirect Sighting",
     "ATTACK_ON_ELEPHANTS": "Attack on Elephants",
     "COMPLAINT_ADDED_SUCCESSFULLY": "Complaint added successfully",
-    "NO_MEDIA_FOUND": "No Media Found"
+    "NO_MEDIA_FOUND": "No Media Found",
+    "RANGE_NAME": "Range Name",
+    "DIVISION_NAME": "Division Name",
+    "CIRCLE_NAME": "Circle Name"
   },
   "Add_CIRCLE":{
     "ADD_CIRCLE": "Add Circle",

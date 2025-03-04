@@ -17,6 +17,22 @@ import { ELEPHANT } from 'src/app/models/elephant';
 })
 export class AddTrackComponent implements OnInit {
 
+  range_name = [
+    { value: 'BELURU', label: 'BELURU' },
+    { value: 'YESLURU', label: 'YESLURU' },
+    { value: 'ALURU', label: 'ALURU' },
+    { value: 'SAKALESHAPURA', label: 'SAKALESHAPURA' }
+  ];
+
+  division_name = [
+    { value: 'division name 1', label: 'division name 1' },
+    { value: 'division name 2', label: 'division name 2' }
+  ];
+
+  circle_name = [
+    { value: 'circle name 1', label: 'circle name 1' },
+    { value: 'circle name 2', label: 'circle name 2' }
+  ];
 
   trackForm: FormGroup = new FormGroup({});
   previewImages: { url: string, file?: File }[] = [];
@@ -103,6 +119,9 @@ export class AddTrackComponent implements OnInit {
       district: [''],
       taluk: [''],
       village: [''],
+      circle_name:[],
+      division_name:[],
+      range_name:[],
       elephants: [[]]
     });
   }

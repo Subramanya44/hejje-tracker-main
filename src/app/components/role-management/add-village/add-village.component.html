@@ -38,7 +38,7 @@
       </div>
 
       <div class="form-group">
-        <label for="division_name">{{ 'Add_VILLAGE.RANGE_NAME' | translate }}</label>
+        <label for="range_name">{{ 'Add_VILLAGE.RANGE_NAME' | translate }}</label>
         <ion-select id="range_name" formControlName="range_name" class="form-control" fill="outline">
           <ion-select-option *ngFor="let name of range_name" [value]="name.value">
             {{ name.label }}
