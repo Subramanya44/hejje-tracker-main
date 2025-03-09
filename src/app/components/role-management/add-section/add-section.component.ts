@@ -98,4 +98,8 @@ export class AddSectionComponent  implements OnInit {
     cancel() {
       this.router.navigate(['/role-management/list-section/']);
     }
+
+    goBack() {
+      this.router.navigate(['/role-management/list-section/']);
+    }
 }

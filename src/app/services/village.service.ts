@@ -19,8 +19,8 @@ export class VillageService {
   private villages: Village[] = [
     { id: 1, village_name:"KANGUPPE",section_name:"BIKKODU", range_name:"BELURU",division_name:'keyfalcon4',circle_name: 'keyfalcon5', organization: 'keyfalcon6' },
     { id: 2, village_name:"HOSALLI",section_name:"HETHURU", range_name:"YESLURU",division_name:'keyfalcon1',circle_name: 'keyfalcon2', organization: 'keyfalcon3' },
-    { id: 1, village_name:"NAVINAHALLI",section_name:"K. HOSAKOTE", range_name:"ALURU",division_name:'keyfalcon4',circle_name: 'keyfalcon5', organization: 'keyfalcon6' },
-    { id: 2, village_name:"HOSKIREHALLIALLI",section_name:"BELAGODU", range_name:"SAKALESHAPURA",division_name:'keyfalcon1',circle_name: 'keyfalcon2', organization: 'keyfalcon3' }
+    { id: 3, village_name:"NAVINAHALLI",section_name:"K. HOSAKOTE", range_name:"ALURU",division_name:'keyfalcon4',circle_name: 'keyfalcon5', organization: 'keyfalcon6' },
+    { id: 4, village_name:"HOSKIREHALLIALLI",section_name:"BELAGODU", range_name:"SAKALESHAPURA",division_name:'keyfalcon1',circle_name: 'keyfalcon2', organization: 'keyfalcon3' }
   ];
 
   private villagesSubject = new BehaviorSubject<Village[]>(this.villages);

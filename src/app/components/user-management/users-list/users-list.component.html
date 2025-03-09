@@ -97,30 +97,76 @@
 
         <!-- email and a submit button  -->
         <form [formGroup]="inviteForm" (ngSubmit)="invite()">
-          <ion-item>
-            <ion-input label="{{'USER_MANAGEMENT.EMAIL' | translate}}" label-placement="floating" type="email" formControlName="email"></ion-input>
-          </ion-item>
-           <ion-item>
-            <ion-input label="{{'USER_MANAGEMENT.PASSWORD' | translate}}" label-placement="floating" type="password" formControlName="password"></ion-input>
-          </ion-item>
-           <ion-item>
-            <ion-input label="{{'USER_MANAGEMENT.FULL_NAME' | translate}}" label-placement="floating" type="text" formControlName="full_name"></ion-input>
-          </ion-item>
-           <ion-item>
-            <ion-input label="{{'USER_MANAGEMENT.MOBILE' | translate}}" label-placement="floating" type="number" formControlName="mobile"></ion-input>
-          </ion-item>
-          <!-- dropdown if roles  -->
-          <ion-item>
-            <ion-select formControlName="role" label="{{'USER_MANAGEMENT.ROLE' | translate}}" label-placement="floating">
-              <ion-select-option *ngFor="let role of userRoleList" [value]="role">{{ getUserRoleLabel(role) | translate }}</ion-select-option>
-            </ion-select>
-          </ion-item>
 
-          <div>
-            <ion-button expand="block" type="submit" [disabled]="inviteForm.invalid">Send Invite <ion-icon
-                name="arrow-forward-outline"></ion-icon></ion-button>
-          </div>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-input label="{{'USER_MANAGEMENT.EMAIL' | translate}}" label-placement="floating" type="email" formControlName="email"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item>
+                <ion-input label="{{'USER_MANAGEMENT.PASSWORD' | translate}}" label-placement="floating" type="password" formControlName="password"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item>
+                <ion-input label="{{'USER_MANAGEMENT.FULL_NAME' | translate}}" label-placement="floating" type="text" formControlName="full_name"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+             
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-select  label="{{ 'LANDMARK_MANAGEMENT.CIRCLE_NAME' | translate }}" formControlName="circle_name" label-placement="floating">
+                  <ion-select-option *ngFor="let name of circle_name" [value]="name.value">
+                    {{ name.label }}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item>
+                <ion-select label="{{ 'LANDMARK_MANAGEMENT.DIVISION_NAME' | translate }}" formControlName="division_name" label-placement="floating">
+                  <ion-select-option *ngFor="let name of division_name" [value]="name.value">
+                    {{ name.label }}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item>
+                <ion-select label="{{ 'LANDMARK_MANAGEMENT.RANGE_NAME' | translate }}" formControlName="range_name" label-placement="floating">
+                  <ion-select-option *ngFor="let name of range_name" [value]="name.value">{{ name.label }}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
 
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-input label="{{'USER_MANAGEMENT.MOBILE' | translate}}" label-placement="floating" type="number" formControlName="mobile"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <!-- dropdown if roles  -->
+              <ion-item>
+                <ion-select formControlName="role" label="{{'USER_MANAGEMENT.ROLE' | translate}}" label-placement="floating">
+                  <ion-select-option *ngFor="let role of userRoleList" [value]="role">{{ getUserRoleLabel(role) | translate }}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <div>
+                <ion-button expand="block" type="submit" [disabled]="inviteForm.invalid">Send Invite <ion-icon
+                    name="arrow-forward-outline"></ion-icon></ion-button>
+              </div>    
+            </ion-col>
+          </ion-row>
+
+         
         </form>
       </div>
     </ng-template>

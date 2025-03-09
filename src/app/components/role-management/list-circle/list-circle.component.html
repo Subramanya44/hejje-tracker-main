@@ -37,7 +37,7 @@
           <ion-col class="col-action"><strong>{{ 'Add_CIRCLE.ACTION' | translate }}</strong></ion-col>
         </ion-row>
 
-        <ion-row class="data" *ngFor="let circle of circles">
+        <ion-row class="data" *ngFor="let circle of paginatedCircles">
           <ion-col class="col-id">{{ circle.id }}</ion-col>
           <ion-col class="col-circle_name">{{ circle.circle_name }}</ion-col>
           <ion-col class="col-organization">{{ circle.organization }}</ion-col>

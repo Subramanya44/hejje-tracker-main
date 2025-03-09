@@ -38,7 +38,7 @@
           <ion-col class="col-action"><strong>{{ 'Add_DIVISION.ACTION' | translate }}</strong></ion-col>
         </ion-row>
 
-        <ion-row class="data" *ngFor="let division of divisions">
+        <ion-row class="data" *ngFor="let division of paginatedDivisions">
           <ion-col class="col-id">{{ division.id }}</ion-col>
           <ion-col class="col-division_name">{{ division.division_name }}</ion-col>
           <ion-col class="col-circle_name">{{ division.circle_name }}</ion-col>

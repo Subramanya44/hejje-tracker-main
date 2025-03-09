@@ -73,4 +73,8 @@ export class AddCircleComponent  implements OnInit {
     cancel() {
       this.router.navigate(['/role-management/list-circle/']);
     }
+
+    goBack() {
+      this.router.navigate(['/role-management/list-circle/']);
+    }
 }

@@ -13,7 +13,19 @@ export interface Circle {
 export class CirclesService {
   private circles: Circle[] = [
     { id: 1, circle_name: 'keyfalcon', organization: 'keyfalcon' },
-    { id: 2, circle_name: 'keyfalcon2', organization: 'keyfalcon2' }
+    { id: 2, circle_name: 'keyfalcon2', organization: 'keyfalcon2' },
+    { id: 3, circle_name: 'keyfalcon', organization: 'keyfalcon' },
+    { id: 4, circle_name: 'keyfalcon2', organization: 'keyfalcon2' },
+    { id: 5, circle_name: 'keyfalcon', organization: 'keyfalcon' },
+    { id: 6, circle_name: 'keyfalcon2', organization: 'keyfalcon2' },
+    { id: 7, circle_name: 'keyfalcon', organization: 'keyfalcon' },
+    { id: 8, circle_name: 'keyfalcon2', organization: 'keyfalcon2' },
+    { id: 9, circle_name: 'keyfalcon', organization: 'keyfalcon' },
+    { id: 10, circle_name: 'keyfalcon2', organization: 'keyfalcon2' },
+    { id: 11 ,circle_name: 'keyfalcon', organization: 'keyfalcon' },
+    { id: 12 ,circle_name: 'keyfalcon2', organization: 'keyfalcon2' },
+    { id: 13, circle_name: 'keyfalcon', organization: 'keyfalcon' },
+    { id: 14, circle_name: 'keyfalcon2', organization: 'keyfalcon2' }
   ];
 
   private circlesSubject = new BehaviorSubject<Circle[]>(this.circles);

@@ -35,8 +35,16 @@ export class ListCircleComponent  implements OnInit {
   //  }
   fetchCircles() {
     this.circles = this.circlesService.getCircles();
+    this.currentPage = 1;
   }
- 
+  
+  // Getter to return only paginated items
+  get paginatedCircles(): Circle[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.circles.slice(startIndex, endIndex);
+  }
+  
    editCircle(landmarkId: number) {
      // Navigate to edit page
      // this.router.navigate(['/collars/edit', landmarkId]);
@@ -73,9 +81,9 @@ export class ListCircleComponent  implements OnInit {
    }
  
    onPageSizeChange(event: any) {
-     this.itemsPerPage = event.target.value;
-     this.currentPage = 1;
-   }
+    this.itemsPerPage = parseInt(event.detail.value, 10);
+    this.currentPage = 1; // Reset to first page when changing page size
+  }
  
    prevPage() {
      if (this.currentPage > 1) {

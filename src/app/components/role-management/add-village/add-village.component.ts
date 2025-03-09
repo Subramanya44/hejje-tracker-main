@@ -107,4 +107,7 @@ export class AddVillageComponent  implements OnInit {
        this.router.navigate(['/role-management/list-village/']);
      }
  
+     goBack() {
+      this.router.navigate(['/role-management/list-village/']);
+    }
 }

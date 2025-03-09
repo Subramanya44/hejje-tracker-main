@@ -1,6 +1,7 @@
 <ion-content>
   <div class="ion-card">
     <ion-card-header>
+      <ion-icon name="chevron-back-outline" class="back-button" (click)="goBack()"></ion-icon>
       <span class="circle-icon">
         <ion-icon name="navigate-outline"></ion-icon>
       </span>
@@ -35,6 +36,26 @@
             <ion-icon name="trash-outline"></ion-icon>
           </ion-button>
         </div>
+      </div>
+
+       <!-- Circle Name Field -->
+       <div class="form-group">
+        <label for="circle_name">{{ 'ELEPHANT_MANAGEMENT.CIRCLE_NAME' | translate }}</label>
+        <ion-select id="circle_name" formControlName="circle_name" class="form-control" fill="outline">
+          <ion-select-option *ngFor="let name of circle_name" [value]="name.value">
+            {{ name.label }}
+          </ion-select-option>
+        </ion-select>
+      </div>
+
+      <!-- Division Name Field -->
+      <div class="form-group">
+        <label for="division_name">{{ 'ELEPHANT_MANAGEMENT.DIVISION_NAME' | translate }}</label>
+        <ion-select id="division_name" formControlName="division_name" class="form-control" fill="outline">
+          <ion-select-option *ngFor="let name of division_name" [value]="name.value">
+            {{ name.label }}
+          </ion-select-option>
+        </ion-select>
       </div>
 
       <div class="form-group">

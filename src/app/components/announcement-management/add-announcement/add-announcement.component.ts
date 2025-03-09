@@ -14,6 +14,16 @@ export class AddAnnouncementComponent implements OnInit {
   addAnnouncementForm: FormGroup = new FormGroup({});
   id: number = 0;
 
+  division_name = [
+    { value: 'division name 1', label: 'division name 1' },
+    { value: 'division name 2', label: 'division name 2' }
+  ];
+
+  circle_name = [
+    { value: 'circle name 1', label: 'circle name 1' },
+    { value: 'circle name 2', label: 'circle name 2' }
+  ];
+
   range_name = [
     { value: 'BELURU', label: 'BELURU' },
     { value: 'YESLURU', label: 'YESLURU' },
@@ -51,6 +61,8 @@ export class AddAnnouncementComponent implements OnInit {
     this.addAnnouncementForm = this.formBuilder.group({
       announcement_date: ['', Validators.required],
       timeFieldsArray: this.formBuilder.array([]),  // Correctly defined FormArray
+      circle_name: [''],
+      division_name: [''],
       range_name: ['', Validators.required],
       section_name: ['', Validators.required],
       village_name: ['', Validators.required]
@@ -148,6 +160,10 @@ export class AddAnnouncementComponent implements OnInit {
   
   // Cancel and navigate back
   cancel() {
+    this.router.navigate(['/announcement-management/list-announcement/']);
+  }
+
+  goBack() {
     this.router.navigate(['/announcement-management/list-announcement/']);
   }
 }

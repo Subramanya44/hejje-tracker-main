@@ -80,4 +80,8 @@ export class AddDivisionComponent  implements OnInit {
     cancel() {
       this.router.navigate(['/role-management/list-division/']);
     }
+
+    goBack() {
+      this.router.navigate(['/role-management/list-division/']);
+    }
 }

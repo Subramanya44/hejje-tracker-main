@@ -35,6 +35,14 @@ export class ListDivisionComponent  implements OnInit {
     // }
     fetchDivisions() {
       this.divisions = this.divisionService.getDivisions();
+      this.currentPage = 1;
+    }
+
+    // Getter to return only paginated items
+    get paginatedDivisions(): Division[] {
+      const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+      const endIndex = startIndex + this.itemsPerPage;
+      return this.divisions.slice(startIndex, endIndex);
     }
   
     editLandmark(landmarkId: number) {

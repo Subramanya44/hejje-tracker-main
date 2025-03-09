@@ -294,3 +294,9 @@ button[type="submit"] {
   position: relative;
   float: right;
 }
+
+.back-button {
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--ion-color-primary);
+}

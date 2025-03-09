@@ -72,7 +72,6 @@ export class AddRangeComponent  implements OnInit {
   loadRangeData(rangeId: number) {
     const ranges = this.rangeService.getRanges();
     const selectedRange = ranges.find(range => range.id === rangeId);
-  console.log(selectedRange);
     if (selectedRange) {
       setTimeout(() => {
         this.addRangeForm.patchValue({
@@ -86,6 +85,10 @@ export class AddRangeComponent  implements OnInit {
   }
 
   cancel() {
+    this.router.navigate(['/role-management/list-range/']);
+  }
+
+  goBack() {
     this.router.navigate(['/role-management/list-range/']);
   }
 

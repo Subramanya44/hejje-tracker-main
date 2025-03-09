@@ -340,4 +340,8 @@ export class AddElephantComponent  implements OnInit {
     this.router.navigate(['/elephant-management']);
   }
 
+  goBack() {
+    this.router.navigate(['/elephant-management']);
+  }
+
 }
