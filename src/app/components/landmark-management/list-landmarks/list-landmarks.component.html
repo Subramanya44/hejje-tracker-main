@@ -42,7 +42,7 @@
          
         </ion-row>
 
-        <ion-row class="data" *ngFor="let landmark of landmarks">
+        <ion-row class="data" *ngFor="let landmark of visibleLandmarks">
           <ion-col class="col-id">{{ landmark.id }}</ion-col>
           <ion-col class="col-name">{{ landmark.name }}</ion-col>
           <ion-col class="col-description">{{ landmark.description }}</ion-col>

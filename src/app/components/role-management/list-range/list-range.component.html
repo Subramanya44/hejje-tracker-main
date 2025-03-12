@@ -39,7 +39,7 @@
           <ion-col class="col-action"><strong>{{ 'Add_RANGE.ACTION' | translate }}</strong></ion-col>
         </ion-row>
 
-        <ion-row class="data" *ngFor="let range of ranges">
+        <ion-row class="data" *ngFor="let range of visibleRanges">
           <ion-col class="col-id">{{ range.id }}</ion-col>
           <ion-col class="col-range_name">{{ range.range_name }}</ion-col>
           <ion-col class="col-circle_name">{{ range.circle_name }}</ion-col>

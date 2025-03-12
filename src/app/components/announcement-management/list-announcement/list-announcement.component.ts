@@ -90,6 +90,12 @@ export class ListAnnouncementComponent  implements OnInit {
              this.currentPage++;
            }
          }
+
+        get visibleAnnouncements(): Announcement[] {
+          const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+          const endIndex = Math.min(startIndex + this.itemsPerPage, this.announcements.length);
+          return this.announcements.slice(startIndex, endIndex);
+        } 
        
          updateStatus(id: number, status: boolean) {
            this.toastService.presentToast('Announcement status updated successfully');

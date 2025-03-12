@@ -42,7 +42,7 @@
           <!-- <ion-col class="col-edit"><strong> {{ 'ELEPHANT_MANAGEMENT.EDIT' | translate }} </strong></ion-col> -->
         </ion-row>
 
-        <ion-row class="data" *ngFor="let elephant of elephants">
+        <ion-row class="data" *ngFor="let elephant of visibleElephants">
           <ion-col class="col-id">{{ elephant.id }}</ion-col>
           <ion-col class="col-name">{{ elephant.name }}</ion-col>
           <ion-col class="col-description">{{ elephant.description }}</ion-col>
@@ -69,7 +69,7 @@
         </ion-row>
 
 
-        <div class="card" *ngFor="let elephant of elephants">
+        <div class="card" *ngFor="let elephant of visibleElephants">
           <div class="top-bar">
             <!-- if media is present show the 1st image and on click open model else show the default image -->
             <ion-img *ngIf="isMediaVisible(elephant.media_attachments ?? []) && elephant.media_attachments.length > 0" src="{{ elephant.media_attachments[0] }}"

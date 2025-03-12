@@ -84,4 +84,8 @@ initForm() {
     });
   }
 
+  goBack() {
+    this.router.navigate(['/radio-collars']);
+  }
+
 }

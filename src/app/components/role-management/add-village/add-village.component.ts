@@ -11,6 +11,7 @@ import { VillageService } from 'src/app/services/village.service';
 export class AddVillageComponent  implements OnInit {
 
      pageTitle: string = 'Village'; 
+     submitButtonText: string = 'Add_DIVISION.DIVISION_ADD';
      addVillageForm: FormGroup = new FormGroup({});
      id: number = 0;
  
@@ -78,9 +79,11 @@ export class AddVillageComponent  implements OnInit {
          if (id) {
            this.id = +id; 
            this.pageTitle = 'Edit Village';
+           this.submitButtonText = 'Add_DIVISION.DIVISION_UPDATE';
            this.loadVillageData(this.id);
          } else {
            this.pageTitle = 'Add Village';
+           this.submitButtonText = 'Add_DIVISION.DIVISION_ADD';
            this.addVillageForm.reset();
          }
        });

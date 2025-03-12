@@ -40,7 +40,7 @@
           <ion-col class="col-action"><strong>{{ 'Add_SECTION.ACTION' | translate }}</strong></ion-col>
         </ion-row>
 
-        <ion-row class="data" *ngFor="let section of sections">
+        <ion-row class="data" *ngFor="let section of visibleSections">
           <ion-col class="col-id">{{ section.id }}</ion-col>
           <ion-col class="col-section_name">{{ section.section_name }}</ion-col>
           <ion-col class="col-circle_name">{{ section.circle_name }}</ion-col>

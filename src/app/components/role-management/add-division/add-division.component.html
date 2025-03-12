@@ -1,7 +1,7 @@
 <ion-content>
   <div class="ion-card">
     <ion-card-header>
-      <ion-icon name="chevron-back-outline" class="back-button" (click)="goBack()"></ion-icon>
+      <ion-icon name="arrow-back" class="back-button" (click)="goBack()"></ion-icon>
       <span class="circle-icon">
         <ion-icon name="navigate-outline"></ion-icon>
       </span>
@@ -43,7 +43,7 @@
         <ion-button fill="outline" color="danger" (click)="cancel()">
           <strong>Cancel<ion-icon slot="end" name="close"></ion-icon> </strong>
         </ion-button>
-        <ion-button expand="block" type="submit" [disabled]="addDivisionForm.invalid">{{ 'Add_DIVISION.DIVISION_ADD' | translate }}
+        <ion-button expand="block" type="submit" [disabled]="addDivisionForm.invalid"> {{ submitButtonText | translate }}
         </ion-button>
       </div>
     </form>

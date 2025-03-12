@@ -90,6 +90,12 @@ export class ListSectionComponent  implements OnInit {
            this.currentPage++;
          }
        }
+
+       get visibleSections(): Section[] {
+        const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+        const endIndex = Math.min(startIndex + this.itemsPerPage, this.sections.length);
+        return this.sections.slice(startIndex, endIndex);
+      } 
      
        updateStatus(id: number, status: boolean) {
          this.toastService.presentToast('Section status updated successfully');

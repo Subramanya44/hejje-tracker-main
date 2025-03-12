@@ -88,6 +88,12 @@ export class ListVillageComponent  implements OnInit {
              this.currentPage++;
            }
          }
+
+         get visibleVillages(): Village[] {
+          const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+          const endIndex = Math.min(startIndex + this.itemsPerPage, this.villages.length);
+          return this.villages.slice(startIndex, endIndex);
+        } 
        
          updateStatus(id: number, status: boolean) {
            this.toastService.presentToast('Village status updated successfully');

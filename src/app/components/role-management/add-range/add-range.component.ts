@@ -11,6 +11,7 @@ import { RangeService } from 'src/app/services/range.service';
 export class AddRangeComponent  implements OnInit {
 
   pageTitle: string = 'Range'; 
+  submitButtonText: string = 'Add_DIVISION.DIVISION_ADD';
   addRangeForm: FormGroup = new FormGroup({});
   id: number = 0;
   division_name = [
@@ -61,9 +62,11 @@ export class AddRangeComponent  implements OnInit {
       if (id) {
         this.id = +id; 
         this.pageTitle = 'Edit Range';
+        this.submitButtonText = 'Add_DIVISION.DIVISION_UPDATE';
         this.loadRangeData(this.id);
       } else {
         this.pageTitle = 'Add Range';
+        this.submitButtonText = 'Add_DIVISION.DIVISION_ADD';
         this.addRangeForm.reset();
       }
     });

@@ -213,7 +213,8 @@
     "ORGANIZATION": "Organization",
     "ACTION": "Action",
     "EDIT": "Edit",
-    "DIVISION_ADD": "Add"
+    "DIVISION_ADD": "Add",
+    "DIVISION_UPDATE": "Update"
   },
   "Add_RANGE":{
     "Add_RANGE": "Add Range",

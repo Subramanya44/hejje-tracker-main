@@ -10,6 +10,7 @@ import { DivisionService } from 'src/app/services/division.service';
 })
 export class AddDivisionComponent  implements OnInit {
   pageTitle: string = 'Division'; 
+  submitButtonText: string = 'Add_DIVISION.DIVISION_ADD';
   addDivisionForm: FormGroup = new FormGroup({});
     id: number = 0;
     circle_name = [
@@ -54,9 +55,11 @@ export class AddDivisionComponent  implements OnInit {
         if (id) {
           this.id = +id; 
           this.pageTitle = 'Edit Division';
+          this.submitButtonText = 'Add_DIVISION.DIVISION_UPDATE';
           this.loadDivisionData(this.id);
         } else {
           this.pageTitle = 'Add Division';
+          this.submitButtonText = 'Add_DIVISION.DIVISION_ADD';
           this.addDivisionForm.reset();
         }
       });

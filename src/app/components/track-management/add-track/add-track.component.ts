@@ -3,7 +3,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { TrackService } from "../../../services/track.service";
 import { AlertController } from '@ionic/angular';
 import { UserRole } from 'src/app/models/profile';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute , Router } from '@angular/router';
 import { MapService } from 'src/app/services/map/map.service';
 import { LandmarksService } from 'src/app/services/landmarks.service';
 import { ElephantService } from 'src/app/services/elephant.service';
@@ -54,7 +54,8 @@ export class AddTrackComponent implements OnInit {
     private alertController: AlertController,
     private route: ActivatedRoute,
     private landmarksService: LandmarksService,
-    private elephentService: ElephantService
+    private elephentService: ElephantService,
+    private router: Router
   ) {
     
     this.filteredSuggestions = this.suggestions;
@@ -375,5 +376,8 @@ export class AddTrackComponent implements OnInit {
     });
   }
 
+  goBack() {
+    this.router.navigate(['/track/my-tracks']);
+  }
   
 }

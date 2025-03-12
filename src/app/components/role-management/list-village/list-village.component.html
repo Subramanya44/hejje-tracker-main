@@ -41,7 +41,7 @@
           <ion-col class="col-action"><strong>{{ 'Add_VILLAGE.ACTION' | translate }}</strong></ion-col>
         </ion-row>
 
-        <ion-row class="data" *ngFor="let village of villages">
+        <ion-row class="data" *ngFor="let village of visibleVillages">
           <ion-col class="col-id">{{ village.id }}</ion-col>
           <ion-col class="col-section_name">{{ village.village_name }}</ion-col>
           <ion-col class="col-circle_name">{{ village.circle_name }}</ion-col>
@@ -73,7 +73,7 @@
               <p>
                 Page {{ currentPage }} of {{ totalPages }} : </p>
               <span>
-                <ion-select value="10" (ionChange)="onPageSizeChange($event)">
+                <ion-select value="1" (ionChange)="onPageSizeChange($event)">
                   <ion-select-option value="5">5</ion-select-option>
                   <ion-select-option value="10">10</ion-select-option>
                   <ion-select-option value="20">25</ion-select-option>

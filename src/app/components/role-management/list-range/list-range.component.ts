@@ -90,6 +90,12 @@ export class ListRangeComponent  implements OnInit {
           this.currentPage++;
         }
       }
+
+      get visibleRanges(): Range[] {
+        const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+        const endIndex = Math.min(startIndex + this.itemsPerPage, this.ranges.length);
+        return this.ranges.slice(startIndex, endIndex);
+      } 
     
       updateStatus(id: number, status: boolean) {
         this.toastService.presentToast('Range status updated successfully');

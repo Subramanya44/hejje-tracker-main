@@ -11,6 +11,7 @@ import { AnnouncementService } from 'src/app/services/announcement.service';
 export class AddAnnouncementComponent implements OnInit {
 
   pageTitle: string = 'Announcement';
+  submitButtonText: string = 'Add_DIVISION.DIVISION_ADD';
   addAnnouncementForm: FormGroup = new FormGroup({});
   id: number = 0;
 
@@ -118,9 +119,11 @@ export class AddAnnouncementComponent implements OnInit {
   
       if (this.id) {
         this.pageTitle = 'Edit Announcement';
+        this.submitButtonText = 'Add_DIVISION.DIVISION_UPDATE';
         this.loadAnnouncemnentData(this.id);
       } else {
         this.pageTitle = 'Add Announcement';
+        this.submitButtonText = 'Add_DIVISION.DIVISION_ADD';
         this.initForm();
       }
     });

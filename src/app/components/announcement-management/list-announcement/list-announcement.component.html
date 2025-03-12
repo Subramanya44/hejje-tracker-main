@@ -43,7 +43,7 @@
           <ion-col class="col-action"><strong>{{ 'Add_ANNOUNCEMENT.ACTION' | translate }}</strong></ion-col>
         </ion-row>
 
-        <ion-row class="data" *ngFor="let announcement of announcements">
+        <ion-row class="data" *ngFor="let announcement of visibleAnnouncements">
           <ion-col class="col-id">{{ announcement.id }}</ion-col>
           <ion-col class="col-announcement_date">{{ announcement.announcement_date }}</ion-col>
           <ion-col class="col-range_name">{{ announcement.range_name }}</ion-col>

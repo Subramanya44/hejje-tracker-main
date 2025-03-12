@@ -55,7 +55,7 @@
 
         </ion-row>
 
-        <ion-row class="data" *ngFor="let complaint of complaints">
+        <ion-row class="data" *ngFor="let complaint of visibleComplaints">
           <ion-col class="col-id">{{ complaint.id }}</ion-col>
           <ion-col class="col-timestamp">{{ complaint.created_at | date: "YYY-MM-dd HH:mm:ss" }}</ion-col>
           <ion-col class="col-location">{{ complaint.complaint_type }}</ion-col>

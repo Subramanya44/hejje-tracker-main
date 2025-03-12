@@ -16,7 +16,7 @@
           <ion-col><strong>{{ 'USER_MANAGEMENT.MOBILE' | translate  }}</strong></ion-col>
           <ion-col><strong>{{ 'USER_MANAGEMENT.POINTS' | translate  }}</strong></ion-col>
         </ion-row>
-        <ion-row class="data" *ngFor="let user of users">
+        <ion-row class="data" *ngFor="let user of visibleUsers">
           <ion-col>{{ user.id }}</ion-col>
 
           <ion-col>{{ user.email }}</ion-col>

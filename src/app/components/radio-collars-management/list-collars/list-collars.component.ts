@@ -33,6 +33,11 @@ export class ListCollarsComponent  implements OnInit {
     // this.router.navigate(['/collars/edit', collarId]);
   }
 
+  get paginatedCollars(): RadioCollar[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.collars.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
   deleteCollar(collarId: number) {
 
     // Confirm delete

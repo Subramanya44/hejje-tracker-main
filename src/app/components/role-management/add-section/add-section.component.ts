@@ -11,6 +11,7 @@ import { SectionService } from 'src/app/services/section.service';
 export class AddSectionComponent  implements OnInit {
 
     pageTitle: string = 'Section'; 
+    submitButtonText: string = 'Add_DIVISION.DIVISION_ADD';
     addSectionForm: FormGroup = new FormGroup({});
     id: number = 0;
 
@@ -70,9 +71,11 @@ export class AddSectionComponent  implements OnInit {
         if (id) {
           this.id = +id; 
           this.pageTitle = 'Edit Section';
+          this.submitButtonText = 'Add_DIVISION.DIVISION_UPDATE';
           this.loadSectionData(this.id);
         } else {
           this.pageTitle = 'Add Section';
+          this.submitButtonText = 'Add_DIVISION.DIVISION_ADD';
           this.addSectionForm.reset();
         }
       });

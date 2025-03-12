@@ -93,7 +93,9 @@ export class AddLandmarksComponent  implements OnInit {
     });
   }
 
-
+  goBack() {
+    this.router.navigate(['/landmarks-management']);
+  }
 
 
 }

@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { UserRole } from 'src/app/models/profile';
 import { ComplaintsService } from 'src/app/services/complaints.service';
 import { TrackService } from 'src/app/services/track.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-complaints',
@@ -41,7 +42,8 @@ export class AddComplaintsComponent  implements OnInit {
   constructor(private trackService:TrackService, private formbuilder:FormBuilder,
               private complaintsService:ComplaintsService,
               private alertcont:AlertController,
-              private translateService:TranslateService) { }
+              private translateService:TranslateService,
+              private router: Router,) { }
 
   ngOnInit() {
     this.initForm();
@@ -191,6 +193,9 @@ export class AddComplaintsComponent  implements OnInit {
     this.showSuggestions = true;
   }
 
+  goBack() {
+    this.router.navigate(['/complaints-management']);
+  }
   
 
 }

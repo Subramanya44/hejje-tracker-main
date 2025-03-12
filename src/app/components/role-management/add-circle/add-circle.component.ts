@@ -10,6 +10,7 @@ import { CirclesService } from 'src/app/services/circle.service';
 })
 export class AddCircleComponent  implements OnInit {
   pageTitle: string = 'Circle'; 
+  submitButtonText: string = 'Add_DIVISION.DIVISION_ADD';
   addCircleForm: FormGroup = new FormGroup({});
     id: number = 0;
     organizations = [
@@ -48,9 +49,11 @@ export class AddCircleComponent  implements OnInit {
         if (id) {
           this.id = +id; 
           this.pageTitle = 'Edit Circle';
+          this.submitButtonText = 'Add_DIVISION.DIVISION_UPDATE';
           this.loadCircleData(this.id);
         } else {
           this.pageTitle = 'Add Circle';
+          this.submitButtonText = 'Add_DIVISION.DIVISION_ADD';
           this.addCircleForm.reset();
         }
       });
