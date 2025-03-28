@@ -53,9 +53,9 @@ export class UsersListComponent implements OnInit {
       mobile: ['', [Validators.required, Validators.minLength(10)]],
       full_name: ['', [Validators.required, Validators.minLength(3)]],
       role: ['', [Validators.required]],
-      circle_name:[],
-      division_name:[],
-      range_name:[]
+      circle_name:['', [Validators.required]],
+      division_name:['', [Validators.required]],
+      range_name:['', [Validators.required]]
     });
   }
 
@@ -68,9 +68,9 @@ export class UsersListComponent implements OnInit {
           mobile: this.inviteForm.value.mobile,
           full_name: this.inviteForm.value.full_name,
           role: this.inviteForm.value.role,
-          circle_name:[],
-          division_name:[],
-          range_name:[]
+          circle_name:this.inviteForm.value.circle_name,
+          division_name:this.inviteForm.value.division_name,
+          range_name:this.inviteForm.value.range_name
         }
       }
     }

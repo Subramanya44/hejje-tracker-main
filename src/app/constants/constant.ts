@@ -230,39 +230,52 @@ export const pagesData: MenuItem[] = [
     ]
   },
   {
-    title: 'SIDE_MENU.ADD_CIRCLE',
-    url: '/role-management/list-circle',
-    icon: 'ellipse',
-    roles: [UserRole.DEPARTMENT_ADMIN, UserRole.SUPER_ADMIN],
-    children: []
-  },
-  {
-    title: 'SIDE_MENU.ADD_DIVISION',
-    url: '/role-management/list-division',
-    icon: 'ellipse',
-    roles: [UserRole.DEPARTMENT_ADMIN, UserRole.SUPER_ADMIN],
-    children: []
-  },
-  {
-    title: 'SIDE_MENU.ADD_RANGE',
-    url: '/role-management/list-range',
-    icon: 'ellipse',
-    roles: [UserRole.DEPARTMENT_ADMIN, UserRole.SUPER_ADMIN],
-    children: []
-  },
-  {
-    title: 'SIDE_MENU.ADD_SECTION',
-    url: '/role-management/list-section',
-    icon: 'ellipse',
-    roles: [UserRole.DEPARTMENT_ADMIN, UserRole.SUPER_ADMIN],
-    children: []
-  },
-  {
-    title: 'SIDE_MENU.ADD_VILLAGE',
-    url: '/role-management/list-village',
-    icon: 'ellipse',
-    roles: [UserRole.DEPARTMENT_ADMIN, UserRole.SUPER_ADMIN],
-    children: []
+    title: 'SIDE_MENU.ADD_ROLE',
+    url: '/role-management',
+    icon: 'people',
+    roles: [
+      UserRole.DEPARTMENT_ADMIN,
+      UserRole.SUPER_ADMIN,
+      UserRole.PUBLIC_USER,
+      UserRole.DEPARTMENT_USER,
+    ],
+    children: [
+      {
+        title: 'SIDE_MENU.ADD_CIRCLE',
+        url: '/role-management/list-circle',
+        icon: 'ellipse',
+        roles: [UserRole.DEPARTMENT_ADMIN, UserRole.SUPER_ADMIN],
+        children: []
+      },
+      {
+        title: 'SIDE_MENU.ADD_DIVISION',
+        url: '/role-management/list-division',
+        icon: 'ellipse',
+        roles: [UserRole.DEPARTMENT_ADMIN, UserRole.SUPER_ADMIN],
+        children: []
+      },
+      {
+        title: 'SIDE_MENU.ADD_RANGE',
+        url: '/role-management/list-range',
+        icon: 'ellipse',
+        roles: [UserRole.DEPARTMENT_ADMIN, UserRole.SUPER_ADMIN],
+        children: []
+      },
+      {
+        title: 'SIDE_MENU.ADD_SECTION',
+        url: '/role-management/list-section',
+        icon: 'ellipse',
+        roles: [UserRole.DEPARTMENT_ADMIN, UserRole.SUPER_ADMIN],
+        children: []
+      },
+      {
+        title: 'SIDE_MENU.ADD_VILLAGE',
+        url: '/role-management/list-village',
+        icon: 'ellipse',
+        roles: [UserRole.DEPARTMENT_ADMIN, UserRole.SUPER_ADMIN],
+        children: []
+      },
+    ]
   },
   {
     title: 'SIDE_MENU.ADD_ANNOUNCEMENT',

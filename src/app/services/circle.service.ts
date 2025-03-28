@@ -1,56 +1,124 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-
-export interface Circle {
-  id: number;
-  circle_name: string;
-  organization: string;
-}
+import { SupabaseClient } from '@supabase/supabase-js';
+import { Circle } from '../models/circle';
+import { SupabaseService } from './supabase.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CirclesService {
-  private circles: Circle[] = [
-    { id: 1, circle_name: 'keyfalcon', organization: 'keyfalcon' },
-    { id: 2, circle_name: 'keyfalcon2', organization: 'keyfalcon2' },
-    { id: 3, circle_name: 'keyfalcon', organization: 'keyfalcon' },
-    { id: 4, circle_name: 'keyfalcon2', organization: 'keyfalcon2' },
-    { id: 5, circle_name: 'keyfalcon', organization: 'keyfalcon' },
-    { id: 6, circle_name: 'keyfalcon2', organization: 'keyfalcon2' },
-    { id: 7, circle_name: 'keyfalcon', organization: 'keyfalcon' },
-    { id: 8, circle_name: 'keyfalcon2', organization: 'keyfalcon2' },
-    { id: 9, circle_name: 'keyfalcon', organization: 'keyfalcon' },
-    { id: 10, circle_name: 'keyfalcon2', organization: 'keyfalcon2' },
-    { id: 11 ,circle_name: 'keyfalcon', organization: 'keyfalcon' },
-    { id: 12 ,circle_name: 'keyfalcon2', organization: 'keyfalcon2' },
-    { id: 13, circle_name: 'keyfalcon', organization: 'keyfalcon' },
-    { id: 14, circle_name: 'keyfalcon2', organization: 'keyfalcon2' }
-  ];
+  
+  private supabase: SupabaseClient;
 
-  private circlesSubject = new BehaviorSubject<Circle[]>(this.circles);
-  circles$ = this.circlesSubject.asObservable();
-
-  getCircles() {
-    return this.circles;
+  constructor(private supabaseService: SupabaseService) {
+    this.supabase = this.supabaseService.getSupabaseClient();
   }
 
-  addCircle(circle: Circle) {
-    circle.id = this.circles.length ? Math.max(...this.circles.map(c => c.id)) + 1 : 1;
-    this.circles.push(circle);
-    this.circlesSubject.next([...this.circles]);
-  }
-
-  updateCircle(id: number, updatedCircle: Circle) {
-    const index = this.circles.findIndex(c => c.id === id);
-    if (index !== -1) {
-      this.circles[index] = { ...updatedCircle, id };
-      this.circlesSubject.next([...this.circles]);
+  async getCircles(): Promise<Circle[]> {
+    try {
+      const { data, error } = await this.supabase
+        .from('tbl_circle')
+        .select(`
+          circle_id, 
+          circle_name, 
+          tbl_organizations (organization_name)
+        `)
+        .order('created_at', { ascending: false });
+    
+      if (error) {
+        console.error('Supabase error:', error);
+        throw error;
+      }
+  
+      // Manually map the data to match the Circle interface
+      const circles: Circle[] = (data || []).map((circle: any) => ({
+        id: circle.circle_id, // Map circle_id to id
+        circle_name: circle.circle_name,
+        tbl_organizations: circle.tbl_organizations || { organization_name: '' }, // Default to an empty object
+      }));
+  
+      return circles;
+    } catch (error) {
+      console.error('Error fetching circles:', error);
+      return [];
     }
   }
 
-  deleteCircle(id: number) {
-    this.circles = this.circles.filter(c => c.id !== id);
-    this.circlesSubject.next([...this.circles]);
+  async addCircle(circle: Circle): Promise<any> {
+    try {
+        // Fetch org_id based on organization_name
+        const { data: orgData, error: orgError } = await this.supabase
+            .from('tbl_organizations')
+            .select('org_id')
+            .eq('organization_name', circle.tbl_organizations.organization_name)
+            .single();
+
+        if (orgError || !orgData) {
+            throw new Error('Organization not found');
+        }
+
+        // Insert the circle with the correct org_id
+        const { data, error } = await this.supabase
+            .from('tbl_circle')
+            .insert({
+                circle_name: circle.circle_name,
+                org_id: orgData.org_id, // Correctly assign the foreign key
+                role_name: 'CIRCLE_USER', 
+            })
+            .select();
+
+        if (error) throw error;
+        return data;
+    } catch (error) {
+        console.error('Error adding circle:', error);
+        return null;
+    }
   }
+
+  
+  async updateCircle(id: number, updatedCircle: Circle): Promise<any> {
+    try {
+        // Fetch org_id based on organization_name
+        const { data: orgData, error: orgError } = await this.supabase
+            .from('tbl_organizations')
+            .select('org_id')
+            .eq('organization_name', updatedCircle.tbl_organizations.organization_name)
+            .single();
+
+        if (orgError || !orgData) {
+            throw new Error('Organization not found');
+        }
+
+        // Update tbl_circle with new circle_name and org_id
+        const { data, error } = await this.supabase
+            .from('tbl_circle')
+            .update({
+                circle_name: updatedCircle.circle_name,
+                org_id: orgData.org_id, // Correctly update org_id
+            })
+            .eq('circle_id', id)
+            .single();
+
+        if (error) throw error;
+        return data;
+    } catch (error) {
+        console.error('Error updating circle:', error);
+        return null;
+    }
+  }
+
+
+  async deleteCircle(id: number): Promise<any> {
+    try {
+      const { error } = await this.supabase
+        .from('tbl_circle')
+        .delete()
+        .eq('circle_id', id);
+
+      if (error) throw error;
+    } catch (error) {
+      console.error('Error deleting circle:', error);
+    }
+  }
+
 }

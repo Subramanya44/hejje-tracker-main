@@ -14,13 +14,13 @@ export class AddDivisionComponent  implements OnInit {
   addDivisionForm: FormGroup = new FormGroup({});
     id: number = 0;
     circle_name = [
-      { value: 'keyfalcon5', label: 'keyfalcon5' },
-      { value: 'keyfalcon2', label: 'keyfalcon2' }
+      { value: 'Mysore Circle', label: 'Mysore Circle' },
+      { value: 'Chikkamagaluru Circle', label: 'Chikkamagaluru Circle' }
     ];
 
     organizations = [
-      { value: 'keyfalcon6', label: 'keyfalcon6' },
-      { value: 'keyfalcon3', label: 'keyfalcon3' }
+      { value: 'Karnataka Forest Department', label: 'Karnataka Forest Department' },
+      { value: 'Karnataka Forest Department', label: 'Karnataka Forest Department' }
     ];
 
     constructor(private formBuilder:FormBuilder,private router:Router, private divisionService: DivisionService, private route: ActivatedRoute) { }
@@ -56,7 +56,7 @@ export class AddDivisionComponent  implements OnInit {
           this.id = +id; 
           this.pageTitle = 'Edit Division';
           this.submitButtonText = 'Add_DIVISION.DIVISION_UPDATE';
-          this.loadDivisionData(this.id);
+          // this.loadDivisionData(this.id);
         } else {
           this.pageTitle = 'Add Division';
           this.submitButtonText = 'Add_DIVISION.DIVISION_ADD';
@@ -65,20 +65,20 @@ export class AddDivisionComponent  implements OnInit {
       });
     }
 
-    loadDivisionData(divisionId: number) {
-      const divisions = this.divisionService.getDivisions();
-      const selectedDivision = divisions.find(division => division.id === divisionId);
+    // loadDivisionData(divisionId: number) {
+    //   const divisions = this.divisionService.getDivisions();
+    //   const selectedDivision = divisions.find(division => division.id === divisionId);
     
-      if (selectedDivision) {
-        setTimeout(() => {
-          this.addDivisionForm.patchValue({
-            division_name: selectedDivision.division_name,
-            circle_name: selectedDivision.circle_name,
-            organization: selectedDivision.organization
-          });
-        });
-      }
-    }
+    //   if (selectedDivision) {
+    //     setTimeout(() => {
+    //       this.addDivisionForm.patchValue({
+    //         division_name: selectedDivision.division_name,
+    //         circle_name: selectedDivision.circle_name,
+    //         organization: selectedDivision.organization
+    //       });
+    //     });
+    //   }
+    // }
 
     cancel() {
       this.router.navigate(['/role-management/list-division/']);

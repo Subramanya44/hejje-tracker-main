@@ -1,46 +1,138 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-
-export interface Division {
-  id: number;
-  division_name: string;
-  circle_name: string;
-  organization: string;
-}
+import { Division } from '../models/division';
+import { SupabaseService } from './supabase.service';
+import { SupabaseClient } from '@supabase/supabase-js';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DivisionService {
- 
-  private divisions: Division[] = [
-    { id: 1, division_name:'keyfalcon4',circle_name: 'keyfalcon5', organization: 'keyfalcon6' },
-    { id: 2, division_name:'keyfalcon1',circle_name: 'keyfalcon2', organization: 'keyfalcon3' }
-  ];
+  
+  private supabase: SupabaseClient;
 
-  private divisionsSubject = new BehaviorSubject<Division[]>(this.divisions);
-  divisions$ = this.divisionsSubject.asObservable();
-
-  getDivisions() {
-    return this.divisions;
+  constructor(private supabaseService: SupabaseService) {
+    this.supabase = this.supabaseService.getSupabaseClient();
   }
 
-  addDivision(division: Division) {
-    division.id = this.divisions.length ? Math.max(...this.divisions.map(c => c.id)) + 1 : 1;
-    this.divisions.push(division);
-    this.divisionsSubject.next([...this.divisions]);
+  // Fetch all divisions with their related circle details
+  async getDivisions(): Promise<Division[]> {
+    try {
+      const { data, error } = await this.supabase
+        .from('tbl_division')
+        .select(`
+          div_id,
+          division_name,
+          tbl_circle!inner(
+            circle_id,
+            circle_name,
+            tbl_organizations!inner(
+              org_id,
+              organization_name
+            )
+          )
+        `)
+        .order('div_id', { ascending: true });
+  
+      console.log('API Response:', data);
+  
+      if (error) {
+        console.error('Supabase error:', error);
+        throw error;
+      }
+  
+      return (data || []).map((division: any) => ({
+        div_id: division.div_id,
+        division_name: division.division_name,
+        tbl_circle: {
+          circle_id: division.tbl_circle?.circle_id || 0,
+          circle_name: division.tbl_circle?.circle_name || '',
+          tbl_organizations: {
+            org_id: division.tbl_circle?.tbl_organizations?.org_id || 0,
+            organization_name: division.tbl_circle?.tbl_organizations?.organization_name || '',
+          }
+        }
+      }));
+    } catch (error) {
+      console.error('Error fetching divisions:', error);
+      return [];
+    }
   }
+  
+  
 
-  updateDivision(id: number, updatedDivision: Division) {
-    const index = this.divisions.findIndex(c => c.id === id);
-    if (index !== -1) {
-      this.divisions[index] = { ...updatedDivision, id };
-      this.divisionsSubject.next([...this.divisions]);
+  // Add a new division (includes role_name)
+  async addDivision(division: Division): Promise<any> {
+    try {
+      // Ensure that the circle exists before inserting
+      const { data: circleData, error: circleError } = await this.supabase
+        .from('tbl_circle')
+        .select('circle_id')
+        .eq('circle_id', division.tbl_circle.circle_id)
+        .single();
+
+      if (circleError || !circleData) {
+        throw new Error('Circle not found');
+      }
+
+      const { data, error } = await this.supabase
+        .from('tbl_division')
+        .insert({
+          division_name: division.division_name,
+          circle_id: circleData.circle_id, // Correctly reference the foreign key
+          role_name: 'DIVISION_USER', // Include role_name only when adding
+        })
+        .select();
+
+      if (error) throw error;
+      return data;
+    } catch (error) {
+      console.error('Error adding division:', error);
+      return null;
     }
   }
 
-  deleteDivision(id: number) {
-    this.divisions = this.divisions.filter(c => c.id !== id);
-    this.divisionsSubject.next([...this.divisions]);
+  // Update an existing division (does NOT include role_name)
+  async updateDivision(div_id: number, updatedDivision: Division): Promise<any> {
+    try {
+      // Ensure that the circle exists before updating
+      const { data: circleData, error: circleError } = await this.supabase
+        .from('tbl_circle')
+        .select('circle_id')
+        .eq('circle_id', updatedDivision.tbl_circle.circle_id)
+        .single();
+
+      if (circleError || !circleData) {
+        throw new Error('Circle not found');
+      }
+
+      const { data, error } = await this.supabase
+        .from('tbl_division')
+        .update({
+          division_name: updatedDivision.division_name,
+          circle_id: circleData.circle_id, // Ensure valid foreign key update
+        })
+        .eq('div_id', div_id)
+        .single();
+
+      if (error) throw error;
+      return data;
+    } catch (error) {
+      console.error('Error updating division:', error);
+      return null;
+    }
+  }
+
+  // Delete a division
+  async deleteDivision(div_id: number): Promise<any> {
+    try {
+      const { error } = await this.supabase
+        .from('tbl_division')
+        .delete()
+        .eq('div_id', div_id);
+
+      if (error) throw error;
+    } catch (error) {
+      console.error('Error deleting division:', error);
+    }
   }
 }

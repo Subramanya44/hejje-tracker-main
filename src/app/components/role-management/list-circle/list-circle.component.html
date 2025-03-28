@@ -40,7 +40,7 @@
         <ion-row class="data" *ngFor="let circle of paginatedCircles">
           <ion-col class="col-id">{{ circle.id }}</ion-col>
           <ion-col class="col-circle_name">{{ circle.circle_name }}</ion-col>
-          <ion-col class="col-organization">{{ circle.organization }}</ion-col>
+          <ion-col class="col-organization">{{ circle.tbl_organizations.organization_name }}</ion-col>
           <ion-col class="col-action" >
              <ion-button size="small" color="danger"
               (click)="deleteCircle(circle.id)">{{ 'DELETE' | translate }}

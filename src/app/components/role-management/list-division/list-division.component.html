@@ -39,16 +39,16 @@
         </ion-row>
 
         <ion-row class="data" *ngFor="let division of paginatedDivisions">
-          <ion-col class="col-id">{{ division.id }}</ion-col>
+          <ion-col class="col-id">{{ division.div_id }}</ion-col>
           <ion-col class="col-division_name">{{ division.division_name }}</ion-col>
-          <ion-col class="col-circle_name">{{ division.circle_name }}</ion-col>
+          <ion-col class="col-circle_name">{{ division.tbl_circle.circle_name }}</ion-col>
           <!-- <ion-col class="col-organization">{{ division.organization }}</ion-col> -->
           
           <ion-col class="col-action" >
              <ion-button size="small" color="danger"
-              (click)="deleteDivision(division.id)">{{ 'DELETE' | translate }}
+              (click)="deleteDivision(division.div_id)">{{ 'DELETE' | translate }}
             </ion-button>
-            <ion-button expand="block" routerLink="/role-management/list-division/edit/{{ division.id }}">
+            <ion-button expand="block" routerLink="/role-management/list-division/edit/{{ division.div_id }}">
               <ion-icon name="create-outline"></ion-icon>
             </ion-button>
           </ion-col>

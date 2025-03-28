@@ -31,7 +31,8 @@
     "ADD_SECTION": "Add Section",
     "ADD_VILLAGE": "Add Village",
     "ADD_ANNOUNCEMENT": "Add Announcement",
-    "ADD_COMPLAINTS": "Add Complaint"
+    "ADD_COMPLAINTS": "Add Complaint",
+    "ADD_ROLE": "Role Management"
   },
   "ADD_TRACK_PAGE": {
     "ADD_TRACK": "Add Track",
@@ -265,7 +266,9 @@
     "EDIT": "Edit",
     "ANNOUNCEMENT_ADD": "Add",
     "DATE_TIME": "Date & Time",
-    "TIME": "Announcement Time"
+    "TIME": "Announcement Time",
+    "COMPLAINT_ID":"Complaint Id",
+    "COMPLAINT_NAME":"Complaint Name"
   },
   "SUCCESS": "Success",
   "GET_CURRENT_LOCATION": "Get Current Location",

@@ -6,7 +6,7 @@
   align-items: center;
 }
 
-.filter > div:first-child {
+.filter>div:first-child {
   display: flex;
 }
 
@@ -33,7 +33,10 @@ ion-label {
 }
 
 .header {
-  padding: 10px;
+  padding-left: 10px;
+  padding-right: 33px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   background: grey;
   color: black;
 }
@@ -41,6 +44,7 @@ ion-label {
 .data {
   padding: 10px;
 }
+
 .card {
   display: none;
 }
@@ -52,11 +56,11 @@ ion-label {
   align-items: center;
 }
 
-.pagination > * {
+.pagination>* {
   margin: 5px 5px;
 }
 
-.top-bar-right > div:last-child {
+.top-bar-right>div:last-child {
   display: flex;
   text-align: end;
   align-items: flex-end;
@@ -64,7 +68,7 @@ ion-label {
   flex-direction: column;
 }
 
-.bottom-bar > div:last-child > span {
+.bottom-bar>div:last-child>span {
   cursor: pointer;
   text-decoration: underline blue;
   color: blue;
@@ -93,6 +97,30 @@ ion-footer ion-button ion-icon {
   }
 }
 
-.eye_disply{
+.eye_disply {
   width: 50%;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.tooltip:hover::after {
+  content: attr(title);
+  position: absolute;
+  background-color: #000;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: 100;
 }

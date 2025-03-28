@@ -25,8 +25,8 @@
       <div class="form-group">
         <label for="organization">{{ 'Add_CIRCLE.ORGANIZATION' | translate }}</label>
         <ion-select id="organization" formControlName="organization" class="form-control" fill="outline">
-          <ion-select-option *ngFor="let org of organizations" [value]="org.value">
-            {{ org.label }}
+          <ion-select-option *ngFor="let org of organizations" [value]="org.org_id">
+            {{ org.organization_name }}
           </ion-select-option>
         </ion-select>
       </div>
