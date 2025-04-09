@@ -1,6 +1,7 @@
 <ion-content>
   <div class="ion-card">
     <ion-card-header>
+      <ion-icon name="arrow-back" class="back-button" (click)="goBack()"></ion-icon>
       <span class="circle-icon">
         <ion-icon name="navigate-outline"></ion-icon>
       </span>
@@ -18,8 +19,7 @@
       
       <div class="form-group">
         <label for="name">{{ 'ELEPHANT_MANAGEMENT.NAME' | translate }}</label>
-        <ion-input type="text" id="name" formControlName="name" class="form-control"
-          fill="outline"></ion-input>
+        <ion-input type="text" id="name" formControlName="name" class="form-control" fill="outline"></ion-input>
       </div>
       
       <div class="form-group">
@@ -27,22 +27,179 @@
         <ion-input type="text" id="description" formControlName="description" class="form-control" fill="outline"></ion-input>
       </div>
 
-  
-      <div class="form-group" *ngIf="isMediaVisible()">
-        <label for="media">{{ 'ADD_TRACK_PAGE.MEDIA' | translate }}</label>
-        <ion-input type="file" id="media" (change)="onFileChange($event)" multiple class="form-control"
-          formControlName="file" fill="outline"> </ion-input>
-        <div *ngIf="previewImages.length > 0" class="preview-container">
-          <div *ngFor="let image of previewImages; let i = index" class="preview-item">
-            <img [src]="image.url" alt="Preview Image">
-            <button ion-button (click)="removeImage(i)" class="remove-button">X</button>
-          </div>
-        </div>
+      <!-- Circle Name Field -->
+      <div class="form-group">
+        <label for="circle_name">{{ 'ELEPHANT_MANAGEMENT.CIRCLE_NAME' | translate }}</label>
+        <ion-select id="circle_name" formControlName="circle_name" class="form-control" fill="outline">
+          <ion-select-option *ngFor="let name of circle_name" [value]="name.value">
+            {{ name.label }}
+          </ion-select-option>
+        </ion-select>
       </div>
 
+      <!-- Division Name Field -->
+      <div class="form-group">
+        <label for="division_name">{{ 'ELEPHANT_MANAGEMENT.DIVISION_NAME' | translate }}</label>
+        <ion-select id="division_name" formControlName="division_name" class="form-control" fill="outline">
+          <ion-select-option *ngFor="let name of division_name" [value]="name.value">
+            {{ name.label }}
+          </ion-select-option>
+        </ion-select>
+      </div>
 
-      <ion-button expand="block" type="submit" [disabled]="addElephantForm.invalid">{{ 'ADD_TRACK_PAGE.SUBMIT' | translate }}
-      </ion-button>
+      <div class="form-group">
+        <label for="range_name">{{ 'ELEPHANT_MANAGEMENT.RANGE_NAME' | translate }}</label>
+        <ion-select id="range_name" formControlName="range_name" class="form-control" fill="outline">
+          <ion-select-option *ngFor="let name of range_name" [value]="name.value">
+            {{ name.label }}
+          </ion-select-option>
+        </ion-select>
+      </div>
+  
+      <!-- <div class="form-group" *ngIf="isMediaVisible()">
+        <label for="media">{{ 'ADD_TRACK_PAGE.MEDIA' | translate }}</label>
+        <ion-input #fileInput type="file" id="media" (change)="onFileChangeMedia($event)" multiple class="form-control" formControlName="file" fill="outline"></ion-input>
+        <div *ngIf="previewImagesMedia.length > 0" class="preview-container">
+          <div *ngFor="let image of previewImagesMedia; let i = index" class="preview-item">
+            <img [src]="image.url" alt="Preview Image">
+            <button ion-button (click)="removeImageMedia(i, fileInput.getInputElement())" class="remove-button">X</button>
+          </div>
+        </div>
+      </div> -->
+      <div class="form-group">
+        <h2>ADD PROFILE</h2>
+
+      <ion-grid class="grid-border">
+        <ion-row>
+          <ion-col>
+            <div class="profile-section">
+              <label for="frontView">{{ 'ELEPHANT_MANAGEMENT.FRONT_VIEW' | translate }}</label>
+              <div class="image-container">
+                <div *ngFor="let image of previewImagesProfile['frontView'].slice(0, 1); let i = index" class="preview-item" (click)="openImageSlider('frontView', i)">
+                  <img [src]="image.url" alt="Front View Image">
+                  <button ion-button (click)="removeImageProfile('frontView', i, frontViewInput)" class="remove-button">X</button>
+                </div>
+                <div *ngIf="previewImagesProfile['frontView'].length > 1" class="cursor" (click)="openImageSlider('frontView', 1)">
+                  +{{ previewImagesProfile['frontView'].length - 1 }}
+                </div>
+                <input #frontViewInput type="file" id="frontView" (change)="onFileChangeProfile($event, 'frontView')" multiple style="display: none;">
+              </div>
+              <ion-row class="pull-right">
+                  <div class="plus-icon" (click)="triggerFileInput('frontView')">+</div>
+              </ion-row>
+             
+              <div class="form-group-comment">
+                <label for="frontViewComment">{{ 'ELEPHANT_MANAGEMENT.FRONT_VIEW_COMMENT' | translate }}</label>
+                <ion-textarea formControlName="frontViewComment" placeholder="Add a comment"  fill="outline" ></ion-textarea>           
+              </div>
+            </div>  
+          </ion-col>
+          <ion-col>
+            <div class="profile-section">
+              <label for="rearView">{{ 'ELEPHANT_MANAGEMENT.REAR_VIEW' | translate }}</label>
+              <div class="image-container">
+                <div *ngFor="let image of previewImagesProfile['rearView'].slice(0, 1); let i = index" class="preview-item" (click)="openImageSlider('rearView', i)">
+                  <img [src]="image.url" alt="Rear View Image">
+                  <button ion-button (click)="removeImageProfile('rearView', i, rearViewInput)" class="remove-button">X</button>
+                </div>
+                <div *ngIf="previewImagesProfile['rearView'].length > 1" class="cursor" (click)="openImageSlider('rearView', 1)">
+                  +{{ previewImagesProfile['rearView'].length - 1 }}
+                </div>
+                <input #rearViewInput type="file" id="rearView" (change)="onFileChangeProfile($event, 'rearView')" multiple style="display: none;">
+              </div>
+              <ion-row class="pull-right">
+                <div class="plus-icon" (click)="triggerFileInput('rearView')">+</div>
+              </ion-row>
+              <div class="form-group-comment">
+                <label for="rearViewComment">{{ 'ELEPHANT_MANAGEMENT.REAR_VIEW_COMMENT' | translate }}</label>
+                <ion-textarea formControlName="rearViewComment" placeholder="Add a comment"  fill="outline"></ion-textarea>           
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <div class="profile-section">
+              <label for="rightView">{{ 'ELEPHANT_MANAGEMENT.RIGHT_VIEW' | translate }}</label>
+              <div class="image-container">
+                <div *ngFor="let image of previewImagesProfile['rightView'].slice(0, 1); let i = index" class="preview-item" (click)="openImageSlider('rightView', i)">
+                  <img [src]="image.url" alt="Right View Image">
+                  <button ion-button (click)="removeImageProfile('rightView', i, rightViewInput)" class="remove-button">X</button>
+                </div>
+                <div *ngIf="previewImagesProfile['rightView'].length > 1" class="cursor" (click)="openImageSlider('rightView', 1)">
+                  +{{ previewImagesProfile['rightView'].length - 1 }}
+                </div>
+                <input #rightViewInput type="file" id="rightView" (change)="onFileChangeProfile($event, 'rightView')" multiple style="display: none;">
+              </div>
+              <ion-row class="pull-right">
+                <div class="plus-icon" (click)="triggerFileInput('rightView')">+</div>
+              </ion-row>
+              <div class="form-group-comment">
+                <label for="rightViewComment">{{ 'ELEPHANT_MANAGEMENT.RIGHT_VIEW_COMMENT' | translate }}</label>
+                <ion-textarea formControlName="rightViewComment" placeholder="Add a comment" fill="outline"></ion-textarea>           
+              </div>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="profile-section">
+              <label for="leftView">{{ 'ELEPHANT_MANAGEMENT.LEFT_VIEW' | translate }}</label>
+              <div class="image-container">
+                <div *ngFor="let image of previewImagesProfile['leftView'].slice(0, 1); let i = index" class="preview-item" (click)="openImageSlider('leftView', i)">
+                  <img [src]="image.url" alt="Left View Image">
+                  <button ion-button (click)="removeImageProfile('leftView', i, leftViewInput)" class="remove-button">X</button>
+                </div>
+                <div *ngIf="previewImagesProfile['leftView'].length > 1" class="cursor" (click)="openImageSlider('leftView', 1)">
+                  +{{ previewImagesProfile['leftView'].length - 1 }}
+                </div>
+                <input #leftViewInput type="file" id="leftView" (change)="onFileChangeProfile($event, 'leftView')" multiple style="display: none;">
+              </div>
+              <ion-row class="pull-right">
+                <div class="plus-icon" (click)="triggerFileInput('leftView')">+</div>
+              </ion-row>
+              <div class="form-group-comment">
+                <label for="leftViewComment">{{ 'ELEPHANT_MANAGEMENT.LEFT_VIEW_COMMENT' | translate }}</label>
+                <ion-textarea formControlName="leftViewComment" placeholder="Add a comment"  fill="outline"></ion-textarea>           
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <div class="profile-section">
+              <label for="otherView">{{ 'ELEPHANT_MANAGEMENT.OTHER_VIEW' | translate }}</label>
+              <div class="image-container">
+                <div *ngFor="let image of previewImagesProfile['otherView'].slice(0, 1); let i = index" class="preview-item" (click)="openImageSlider('otherView', i)">
+                  <img [src]="image.url" alt="Other View Image">
+                  <button ion-button (click)="removeImageProfile('otherView', i, otherViewInput)" class="remove-button">X</button>
+                </div>
+                <div *ngIf="previewImagesProfile['otherView'].length > 1" class="cursor" (click)="openImageSlider('otherView', 1)">
+                  +{{ previewImagesProfile['otherView'].length - 1 }}
+                </div>
+                <input #otherViewInput type="file" id="otherView" (change)="onFileChangeProfile($event, 'otherView')" multiple style="display: none;">
+              </div>
+              <ion-row class="pull-right">
+                <div class="plus-icon" (click)="triggerFileInput('otherView')">+</div>
+              </ion-row>
+              <div class="form-group-comment">
+                <label for="OtherViewComment">{{ 'ELEPHANT_MANAGEMENT.OTHER_VIEW_COMMENT' | translate }}</label>
+                <ion-textarea formControlName="OtherViewComment" placeholder="Add a comment" fill="outline"></ion-textarea>           
+              </div>
+            </div>
+          </ion-col>
+          <ion-col></ion-col>
+        </ion-row>
+      </ion-grid>
+</div>
+     
+
+
+
+      <div class="displaybutton">
+        <ion-button fill="outline" color="danger" (click)="cancel()">
+          <strong>Cancel<ion-icon slot="end" name="close"></ion-icon> </strong>
+        </ion-button>
+        <ion-button expand="block" type="submit" [disabled]="addElephantForm.invalid">{{ 'ADD_TRACK_PAGE.SUBMIT' | translate }}</ion-button>
+      </div>
     </form>
   </div>
 </ion-content>

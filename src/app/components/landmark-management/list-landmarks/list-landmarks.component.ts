@@ -87,6 +87,12 @@ export class ListLandmarksComponent  implements OnInit {
     }
   }
 
+  get visibleLandmarks(): Landmark[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = Math.min(startIndex + this.itemsPerPage, this.landmarks.length);
+    return this.landmarks.slice(startIndex, endIndex);
+  } 
+
   updateStatus(id: number, status: boolean) {
     // Update collar status
     this.landmarkService.changeStatus(id, status).then(() => {

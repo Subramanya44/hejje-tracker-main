@@ -9,6 +9,22 @@ import { CollarsService } from 'src/app/services/collars.service';
   styleUrls: ['./add-collars.component.scss'],
 })
 export class AddCollarsComponent  implements OnInit {
+  range_name = [
+    { value: 'BELURU', label: 'BELURU' },
+    { value: 'YESLURU', label: 'YESLURU' },
+    { value: 'ALURU', label: 'ALURU' },
+    { value: 'SAKALESHAPURA', label: 'SAKALESHAPURA' }
+  ];
+
+  division_name = [
+    { value: 'division name 1', label: 'division name 1' },
+    { value: 'division name 2', label: 'division name 2' }
+  ];
+
+  circle_name = [
+    { value: 'circle name 1', label: 'circle name 1' },
+    { value: 'circle name 2', label: 'circle name 2' }
+  ];
   addCollarsForm: FormGroup = new FormGroup({});
   id: number = 0;
 
@@ -26,6 +42,9 @@ initForm() {
       name: ['', [Validators.required, Validators.minLength(3)]],
       description: [''],
       imei: [['']],
+      circle_name:[],
+      division_name:[],
+      range_name:[],
       status: [],
     });
   }
@@ -63,6 +82,10 @@ initForm() {
         }
       }
     });
+  }
+
+  goBack() {
+    this.router.navigate(['/radio-collars']);
   }
 
 }

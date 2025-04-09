@@ -1,0 +1,164 @@
+form {
+    padding: 30px;
+  }
+  
+  .circle-icon {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: var(--ion-color-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .circle-icon > ion-icon {
+    font-size: 25px;
+    color: white;
+  }
+  
+  .ion-card {
+    width: 50%;
+    margin: auto;
+  }
+  .form-group-count-data-location {
+    flex-wrap: nowrap;
+  }
+  
+  .w-full {
+    width: 100%
+  }
+  
+  ion-card-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    padding: 0 10px 0 0;
+  }
+  
+  .location-button {
+    display: flex;
+    margin-bottom: 20px;
+    padding: 0 10px 0 0;
+    align-items: center;
+    gap: 5px;
+    justify-content: flex-end;
+    cursor: pointer;
+    color: var(--ion-color-primary);
+  }
+  
+  .location-button:hover {
+    color: var(--ion-color-primary-shade);
+  }
+  
+  .form-group-radio {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  
+  .form-group-count-data,
+  .form-group-count-data-location {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .form-group-count {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  .form-group-count > ion-input {
+    text-align: center;
+  }
+  
+  label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  input {
+    padding: 12px;
+  }
+  
+  button[type="submit"] {
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Media Query */
+  @media screen and (max-width: 600px) {
+    .form-group {
+      width: 100%;
+    }
+    
+    .ion-card {
+      width: 100%;
+    }
+  }
+  .preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  
+  .preview-item {
+    position: relative;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .preview-item img {
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .remove-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    color: red;
+  }
+  
+  .remove-button:hover {
+    background-color: rgba(255, 0, 0, 0.5);
+    color: white;
+  }
+
+  .displaybutton {
+    display: inline-flex;
+  }
+  
+  .back-button {
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--ion-color-primary);
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+ 

@@ -25,6 +25,7 @@ export class ListElephantComponent  implements OnInit {
   fetchElephants() {
     this.elephantService.fetchAllElephants().then((elephants) => {
       this.elephants = elephants;
+      this.currentPage = 1;
     } );
   }
 
@@ -94,6 +95,12 @@ export class ListElephantComponent  implements OnInit {
       this.currentPage--;
     }
   }
+
+  get visibleElephants(): ELEPHANT[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = Math.min(startIndex + this.itemsPerPage, this.elephants.length);
+    return this.elephants.slice(startIndex, endIndex);
+  }  
 
   updateElephant(elephantId: number) {
     // Update the status of the elephant

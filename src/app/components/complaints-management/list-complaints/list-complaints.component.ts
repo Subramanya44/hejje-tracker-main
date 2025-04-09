@@ -23,12 +23,14 @@ export class ListComplaintsComponent  implements OnInit {
   prevPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
+      this.updateVisibleComplaints();
     }
   }
 
   nextPage() {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
+      this.updateVisibleComplaints();
     }
   }
 
@@ -40,8 +42,14 @@ export class ListComplaintsComponent  implements OnInit {
   onPageSizeChange(event: any) {
     this.itemsPerPage = event.target.value;
     this.currentPage = 1;
+    this.updateVisibleComplaints();
   }
 
+  updateVisibleComplaints() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    this.visibleComplaints = this.complaints.slice(startIndex, endIndex);
+  }
 
   // if media is empty then return false
   // media = ["", "" ... ]
@@ -74,6 +82,8 @@ export class ListComplaintsComponent  implements OnInit {
     // Filter the complaints by date
     this.visibleComplaints = this.complaintsService.fetchAllComplaints(this.startDate, this.endDate).then((complaints) => {
       this.complaints = complaints;
+      this.currentPage = 1;
+      this.updateVisibleComplaints();
     });
   }
 

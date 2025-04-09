@@ -24,7 +24,15 @@
     "RADIO_COLLAR_MANAGEMENT": "Radio Collar Management",
     "LANDMARK_MANAGEMENT": "Landmark Management",
     "REPORTS_MANAGEMENT": "Reports Management",
-    "COMPLAINTS_MANAGEMENT": "Complaints Management"
+    "COMPLAINTS_MANAGEMENT": "Complaints Management",
+    "ADD_CIRCLE": "Add Circle",
+    "ADD_DIVISION": "Add Division",
+    "ADD_RANGE": "Add Range",
+    "ADD_SECTION": "Add Section",
+    "ADD_VILLAGE": "Add Village",
+    "ADD_ANNOUNCEMENT": "Add Announcement",
+    "ADD_COMPLAINTS": "Add Complaint",
+    "ADD_ROLE": "Role Management"
   },
   "ADD_TRACK_PAGE": {
     "ADD_TRACK": "Add Track",
@@ -89,7 +97,20 @@
     "TIMESTAMP": "Timestamp",
     "ACTION": "Action",
     "EDIT": "Edit",
-    "ADD_ELEPHANT": "Add Elephant"
+    "ADD_ELEPHANT": "Add Elephant",
+    "DIVISION_NAME": "Division Name",
+    "CIRCLE_NAME": "Circle Name",
+    "FRONT_VIEW": "Front View",
+    "REAR_VIEW": "Rear View",
+    "RIGHT_VIEW": "Right View",
+    "LEFT_VIEW": "Left View",
+    "OTHER_VIEW": "Others",
+    "FRONT_VIEW_COMMENT": "Comment",
+    "REAR_VIEW_COMMENT": "Comment",
+    "RIGHT_VIEW_COMMENT": "Comment",
+    "LEFT_VIEW_COMMENT": "Comment",
+    "OTHER_VIEW_COMMENT": "Comment",
+    "RANGE_NAME": "Range Name"
   },
   "KML_MANAGEMENT":{
     "KML_MANAGEMENT": "KML Management",
@@ -128,7 +149,10 @@
     "ACTION": "Action",
     "EDIT": "Edit",
     "STATUS": "Status",
-    "ADD_LANDMARK": "Add Landmark"
+    "ADD_LANDMARK": "Add Landmark",
+    "RANGE_NAME": "Range Name",
+    "DIVISION_NAME": "Division Name",
+    "CIRCLE_NAME": "Circle Name"
   },
   "REPORTS_MANAGEMENT":{
     "REPORTS_MANAGEMENT": "Reports Management",
@@ -167,7 +191,84 @@
     "INDIRECT_SIGHTING": "Indirect Sighting",
     "ATTACK_ON_ELEPHANTS": "Attack on Elephants",
     "COMPLAINT_ADDED_SUCCESSFULLY": "Complaint added successfully",
-    "NO_MEDIA_FOUND": "No Media Found"
+    "NO_MEDIA_FOUND": "No Media Found",
+    "RANGE_NAME": "Range Name",
+    "DIVISION_NAME": "Division Name",
+    "CIRCLE_NAME": "Circle Name"
+  },
+  "Add_CIRCLE":{
+    "ADD_CIRCLE": "Add Circle",
+    "ID": "Sl No.",
+    "CIRCLE_NAME": "Circle Name",
+    "ORGANIZATION": "Organization",
+    "ACTION": "Action",
+    "EDIT": "Edit",
+    "ADD_LANDMARK": "Add Landmark",
+    "CIRCLE_ADD": "Add"
+  },
+  "Add_DIVISION":{
+    "Add_DIVISION": "Add Division",
+    "ID": "Sl No.",
+    "DIVISION_NAME": "Division Name",
+    "CIRCLE_NAME": "Circle Name",
+    "ORGANIZATION": "Organization",
+    "ACTION": "Action",
+    "EDIT": "Edit",
+    "DIVISION_ADD": "Add",
+    "DIVISION_UPDATE": "Update"
+  },
+  "Add_RANGE":{
+    "Add_RANGE": "Add Range",
+    "ID": "Sl No.",
+    "RANGE_NAME": "Range Name",
+    "DIVISION_NAME": "Division Name",
+    "CIRCLE_NAME": "Circle Name",
+    "ORGANIZATION": "Organization",
+    "ACTION": "Action",
+    "EDIT": "Edit",
+    "RANGE_ADD": "Add"
+  },
+  "Add_SECTION":{
+    "Add_SECTION": "Add Section",
+    "ID": "Sl No.",
+    "SECTION_NAME":"Section Name",
+    "RANGE_NAME": "Range Name",
+    "DIVISION_NAME": "Division Name",
+    "CIRCLE_NAME": "Circle Name",
+    "ORGANIZATION": "Organization",
+    "ACTION": "Action",
+    "EDIT": "Edit",
+    "SECTION_ADD": "Add"
+  },
+  "Add_VILLAGE":{
+    "Add_VILLAGE": "Add Village",
+    "ID": "Sl No.",
+    "VILLAGE_NAME":"Village Name",
+    "SECTION_NAME":"Section Name",
+    "RANGE_NAME": "Range Name",
+    "DIVISION_NAME": "Division Name",
+    "CIRCLE_NAME": "Circle Name",
+    "ORGANIZATION": "Organization",
+    "ACTION": "Action",
+    "EDIT": "Edit",
+    "VILLAGE_ADD": "Add"
+  },
+  "Add_ANNOUNCEMENT":{
+    "Add_ANNOUNCEMENT": "Add Announcement",
+    "ID": "Sl No.",
+    "VILLAGE_NAME":"Village Name",
+    "SECTION_NAME":"Section Name",
+    "RANGE_NAME": "Range Name",
+    "ANNOUNCEMENT_DATE": "DATE",
+    "TIME_AM": "Morning",
+    "TIME_PM": "Evening",
+    "ACTION": "Action",
+    "EDIT": "Edit",
+    "ANNOUNCEMENT_ADD": "Add",
+    "DATE_TIME": "Date & Time",
+    "TIME": "Announcement Time",
+    "COMPLAINT_ID":"Complaint Id",
+    "COMPLAINT_NAME":"Complaint Name"
   },
   "SUCCESS": "Success",
   "GET_CURRENT_LOCATION": "Get Current Location",

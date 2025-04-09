@@ -1,0 +1,15 @@
+<ion-content class="modal-container">
+  <div class="image-slider">
+    <ion-icon name="close-circle" class="close-button" (click)="closeModal()"></ion-icon>
+
+    <img [src]="images[currentIndex].url" class="slider-image" />
+
+    <ion-button fill="clear" class="nav-button left" (click)="prevImage()" *ngIf="currentIndex > 0">
+      <ion-icon name="chevron-back-circle"></ion-icon>
+    </ion-button>
+
+    <ion-button fill="clear" class="nav-button right" (click)="nextImage()" *ngIf="currentIndex < images.length - 1">
+      <ion-icon name="chevron-forward-circle"></ion-icon>
+    </ion-button>
+  </div>
+</ion-content>

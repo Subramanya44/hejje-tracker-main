@@ -10,6 +10,23 @@ import {AuthService} from 'src/app/services/auth.service';
 })
 export class UsersListComponent implements OnInit {
 
+  range_name = [
+    { value: 'BELURU', label: 'BELURU' },
+    { value: 'YESLURU', label: 'YESLURU' },
+    { value: 'ALURU', label: 'ALURU' },
+    { value: 'SAKALESHAPURA', label: 'SAKALESHAPURA' }
+  ];
+
+  division_name = [
+    { value: 'division name 1', label: 'division name 1' },
+    { value: 'division name 2', label: 'division name 2' }
+  ];
+
+  circle_name = [
+    { value: 'circle name 1', label: 'circle name 1' },
+    { value: 'circle name 2', label: 'circle name 2' }
+  ];
+
   date = new Date();
   public users: any = [];
   currentPage: number = 1; // Current page
@@ -36,6 +53,9 @@ export class UsersListComponent implements OnInit {
       mobile: ['', [Validators.required, Validators.minLength(10)]],
       full_name: ['', [Validators.required, Validators.minLength(3)]],
       role: ['', [Validators.required]],
+      circle_name:['', [Validators.required]],
+      division_name:['', [Validators.required]],
+      range_name:['', [Validators.required]]
     });
   }
 
@@ -47,7 +67,10 @@ export class UsersListComponent implements OnInit {
         data: {
           mobile: this.inviteForm.value.mobile,
           full_name: this.inviteForm.value.full_name,
-          role: this.inviteForm.value.role
+          role: this.inviteForm.value.role,
+          circle_name:this.inviteForm.value.circle_name,
+          division_name:this.inviteForm.value.division_name,
+          range_name:this.inviteForm.value.range_name
         }
       }
     }

@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { UserRole } from 'src/app/models/profile';
 import { ComplaintsService } from 'src/app/services/complaints.service';
 import { TrackService } from 'src/app/services/track.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-complaints',
@@ -12,6 +13,23 @@ import { TrackService } from 'src/app/services/track.service';
   styleUrls: ['./add-complaints.component.scss'],
 })
 export class AddComplaintsComponent  implements OnInit {
+
+  range_name = [
+    { value: 'BELURU', label: 'BELURU' },
+    { value: 'YESLURU', label: 'YESLURU' },
+    { value: 'ALURU', label: 'ALURU' },
+    { value: 'SAKALESHAPURA', label: 'SAKALESHAPURA' }
+  ];
+
+  division_name = [
+    { value: 'division name 1', label: 'division name 1' },
+    { value: 'division name 2', label: 'division name 2' }
+  ];
+
+  circle_name = [
+    { value: 'circle name 1', label: 'circle name 1' },
+    { value: 'circle name 2', label: 'circle name 2' }
+  ];
 
   addComplaintsForm: FormGroup=  new FormGroup({});
   previewImages: { url: string, file?: File }[] = [];
@@ -24,7 +42,8 @@ export class AddComplaintsComponent  implements OnInit {
   constructor(private trackService:TrackService, private formbuilder:FormBuilder,
               private complaintsService:ComplaintsService,
               private alertcont:AlertController,
-              private translateService:TranslateService) { }
+              private translateService:TranslateService,
+              private router: Router,) { }
 
   ngOnInit() {
     this.initForm();
@@ -69,6 +88,9 @@ export class AddComplaintsComponent  implements OnInit {
       district: [''],
       taluk: [''],
       village: [''],
+      circle_name:[],
+      division_name:[],
+      range_name:[],
       name: ['', Validators.required],
       contact_number: ['', Validators.required,Validators.maxLength(10)],
       description: ['', Validators.required],
@@ -171,6 +193,9 @@ export class AddComplaintsComponent  implements OnInit {
     this.showSuggestions = true;
   }
 
+  goBack() {
+    this.router.navigate(['/complaints-management']);
+  }
   
 
 }

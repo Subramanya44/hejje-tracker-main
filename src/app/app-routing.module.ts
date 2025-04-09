@@ -60,6 +60,16 @@ const routes: Routes = [
     path: 'complaints-management',
     loadChildren: () => import('./components/complaints-management/complaints-management.module').then( m => m.ComplaintsManagementModule),
     canActivate: [authGuard]
+  },
+  {
+    path: 'role-management',
+    loadChildren: () => import('./components/role-management/role-management.module').then( m => m.RoleManagementModule),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'announcement-management',
+    loadChildren: () => import('./components/announcement-management/announcement-management.module').then( m => m.AnnouncementManagementModule),
+    canActivate: [authGuard]
   }
 ];
 

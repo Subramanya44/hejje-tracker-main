@@ -71,10 +71,14 @@
     border-top-right-radius: 13px;
   }
 
-
-  .custom-toast {
-    --min-width: unset;
-    --width: auto;
-    --max-width: 90%;
-    white-space: pre-wrap;  // Ensure text wraps properly
+  ::ng-deep .loading-wrapper {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 12px;
+    color: white;
   }
+
+  .full-screen-modal {
+    --height: 50%;
+    --width: 50%;
+  }
+  

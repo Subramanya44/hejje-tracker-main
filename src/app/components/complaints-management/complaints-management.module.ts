@@ -21,7 +21,7 @@ const complaintsRoute: Routes = [
     component: DashboardComponent,
     children: [
       {
-        path: 'add',
+        path: 'add-complaints',
         component: AddComplaintsComponent
       },
       {

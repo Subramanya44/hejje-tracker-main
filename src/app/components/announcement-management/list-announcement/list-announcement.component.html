@@ -1,0 +1,130 @@
+<!-- Assuming this is part of one of your tab pages -->
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <h1>{{ 'Add_ANNOUNCEMENT.Add_ANNOUNCEMENT' | translate }}</h1>
+      <p> Total Items: {{ announcements.length }}</p>
+    </ion-card-header>
+
+    <ion-card-content>
+
+
+      <!-- Date Range Filter -->
+      <div class="filter">
+        <!-- <div>
+          <div class="form-group">
+
+            <ion-input id="startDate" label="{{ 'MY_TRACKS_PAGE.START_DATE' | translate
+          }}" [(ngModel)]="startDate" type="date" class="ion-text-end"></ion-input>
+          </div>
+          <div class="form-group">
+
+            <ion-input id="endDate" label="{{ 'MY_TRACKS_PAGE.END_DATE' | translate
+          }}" [(ngModel)]="endDate" type="date" class="ion-text-end"></ion-input>
+          </div>
+        </div> -->
+        <ion-button (click)="fetchAnnouncements()">{{'REFRESH' | translate}}</ion-button>
+        <ion-button (click)="downloadPDF()">{{ 'DOWNLOAD PDF' | translate }}</ion-button>
+      </div>
+
+
+
+      <!-- Data Display in Table-like Format -->
+      <ion-card>
+
+        <ion-row class="header">
+          <ion-col class="col-id"><strong>{{ 'Add_ANNOUNCEMENT.ID' | translate }}</strong></ion-col>
+          <ion-col class="col-complaint_id"><strong>{{ 'Add_ANNOUNCEMENT.COMPLAINT_ID' | translate }}</strong></ion-col>
+          <ion-col class="col-complaint_name"><strong>{{ 'Add_ANNOUNCEMENT.COMPLAINT_NAME' | translate }}</strong></ion-col>
+          <ion-col class="col-announcement_date"><strong>{{ 'Add_ANNOUNCEMENT.ANNOUNCEMENT_DATE' | translate }}</strong></ion-col>
+          <ion-col class="col-range_name"><strong>{{ 'Add_ANNOUNCEMENT.RANGE_NAME' | translate }}</strong></ion-col>
+          <ion-col class="col-section_name"><strong>{{ 'Add_ANNOUNCEMENT.SECTION_NAME' | translate }}</strong></ion-col>
+          <ion-col class="col-village_name"><strong>{{ 'Add_ANNOUNCEMENT.VILLAGE_NAME' | translate }}</strong></ion-col>
+          <ion-col class="col-announcement_time_am"><strong>{{ 'Add_ANNOUNCEMENT.TIME_AM' | translate
+              }}</strong></ion-col>
+          <ion-col class="col-announcement_time_pm"><strong>{{ 'Add_ANNOUNCEMENT.TIME_PM' | translate
+              }}</strong></ion-col>
+          <ion-col class="col-action"><strong>{{ 'Add_ANNOUNCEMENT.ACTION' | translate }}</strong></ion-col>
+        </ion-row>
+
+        <ion-row class="data" *ngFor="let announcement of visibleAnnouncements">
+          <ion-col class="col-id">{{ announcement.announcement_id }}</ion-col>
+          
+          <ion-col class="tooltip col-complaint_id" *ngIf="announcement.complaint_id && announcement.complaint_id.length" [title]="announcement.complaint_id">
+            {{ announcement.complaint_id.length > 15 ? (announcement.complaint_id | slice:0:15) + '...' : announcement.complaint_id }}
+          </ion-col>
+          
+          <ion-col class="tooltip col-complaint_name" *ngIf="announcement.complaint_name && announcement.complaint_name.length" [title]="announcement.complaint_name">
+            {{ announcement.complaint_name.length > 15 ? (announcement.complaint_name | slice:0:15) + '...' : announcement.complaint_name }}
+          </ion-col>
+          
+          <ion-col class="col-announcement_date">{{ announcement.announcement_date }}</ion-col>
+          <ion-col class="tooltip col-range_name" [title]="announcement.range_name">
+            {{ announcement.range_name.length > 15 ? (announcement.range_name | slice:0:15) + '...' : announcement.range_name }}
+          </ion-col>
+          
+          <ion-col class="tooltip col-section_name" [title]="announcement.section_name">
+            {{ announcement.section_name.length > 15 ? (announcement.section_name | slice:0:15) + '...' : announcement.section_name }}
+          </ion-col>
+          
+          <ion-col class="tooltip col-village_name" [title]="announcement.village_name">
+            {{ announcement.village_name.length > 15 ? (announcement.village_name | slice:0:15) + '...' : announcement.village_name }}
+          </ion-col>
+          
+          <ion-col class="col-announcement_time_am">{{ announcement.announcement_time_am }}</ion-col>
+          <ion-col class="col-announcement_time_pm">{{ announcement.announcement_time_pm }}</ion-col>
+
+          <ion-col class="col-action">
+            <ion-button size="small" color="danger"
+              (click)="announcement.announcement_id && deleteAnnouncement(announcement.announcement_id)">{{ 'DELETE' |
+              translate }}
+            </ion-button>
+            <ion-button expand="block"
+              [routerLink]="['/announcement-management/list-announcement/edit', announcement.announcement_id]">
+              <ion-icon name="create-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+
+
+        <ion-footer>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button aria-label="Previous" (click)="prevPage()" [disabled]="currentPage === 1" title="Previous">
+                <ion-icon name="chevron-back"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+            <div class="pagination">
+              <p>
+                Page {{ currentPage }} of {{ totalPages }} : </p>
+              <span>
+                <ion-select value="10" (ionChange)="onPageSizeChange($event)">
+                  <ion-select-option value="5">5</ion-select-option>
+                  <ion-select-option value="10">10</ion-select-option>
+                  <ion-select-option value="20">25</ion-select-option>
+                  <ion-select-option value="50">50</ion-select-option>
+                </ion-select>
+
+              </span>
+            </div>
+
+            <ion-buttons slot="end">
+              <ion-button aria-label="Next" (click)="nextPage()" [disabled]="currentPage === totalPages" title="Next">
+                <ion-icon name="chevron-forward"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-footer>
+
+      </ion-card>
+    </ion-card-content>
+  </ion-card>
+  <ion-fab title="Create New Announcement" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" routerLink="/announcement-management/list-announcement/add"
+      title="Add new Announcement">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

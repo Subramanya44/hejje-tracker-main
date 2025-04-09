@@ -1,0 +1,90 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DivisionService } from 'src/app/services/division.service';
+
+@Component({
+  selector: 'app-add-division',
+  templateUrl: './add-division.component.html',
+  styleUrls: ['./add-division.component.scss'],
+})
+export class AddDivisionComponent  implements OnInit {
+  pageTitle: string = 'Division'; 
+  submitButtonText: string = 'Add_DIVISION.DIVISION_ADD';
+  addDivisionForm: FormGroup = new FormGroup({});
+    id: number = 0;
+    circle_name = [
+      { value: 'Mysore Circle', label: 'Mysore Circle' },
+      { value: 'Chikkamagaluru Circle', label: 'Chikkamagaluru Circle' }
+    ];
+
+    organizations = [
+      { value: 'Karnataka Forest Department', label: 'Karnataka Forest Department' },
+      { value: 'Karnataka Forest Department', label: 'Karnataka Forest Department' }
+    ];
+
+    constructor(private formBuilder:FormBuilder,private router:Router, private divisionService: DivisionService, private route: ActivatedRoute) { }
+  
+    ngOnInit() {
+      this.handleRoute();
+      this.initForm();
+    }
+  
+    initForm() {
+      this.addDivisionForm = this.formBuilder.group({
+        // created_at: [new Date().toISOString()],
+        division_name: ['', [Validators.required, Validators.minLength(3)]],
+        circle_name: [''],
+        organization: [['']]
+      });
+    }
+  
+    onSubmit() {
+      if (this.id) {
+        this.divisionService.updateDivision(this.id, this.addDivisionForm.value);
+      } else {
+        this.divisionService.addDivision(this.addDivisionForm.value);
+      }
+      
+      this.router.navigate(['/role-management/list-division/']);
+    }
+  
+    handleRoute() {
+      this.route.paramMap.subscribe(params => {
+        const id = params.get('id');
+        if (id) {
+          this.id = +id; 
+          this.pageTitle = 'Edit Division';
+          this.submitButtonText = 'Add_DIVISION.DIVISION_UPDATE';
+          // this.loadDivisionData(this.id);
+        } else {
+          this.pageTitle = 'Add Division';
+          this.submitButtonText = 'Add_DIVISION.DIVISION_ADD';
+          this.addDivisionForm.reset();
+        }
+      });
+    }
+
+    // loadDivisionData(divisionId: number) {
+    //   const divisions = this.divisionService.getDivisions();
+    //   const selectedDivision = divisions.find(division => division.id === divisionId);
+    
+    //   if (selectedDivision) {
+    //     setTimeout(() => {
+    //       this.addDivisionForm.patchValue({
+    //         division_name: selectedDivision.division_name,
+    //         circle_name: selectedDivision.circle_name,
+    //         organization: selectedDivision.organization
+    //       });
+    //     });
+    //   }
+    // }
+
+    cancel() {
+      this.router.navigate(['/role-management/list-division/']);
+    }
+
+    goBack() {
+      this.router.navigate(['/role-management/list-division/']);
+    }
+}

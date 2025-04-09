@@ -55,7 +55,7 @@
 
         </ion-row>
 
-        <ion-row class="data" *ngFor="let complaint of complaints">
+        <ion-row class="data" *ngFor="let complaint of visibleComplaints">
           <ion-col class="col-id">{{ complaint.id }}</ion-col>
           <ion-col class="col-timestamp">{{ complaint.created_at | date: "YYY-MM-dd HH:mm:ss" }}</ion-col>
           <ion-col class="col-location">{{ complaint.complaint_type }}</ion-col>
@@ -101,6 +101,55 @@
           </ion-col>
         </ion-row>
 
+        <div class="card" *ngFor="let complaint of visibleComplaints">
+          <div class="top-bar">
+            <!-- If media is present, show the first image; otherwise, show a default image -->
+            <ion-img *ngIf="isMediaVisible(complaint.media ?? []) && complaint.media.length > 0" 
+              [src]="complaint.media[0]" (click)="openModal(complaint)" 
+              onerror="this.onerror=null;this.src='https://via.placeholder.com/300';" alt="">
+            </ion-img>
+            <ion-img *ngIf="!isMediaVisible(complaint.media ?? [])" 
+              src="https://via.placeholder.com/300" alt="">
+            </ion-img>
+        
+            <div class="top-bar-right">
+              <div>
+                <div>{{ complaint.name }}</div>
+                <div>{{ complaint.complaint_type }}</div>
+                <div>{{ complaint.created_at | date: "YYY-MM-dd HH:mm:ss" }}</div>
+              </div>
+              <div>
+                <ion-icon name="create-outline" routerLink="/track/track-data/{{ complaint.id }}"></ion-icon>
+              </div>
+            </div>
+          </div>
+        
+          <hr>
+        
+          <div class="bottom-bar">
+            <div>{{ complaint.status | translate }}</div>
+            <div (click)="openMap(complaint.latitude, complaint.longitude)">
+              {{ complaint.location }}<br>
+              <span>{{ complaint.latitude }} {{ complaint.longitude }}</span>
+            </div>
+          </div>
+        
+          <div class="bottom-bar">
+            <ion-button size="small" color="primary" *ngIf="complaint.status === 'PENDING'"
+              (click)="updateCompaint(complaint.id, 'APPROVED')">
+              {{ 'APPROVE' | translate }}
+            </ion-button>
+            <ion-button size="small" color="danger" *ngIf="complaint.status === 'PENDING'"
+              (click)="updateCompaint(complaint.id, 'REJECTED')">
+              {{ 'REJECT' | translate }}
+            </ion-button>
+            <ion-button size="small" color="danger"
+              (click)="deleteComplaint(complaint.id)">
+              {{ 'DELETE' | translate }}
+            </ion-button>
+          </div>
+        </div>
+        
 
         
         <ion-footer>

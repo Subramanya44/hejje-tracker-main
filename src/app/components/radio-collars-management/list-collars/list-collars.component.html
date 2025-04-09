@@ -41,7 +41,7 @@
          
         </ion-row>
 
-        <ion-row class="data" *ngFor="let collar of collars">
+        <ion-row class="data" *ngFor="let collar of paginatedCollars">
           <ion-col class="col-id">{{ collar.id }}</ion-col>
           <ion-col class="col-name">{{ collar.name }}</ion-col>
           <ion-col class="col-description">{{ collar.description }}</ion-col>

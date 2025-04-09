@@ -1,0 +1,126 @@
+.filter {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter>div:first-child {
+  display: flex;
+}
+
+.form-group {
+  width: auto;
+  min-width: 17%;
+  border: 1px solid;
+  border-radius: 23px;
+  padding: 0 10px;
+}
+
+ion-label {
+  display: flex;
+  gap: 9px;
+  width: 100%;
+  align-items: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: row;
+  /* align-items: flex-start; */
+  margin: 10px;
+}
+
+.header {
+  padding-left: 10px;
+  padding-right: 33px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: grey;
+  color: black;
+}
+
+.data {
+  padding: 10px;
+}
+
+.card {
+  display: none;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+}
+
+.pagination>* {
+  margin: 5px 5px;
+}
+
+.top-bar-right>div:last-child {
+  display: flex;
+  text-align: end;
+  align-items: flex-end;
+  gap: 5px;
+  flex-direction: column;
+}
+
+.bottom-bar>div:last-child>span {
+  cursor: pointer;
+  text-decoration: underline blue;
+  color: blue;
+}
+
+ion-footer {
+  padding: 10px;
+  color: black;
+}
+
+ion-footer ion-button ion-icon {
+  --color: white;
+}
+
+.displaybutton {
+  display: inline-flex;
+}
+
+.col-action {
+  display: inline-flex;
+}
+
+@media only screen and (max-width: 600px) {
+  .col-action {
+    display: grid;
+  }
+}
+
+.eye_disply {
+  width: 50%;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.tooltip:hover::after {
+  content: attr(title);
+  position: absolute;
+  background-color: #000;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: 100;
+}
